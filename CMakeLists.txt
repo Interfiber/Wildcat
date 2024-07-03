@@ -21,7 +21,8 @@ add_executable(wildcat main.cpp vendor/imgui/backends/imgui_impl_sdl2.cpp vendor
     wildcatmainwindow.h wildcatmainwindow.cpp
     wildcatchannel.h wildcatchannel.cpp
     wildcatuserdriver.h wildcatuserdriver.cpp
-    wildcatauth.h wildcatauth.cpp)
+    wildcatauth.h wildcatauth.cpp
+    wildcatdevice.h wildcatdevice.cpp)
 
 add_executable(wildcatdriver main_driver.cpp wildcatuserdriver.h wildcatuserdriver.cpp)
 

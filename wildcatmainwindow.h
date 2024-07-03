@@ -1,8 +1,8 @@
 #ifndef WILDCATMAINWINDOW_H
 #define WILDCATMAINWINDOW_H
 
-#include "wildcatuserdriver.h"
 #include "wildcatchannel.h"
+#include "wildcatdevice.h"
 #include <vector>
 #include <memory>
 
@@ -15,7 +15,7 @@ public:
 private:
     std::vector<WildcatChannel> m_channelList;
 
-    std::unique_ptr<WildcatUserDriver> m_userDriver;
+    std::unique_ptr<WildcatDevice> m_device;
 };
 
 #endif // WILDCATMAINWINDOW_H

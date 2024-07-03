@@ -3,9 +3,9 @@
 #include <misc/cpp/imgui_stdlib.h>
 
 WildcatMainWindow::WildcatMainWindow() {
-    m_userDriver = std::make_unique<WildcatUserDriver>();
+    m_device = std::make_unique<WildcatDevice>();
 
-    for (int i = 0; i < 100; i++) {
+    for (int i = 0; i < 100; i++) { // Fill with 100 blank channels, FIXME: Remove this or something
         m_channelList.push_back(WildcatChannel());
     }
 }
@@ -31,6 +31,29 @@ void WildcatMainWindow::render() {
 
             ImGui::EndMenu();
         }
+
+        if (ImGui::BeginMenu("Devices")) {
+            
+            if (ImGui::MenuItem("Load from device")) {
+
+            }
+
+            if (ImGui::MenuItem("Write to device")) {
+
+            }
+
+            ImGui::EndMenu();
+        }
+
+        if (ImGui::BeginMenu("Help")) {
+            
+            if (ImGui::MenuItem("About")) {
+
+            }
+
+            ImGui::EndMenu();
+        }
+
 
         ImGui::EndMenuBar();
     }

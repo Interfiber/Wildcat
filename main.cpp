@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include <imgui.h>
 #include <backends/imgui_impl_sdl2.h>
 #include <backends/imgui_impl_sdlrenderer2.h>
@@ -18,10 +19,12 @@ int main(int argc, char ** argv) {
         return EXIT_FAILURE;
     }
 
-    SDL_Log("Invoking user driver...");
+    if (std::getenv("WILDCAT_NO_DRIVER") == nullptr) {
+        SDL_Log("Invoking user driver...");
 
-    if (!auth->spawnAsRoot("./wildcatdriver")) {
-        return EXIT_FAILURE;
+        if (!auth->spawnAsRoot("./wildcatdriver")) {
+            return EXIT_FAILURE;
+        }
     }
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_TIMER | SDL_INIT_GAMECONTROLLER) != 0) {
