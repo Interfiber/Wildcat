@@ -53,9 +53,24 @@ int main(int argc, char ** argv) {
     ImGuiIO& io = ImGui::GetIO(); (void)io;
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;     // Enable Keyboard Controls
 
+    // Setup fonts
+
+    ImFont* font = nullptr;
+
+#ifdef NDEBUG
+    font = io.Fonts->AddFontFromFileTTF("resources/fonts/Inter-Regular.ttf", 18.f, nullptr, nullptr);
+
+#endif
+
+#ifndef NDEBUG // If we are in debug mode we are executing from the build dir
+    font = io.Fonts->AddFontFromFileTTF("../resources/fonts/Inter-Regular.ttf", 18.f, nullptr, nullptr);
+#endif
+
+    io.FontDefault = font;
+
     // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
-    // ImGui::StyleColorsLight();
+    // ImGui::StyleColorsDark();
+    ImGui::StyleColorsLight();
 
     // Setup Platform/Renderer backends
     ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
