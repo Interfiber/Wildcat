@@ -1,23 +1,84 @@
 #ifndef WILDCATDEVICE_H
 #define WILDCATDEVICE_H
-
 #include <filesystem>
+#include <vector>
+
 class WildcatDevice {
 public:
-    WildcatDevice(int comPort = 0);
+  WildcatDevice(int comPort = 0);
 
-    struct Message {
+  enum class WildcatMessageType {
+    EnterProgramMode,
+    ExitProgramMode,
 
-    };
+    GetModelInfo,
+    GetFirmwareInfo,
+
+    SetBacklight,
+    SetBatteryInfo,
+    ClearMemory,
+    SetBandPlan,
+    SetKeyBeep,
+    SetPriorityMode,
+
+    SetSCANChannelGroup,
+    DeleteChannel,
+    SetChannelInfo,
+
+    SetCloseCallSearchSettings,
+    SetGlobalLockoutFreq,
+    UnlockGlobalLO,
+    LockoutFrequency,
+    SetCloseCallSettings,
+
+    SetServiceSettings,
+    SetCustomSearchGroup,
+    SetCustomSearchSettings,
+    SetWeatherSettings,
+    SetLCDContrastSettings,
+    SetVolumeLevel,
+    SetSquelchLevelSettings
+  };
+
+  struct Message {
+    WildcatMessageType msgType;
+
+    std::vector<std::string> params;
+  };
+
+  struct DeviceInfo {
+    /// Model of the scanner
+    std::string model;
+
+    /// Firmware version of the scanner
+    std::string firmware;
+  };
+
+  std::string writeToDevice(std::string msg);
+  std::vector<std::string> writeToDevice3(std::string msg);
+
+  std::vector<std::string> writeToDevice2(const Message &msg);
+
+  [[nodiscard]] inline DeviceInfo getDeviceInfo() const {
+    return m_devInfo;
+  }
 
 private:
-    /// Port number the scanner is on
-    int m_port = 0;
+  int setInterfaceAttributes(int fd, int speed, int parity);
+  void setBlocking(int file, bool blocking = true);
 
-    /// Path to the serial device, located in /dev
-    std::filesystem::path m_devicePath;
+  /// Port number the scanner is on
+  int m_port = 0;
 
-    int m_device;
+  /// Path to the serial device, located in /dev
+  std::filesystem::path m_devicePath;
+
+  DeviceInfo m_devInfo;
+
+  int m_device;
 };
+
+[[nodiscard]] std::string
+Helper_MessageTypeToString(WildcatDevice::WildcatMessageType msgType);
 
 #endif // WILDCATDEVICE_H

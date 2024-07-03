@@ -85,7 +85,13 @@
   },
   {
     "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": ": && /usr/lib64/ccache/c++   CMakeFiles/wildcat.dir/main.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdl2.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_draw.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_widgets.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_demo.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_tables.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/misc/cpp/imgui_stdlib.cpp.o CMakeFiles/wildcat.dir/wildcatmainwindow.cpp.o CMakeFiles/wildcat.dir/wildcatchannel.cpp.o CMakeFiles/wildcat.dir/wildcatuserdriver.cpp.o CMakeFiles/wildcat.dir/wildcatauth.cpp.o -o wildcat  /usr/lib64/libSDL2-2.0.so.0.3000.3 && :",
+    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -isystem /usr/include/SDL2 -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/wildcatdevice.cpp.o -MF CMakeFiles/wildcat.dir/wildcatdevice.cpp.o.d -o CMakeFiles/wildcat.dir/wildcatdevice.cpp.o -c /home/interfiber/dev/Wildcat/wildcatdevice.cpp",
+    "file": "/home/interfiber/dev/Wildcat/wildcatdevice.cpp",
+    "output": "CMakeFiles/wildcat.dir/wildcatdevice.cpp.o"
+  },
+  {
+    "directory": "/home/interfiber/dev/Wildcat/build",
+    "command": ": && /usr/lib64/ccache/c++   CMakeFiles/wildcat.dir/main.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdl2.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_draw.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_widgets.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_demo.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_tables.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/misc/cpp/imgui_stdlib.cpp.o CMakeFiles/wildcat.dir/wildcatmainwindow.cpp.o CMakeFiles/wildcat.dir/wildcatchannel.cpp.o CMakeFiles/wildcat.dir/wildcatuserdriver.cpp.o CMakeFiles/wildcat.dir/wildcatauth.cpp.o CMakeFiles/wildcat.dir/wildcatdevice.cpp.o -o wildcat  /usr/lib64/libSDL2-2.0.so.0.3000.3 && :",
     "file": "CMakeFiles/wildcat.dir/main.cpp.o",
     "output": "wildcat"
   },

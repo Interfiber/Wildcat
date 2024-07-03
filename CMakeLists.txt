@@ -17,7 +17,7 @@ find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2main)
 include_directories(${SDL2_INCLUDE_DIRS})
 
 add_executable(wildcat main.cpp vendor/imgui/backends/imgui_impl_sdl2.cpp vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp  vendor/imgui/imgui.cpp vendor/imgui/imgui_draw.cpp vendor/imgui/imgui_widgets.cpp vendor/imgui/imgui_demo.cpp vendor/imgui/imgui_tables.cpp vendor/imgui/misc/cpp/imgui_stdlib.cpp
-    macros.h
+    helpers.h
     wildcatmainwindow.h wildcatmainwindow.cpp
     wildcatchannel.h wildcatchannel.cpp
     wildcatuserdriver.h wildcatuserdriver.cpp

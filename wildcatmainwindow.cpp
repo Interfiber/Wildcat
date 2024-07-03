@@ -13,10 +13,13 @@ WildcatMainWindow::WildcatMainWindow() {
 void WildcatMainWindow::render() {
     ImGuiIO &io = ImGui::GetIO();
 
-    ImGui::SetNextWindowSize(io.DisplaySize);
+    ImVec2 displaySize = io.DisplaySize;
+    displaySize.y -= 30;
+
+    ImGui::SetNextWindowSize(displaySize);
     ImGui::SetNextWindowPos(ImVec2(0, 0));
 
-    ImGui::Begin("Wildcat v1.0", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoMove);
+    ImGui::Begin("Wildcat v1.0", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_MenuBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize);
 
     if (ImGui::BeginMenuBar()) {
         if (ImGui::BeginMenu("File")) {
@@ -153,6 +156,18 @@ void WildcatMainWindow::render() {
 
         ImGui::EndTable();
     }
+
+    ImGui::End();
+
+    ImGui::SetNextWindowPos(ImVec2(0, io.DisplaySize.y - 30));
+
+    ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x, 30));
+
+    ImGui::Begin("DeviceInfo", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove);
+
+        WildcatDevice::DeviceInfo devInfo = m_device->getDeviceInfo();
+
+        ImGui::Text("Device: %s, %s", devInfo.model.c_str(), devInfo.firmware.c_str()); 
 
     ImGui::End();
 }
