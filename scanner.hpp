@@ -19,10 +19,6 @@ const int SCANNER_SPEED = B115200;
  */
 const int SCANNER_TRANSFER_WAIT_TIME = 100;
 
-/**
- * Size of the buffer we copy data from the scanner into
- */
-const size_t SCANNER_TRANSFER_BUFFER_SIZE = 130;
 
 /**
  * WCAT

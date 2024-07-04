@@ -190,34 +190,23 @@ std::string WildcatDevice::writeToDevice(std::string msg) {
 
   usleep((msgSize + 25) * SCANNER_TRANSFER_WAIT_TIME);
 
-  char *buffer = (char *)malloc(sizeof(char) * SCANNER_TRANSFER_BUFFER_SIZE);
+  std::string buffer;
   int cBufferIndex = 0;
 
   char tmp;
 
   while (read(m_device, &tmp, sizeof(tmp)) > 0 && tmp != '\r' && tmp != '\n') {
-    if (cBufferIndex + 1 > SCANNER_TRANSFER_BUFFER_SIZE) {
-      SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Wildcat Error",
-                               "Message too long!", nullptr);
-
-      std::exit(-1);
-    }
-
-    buffer[cBufferIndex] = tmp;
+    buffer += tmp;
 
     cBufferIndex++;
   }
 
-  SDL_Log("Response from scanner: %s\n", buffer);
+  SDL_Log("Response from scanner: %s\n", buffer.c_str());
 
-  std::string res = buffer;
+  if (buffer.back() == '\r' || buffer.back() == '\n')
+    buffer.pop_back();
 
-  if (res.back() == '\r' || res.back() == '\n')
-    res.pop_back();
-
-  free(buffer);
-
-  return res;
+  return buffer;
 }
 
 void WildcatDevice::setProgramMode(bool enabled) {

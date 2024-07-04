@@ -17,6 +17,8 @@ private:
 
     void loadFromCurrent();
 
+    void saveFromCurrent();
+
     std::vector<WildcatChannel> m_channelList;
 
     std::unique_ptr<WildcatDevice> m_device;

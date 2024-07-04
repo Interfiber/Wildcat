@@ -30,6 +30,16 @@ void WildcatMainWindow::render() {
     if (ImGui::BeginMenu("File")) {
 
       if (ImGui::MenuItem("Open")) {
+        pfd::open_file file("Select a .wcat file to load",
+                            std::filesystem::current_path().generic_string(),
+                            {"Wildcat Files", "*.wcat"});
+
+        m_saveFile.reset();
+        m_saveFile = std::make_unique<WildcatSaveFile>();
+
+        m_saveFile->readFromDisk(file.result()[0]);
+
+        saveFromCurrent();
       }
 
       ImGui::BeginDisabled(m_saveFile == nullptr);
@@ -37,8 +47,9 @@ void WildcatMainWindow::render() {
       if (ImGui::MenuItem("Save")) {
         loadFromCurrent(); // Update save data in memory
 
-        pfd::save_file file("Select a location to save this .wcat file", std::filesystem::current_path().generic_string(), { "Wildcat Files", "*.wcat" });
-        
+        pfd::save_file file("Select a location to save this .wcat file",
+                            std::filesystem::current_path().generic_string(),
+                            {"Wildcat Files", "*.wcat"});
 
         m_saveFile->writeToDisk(file.result());
       }
@@ -227,13 +238,17 @@ void WildcatMainWindow::render() {
     if (ImGui::Button("Cancel")) {
       mb_promptForErase = false;
 
-      ImGui::EndPopup();
+      ImGui::CloseCurrentPopup();
     }
 
     ImGui::SameLine();
 
     if (ImGui::Button("Erase memory")) {
       m_device->eraseMemory();
+
+      mb_promptForErase = false;
+
+      ImGui::CloseCurrentPopup();
     }
 
     ImGui::EndPopup();
@@ -250,5 +265,11 @@ void WildcatMainWindow::loadFromCurrent() {
 
   for (int i = 0; i < m_channelList.size(); i++) {
     m_saveFile->channels[i] = m_channelList[i];
+  }
+}
+
+void WildcatMainWindow::saveFromCurrent() {
+  for (int i = 0; i < m_saveFile->channels.size(); i++) {
+    m_channelList[i] = m_saveFile->channels[i];
   }
 }
