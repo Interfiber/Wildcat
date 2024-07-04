@@ -18,11 +18,13 @@ include_directories(${SDL2_INCLUDE_DIRS})
 
 add_executable(wildcat main.cpp vendor/imgui/backends/imgui_impl_sdl2.cpp vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp  vendor/imgui/imgui.cpp vendor/imgui/imgui_draw.cpp vendor/imgui/imgui_widgets.cpp vendor/imgui/imgui_demo.cpp vendor/imgui/imgui_tables.cpp vendor/imgui/misc/cpp/imgui_stdlib.cpp
     helpers.h
+    filedialogs.h
     wildcatmainwindow.h wildcatmainwindow.cpp
     wildcatchannel.h wildcatchannel.cpp
     wildcatuserdriver.h wildcatuserdriver.cpp
     wildcatauth.h wildcatauth.cpp
-    wildcatdevice.h wildcatdevice.cpp)
+    wildcatdevice.h wildcatdevice.cpp
+    wildcatsavefile.h wildcatsavefile.cpp)
 
 add_executable(wildcatdriver main_driver.cpp wildcatuserdriver.h wildcatuserdriver.cpp)
 

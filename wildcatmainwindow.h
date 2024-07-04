@@ -3,6 +3,7 @@
 
 #include "wildcatchannel.h"
 #include "wildcatdevice.h"
+#include "wildcatsavefile.h"
 #include <vector>
 #include <memory>
 
@@ -13,9 +14,16 @@ public:
     void render();
 
 private:
+
+    void loadFromCurrent();
+
     std::vector<WildcatChannel> m_channelList;
 
     std::unique_ptr<WildcatDevice> m_device;
+
+    std::unique_ptr<WildcatSaveFile> m_saveFile;
+
+    bool mb_promptForErase = false;
 };
 
 #endif // WILDCATMAINWINDOW_H

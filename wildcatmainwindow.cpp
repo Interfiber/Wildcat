@@ -1,5 +1,7 @@
 #include "wildcatmainwindow.h"
+#include "filedialogs.h"
 #include "scanner.hpp"
+#include <filesystem>
 #include <imgui.h>
 #include <misc/cpp/imgui_stdlib.h>
 
@@ -30,8 +32,18 @@ void WildcatMainWindow::render() {
       if (ImGui::MenuItem("Open")) {
       }
 
+      ImGui::BeginDisabled(m_saveFile == nullptr);
+
       if (ImGui::MenuItem("Save")) {
+        loadFromCurrent(); // Update save data in memory
+
+        pfd::save_file file("Select a location to save this .wcat file", std::filesystem::current_path().generic_string(), { "Wildcat Files", "*.wcat" });
+        
+
+        m_saveFile->writeToDisk(file.result());
       }
+
+      ImGui::EndDisabled();
 
       ImGui::EndMenu();
     }
@@ -46,17 +58,27 @@ void WildcatMainWindow::render() {
         }
 
         m_device->setProgramMode(false);
+
+        loadFromCurrent();
       }
 
       if (ImGui::MenuItem("Write to device")) {
         m_device->setProgramMode(true);
 
         for (int i = 0; i < SCANNER_CHANNELS; i++) {
-          m_device->setChannelInfo(i, m_channelList[i]);
+          m_device->setChannelInfo(i, m_channelList[i], false);
         }
 
         m_device->setProgramMode(false);
       }
+
+      ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 0, 0, 1.f));
+
+      if (ImGui::MenuItem("Erase device memory")) {
+        mb_promptForErase = true;
+      }
+
+      ImGui::PopStyleColor();
 
       ImGui::EndMenu();
     }
@@ -187,4 +209,46 @@ void WildcatMainWindow::render() {
               devInfo.firmware.c_str());
 
   ImGui::End();
+
+  if (mb_promptForErase) {
+    ImGui::OpenPopup("Confirm Erase");
+  }
+
+  if (ImGui::BeginPopupModal("Confirm Erase", nullptr,
+                             ImGuiWindowFlags_AlwaysAutoResize)) {
+
+    ImGui::Text("Are you sure you wish to erase the scanners memory?");
+    ImGui::Text("This action CANNOT be undone and will remove all settings and "
+                "channels!");
+    ImGui::Text("Proceed with caution");
+
+    ImGui::NewLine();
+
+    if (ImGui::Button("Cancel")) {
+      mb_promptForErase = false;
+
+      ImGui::EndPopup();
+    }
+
+    ImGui::SameLine();
+
+    if (ImGui::Button("Erase memory")) {
+      m_device->eraseMemory();
+    }
+
+    ImGui::EndPopup();
+  }
+}
+
+void WildcatMainWindow::loadFromCurrent() {
+  m_saveFile.reset();
+
+  m_saveFile = std::make_unique<WildcatSaveFile>();
+
+  m_saveFile->header = SCANNER_SAVE_DATA_HEADER;
+  m_saveFile->version = SCANNER_SAVE_DATA_VERSION;
+
+  for (int i = 0; i < m_channelList.size(); i++) {
+    m_saveFile->channels[i] = m_channelList[i];
+  }
 }

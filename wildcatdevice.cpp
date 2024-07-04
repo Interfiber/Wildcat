@@ -308,16 +308,21 @@ WildcatChannel WildcatDevice::getChannelInfo(int index, bool programMode) {
   return channel;
 }
 
-void WildcatDevice::setChannelInfo(int index, const WildcatChannel &channel) {
+void WildcatDevice::setChannelInfo(int index, const WildcatChannel &channel,
+                                   bool programMode) {
   if (channel.name == "NO NAME")
     return; // Ignore
+
+  if (programMode)
+    setProgramMode(true);
 
   Message msg{};
   msg.msgType = WildcatMessageType::SetChannelInfo;
 
   msg.params.push_back(std::to_string(index + 1));
   msg.params.push_back(channel.name);
-  msg.params.push_back(std::to_string((int) std::round(channel.frequency * 10000)));
+  msg.params.push_back(
+      std::to_string((int)std::round(channel.frequency * 10000)));
 
   switch (channel.mod) {
   case WildcatChannel::Modulation::Auto:
@@ -337,8 +342,25 @@ void WildcatDevice::setChannelInfo(int index, const WildcatChannel &channel) {
   msg.params.push_back(""); // I hate CTCSS/DCS
 
   msg.params.push_back(std::to_string(channel.delay));
-  msg.params.push_back(std::to_string(channel.lockout == WildcatChannel::LockoutMode::Off ? 0 : 1));
-  msg.params.push_back(std::to_string(channel.priority == WildcatChannel::Priority::Off ? 0 : 1));
+  msg.params.push_back(std::to_string(
+      channel.lockout == WildcatChannel::LockoutMode::Off ? 0 : 1));
+  msg.params.push_back(std::to_string(
+      channel.priority == WildcatChannel::Priority::Off ? 0 : 1));
 
   writeToDevice2(msg);
+
+  if (programMode)
+    setProgramMode(false);
+}
+
+void WildcatDevice::eraseMemory() {
+  SDL_Log("Erasing scanner memory...");
+  
+  setProgramMode(true);
+
+  writeToDevice3(Helper_MessageTypeToString(WildcatMessageType::ClearMemory));
+
+  setProgramMode(false);
+
+  SDL_Log("Scanner memory erased");
 }

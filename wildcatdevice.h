@@ -75,7 +75,16 @@ public:
    */
   WildcatChannel getChannelInfo(int index, bool programMode = true);
 
-  void setChannelInfo(int index, const WildcatChannel &channel);
+  /**
+   * Update the given channel at index with channel
+   * @param programMode Should we toggle to program mode? Turn to false if bulk exporting
+   */
+  void setChannelInfo(int index, const WildcatChannel &channel, bool programMode = true);
+
+  /**
+   * Erase the scanners memory
+   */
+  void eraseMemory();
 
 private:
   int setInterfaceAttributes(int fd, int speed, int parity);

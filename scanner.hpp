@@ -24,4 +24,14 @@ const int SCANNER_TRANSFER_WAIT_TIME = 100;
  */
 const size_t SCANNER_TRANSFER_BUFFER_SIZE = 130;
 
+/**
+ * WCAT
+ */
+const int SCANNER_SAVE_DATA_HEADER = 'T' << 24 | 'A' << 16 | 'C' << 8 | 'W';
+
+/**
+ * Version of .wcat files
+ */
+const int SCANNER_SAVE_DATA_VERSION = 1;
+
 #endif
