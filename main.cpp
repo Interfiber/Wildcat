@@ -72,8 +72,8 @@ int main(int argc, char ** argv) {
     io.FontDefault = font;
 
     // Setup Dear ImGui style
-    ImGui::StyleColorsDark();
-    // ImGui::StyleColorsLight();
+    // ImGui::StyleColorsDark();
+    ImGui::StyleColorsLight();
 
     ImGui::GetStyle().WindowBorderSize = 0.0f;
 
