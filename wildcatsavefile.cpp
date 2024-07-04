@@ -68,7 +68,13 @@ void WildcatSaveFile::readFromDisk(const std::filesystem::path &file) {
 
     ifs.read((char *)&channel.frequency, sizeof(float));
     ifs.read((char *)&channel.mod, sizeof(int));
+
+    channel.internalState.modSelected = (int)channel.mod;
+
     ifs.read((char *)&channel.lockout, sizeof(int));
+
+    channel.internalState.lockoutSelected = (int)channel.lockout;
+
     ifs.read((char *)&channel.delay, sizeof(int));
 
     if (channel.delay == -10) {
