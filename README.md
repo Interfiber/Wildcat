@@ -1,8 +1,10 @@
 # Wildcat
 Open-Source Uniden BC125AT GUI programmer for Linux 
 
-<img align="center" src="./preview_dark.png?raw=true" height="280" />
-<img align="center" src="./preview_light.png?raw=true" height="280" />
+<p align="center">
+    <img src="./preview_dark.png?raw=true" height="280" />
+    <img src="./preview_light.png?raw=true" height="280" />
+</p>
 
 ## Features
 * Load channels from the scanner
