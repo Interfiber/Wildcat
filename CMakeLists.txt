@@ -13,8 +13,8 @@ find_package(SDL2 REQUIRED CONFIG REQUIRED COMPONENTS SDL2)
 # 1. Look for a SDL2 package, 2. Look for the SDL2maincomponent and 3. DO NOT fail when SDL2main is not available
 find_package(SDL2 REQUIRED CONFIG COMPONENTS SDL2main)
 
-
 include_directories(${SDL2_INCLUDE_DIRS})
+include_directories("vendor/iconfont")
 
 add_executable(wildcat main.cpp vendor/imgui/backends/imgui_impl_sdl2.cpp vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp  vendor/imgui/imgui.cpp vendor/imgui/imgui_draw.cpp vendor/imgui/imgui_widgets.cpp vendor/imgui/imgui_demo.cpp vendor/imgui/imgui_tables.cpp vendor/imgui/misc/cpp/imgui_stdlib.cpp
     helpers.h
@@ -24,12 +24,17 @@ add_executable(wildcat main.cpp vendor/imgui/backends/imgui_impl_sdl2.cpp vendor
     wildcatuserdriver.h wildcatuserdriver.cpp
     wildcatauth.h wildcatauth.cpp
     wildcatdevice.h wildcatdevice.cpp
-    wildcatsavefile.h wildcatsavefile.cpp)
+    wildcatsavefile.h wildcatsavefile.cpp
+    wildcatsettingswindow.h wildcatsettingswindow.cpp
+    wildcataboutwindow.h wildcataboutwindow.cpp)
 
 add_executable(wildcatdriver main_driver.cpp wildcatuserdriver.h wildcatuserdriver.cpp)
 
 target_link_libraries(wildcat SDL2::SDL2)
 target_link_libraries(wildcatdriver SDL2::SDL2)
+
+target_compile_options(wildcat PRIVATE -Wall -Wextra -Wpedantic -Werror)
+target_compile_options(wildcatdriver PRIVATE -Wall -Wextra -Wpedantic -Werror)
 
 include(GNUInstallDirs)
 install(TARGETS wildcat wildcatdriver

@@ -8,15 +8,15 @@
 
 class WildcatSaveFile {
 public:
-    WildcatSaveFile();
+  WildcatSaveFile();
 
-    int header, version;
+  int header, version;
 
-    std::array<WildcatChannel, SCANNER_CHANNELS> channels;
+  std::array<WildcatChannel, SCANNER_CHANNELS> channels;
 
-    void writeToDisk(const std::filesystem::path &file);
+  void writeToDisk(const std::filesystem::path &file);
 
-    void readFromDisk(const std::filesystem::path &file);
+  void readFromDisk(const std::filesystem::path &file);
 };
 
 #endif // WILDCATSAVEFILE_H

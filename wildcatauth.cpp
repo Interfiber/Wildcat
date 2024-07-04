@@ -1,5 +1,5 @@
 #include "wildcatauth.h"
-#include "SDL_messagebox.h"
+#include "helpers.h"
 #include <sys/types.h>
 #include <unistd.h>
 
@@ -15,7 +15,7 @@ bool WildcatAuth::spawnAsRoot(const std::string &command) {
     } else if (std::system("which pkexec") == 0) {
         std::system(("pkexec " + command).c_str());
     } else {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Wildcat error", "Wildcat could not find a suitable polkit wrapper! Checked for: kdesu, and pkexec", nullptr);
+        Helper_ErrorMsg("Wildcat could not find a suitable polkit wrapper to use!\nSupport wrappers: kdesu, and pkexec");
 
         return false;
     }

@@ -7,7 +7,7 @@
  */
 class WildcatUserDriver {
 public:
-    WildcatUserDriver(bool run = false);
+  WildcatUserDriver(bool run = false);
 };
 
 #endif // WILDCATUSERDRIVER_H

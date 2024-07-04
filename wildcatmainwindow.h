@@ -1,31 +1,39 @@
 #ifndef WILDCATMAINWINDOW_H
 #define WILDCATMAINWINDOW_H
 
+#include "wildcataboutwindow.h"
 #include "wildcatchannel.h"
 #include "wildcatdevice.h"
 #include "wildcatsavefile.h"
-#include <vector>
+#include "wildcatsettingswindow.h"
 #include <memory>
+#include <vector>
 
 class WildcatMainWindow {
 public:
-    WildcatMainWindow();
+  WildcatMainWindow();
 
-    void render();
+  void render();
 
 private:
+  void loadFromCurrent();
 
-    void loadFromCurrent();
+  void saveFromCurrent();
 
-    void saveFromCurrent();
+  std::vector<WildcatChannel> m_channelList;
 
-    std::vector<WildcatChannel> m_channelList;
+  std::unique_ptr<WildcatDevice> m_device;
 
-    std::unique_ptr<WildcatDevice> m_device;
+  std::unique_ptr<WildcatSaveFile> m_saveFile;
 
-    std::unique_ptr<WildcatSaveFile> m_saveFile;
+  std::unique_ptr<WildcatAboutWindow> m_aboutWindow;
 
-    bool mb_promptForErase = false;
+  std::unique_ptr<WildcatSettingsWindow> m_settingsWindow;
+
+  bool mb_promptForErase = false;
+
+  bool mb_shownAboutWin = false;
+  bool mb_shownSettingsWin = false;
 };
 
 #endif // WILDCATMAINWINDOW_H

@@ -1,4 +1,5 @@
 #include "wildcatsavefile.h"
+#include "helpers.h"
 #include "scanner.hpp"
 #include <SDL_log.h>
 #include <SDL_messagebox.h>
@@ -13,9 +14,9 @@ void WildcatSaveFile::writeToDisk(const std::filesystem::path &file) {
   ofs.write((char *)&version, sizeof(version));
 
   for (auto &channel : channels) {
-    size_t cNameSize = channel.name.size() * sizeof(char);
+    size_t cNameSize = channel.name.size() + 1;
 
-    ofs.write((char *) &cNameSize, sizeof(size_t));
+    ofs.write((char *)&cNameSize, sizeof(size_t));
 
     ofs.write((char *)channel.name.c_str(), cNameSize);
 
@@ -32,47 +33,47 @@ void WildcatSaveFile::writeToDisk(const std::filesystem::path &file) {
 }
 
 void WildcatSaveFile::readFromDisk(const std::filesystem::path &file) {
-    std::ifstream ifs(file, std::ios::binary);
+  std::ifstream ifs(file, std::ios::binary);
 
-    ifs.read((char *) &header, sizeof(header));
+  ifs.read((char *)&header, sizeof(header));
 
-    if (header != SCANNER_SAVE_DATA_HEADER) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Wildcat Error", "Invalid header in save file", nullptr);
-    
-        std::exit(EXIT_FAILURE);
-    }
+  if (header != SCANNER_SAVE_DATA_HEADER) {
+    Helper_ErrorMsg("Invalid header in save file: " + file.generic_string());
 
-    ifs.read((char *) &version, sizeof(version));
+    std::exit(EXIT_FAILURE);
+  }
 
-    if (version != SCANNER_SAVE_DATA_VERSION) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Wildcat Error", "Invalid version in save file", nullptr);
-    
-        std::exit(EXIT_FAILURE);
-    }
+  ifs.read((char *)&version, sizeof(version));
 
-    for (int i = 0; i < SCANNER_CHANNELS; i++) {
-        auto &channel = channels[i];
-        
-        size_t cNameSize = channel.name.size();
+  if (version != SCANNER_SAVE_DATA_VERSION) {
+    Helper_ErrorMsg("Invalid version in save file: " + file.generic_string());
 
-        ifs.read((char *) &cNameSize, sizeof(size_t));
+    std::exit(EXIT_FAILURE);
+  }
 
-        char *name = (char* ) malloc(cNameSize);
+  for (int i = 0; i < SCANNER_CHANNELS; i++) {
+    auto &channel = channels[i];
 
-        ifs.read((char *) name, cNameSize);
+    size_t cNameSize = channel.name.size();
 
-        channel.name = name;
+    ifs.read((char *)&cNameSize, sizeof(size_t));
 
-        free(name);
+    char *name = (char *)malloc(cNameSize);
 
-        ifs.read((char *)&channel.frequency, sizeof(float));
-        ifs.read((char *)&channel.mod, sizeof(int));
-        ifs.read((char *)&channel.lockout, sizeof(int));
-        ifs.read((char *)&channel.delay, sizeof(int));
-        ifs.read((char *)&channel.priority, sizeof(int));
-    }
+    ifs.read((char *)name, cNameSize);
 
-    ifs.close();
+    channel.name = name;
 
-    SDL_Log("Loaded data from: %s", file.c_str());
+    free(name);
+
+    ifs.read((char *)&channel.frequency, sizeof(float));
+    ifs.read((char *)&channel.mod, sizeof(int));
+    ifs.read((char *)&channel.lockout, sizeof(int));
+    ifs.read((char *)&channel.delay, sizeof(int));
+    ifs.read((char *)&channel.priority, sizeof(int));
+  }
+
+  ifs.close();
+
+  SDL_Log("Loaded data from: %s", file.c_str());
 }

@@ -1,12 +1,17 @@
 #include "wildcatmainwindow.h"
 #include "filedialogs.h"
 #include "scanner.hpp"
+#include <IconsFontAwesome6.h>
 #include <filesystem>
 #include <imgui.h>
 #include <misc/cpp/imgui_stdlib.h>
 
 WildcatMainWindow::WildcatMainWindow() {
-  m_device = std::make_unique<WildcatDevice>();
+  int port = std::getenv("WILDCAT_COM_PORT") == nullptr ? 0 : std::stoi(std::getenv("WILDCAT_COM_PORT"));
+
+  m_device = std::make_unique<WildcatDevice>(port);
+  m_aboutWindow = std::make_unique<WildcatAboutWindow>();
+  m_settingsWindow = std::make_unique<WildcatSettingsWindow>();
 
   for (int i = 0; i < SCANNER_CHANNELS; i++) { // Fill with 500 blank channels
     m_channelList.push_back(WildcatChannel());
@@ -29,7 +34,7 @@ void WildcatMainWindow::render() {
   if (ImGui::BeginMenuBar()) {
     if (ImGui::BeginMenu("File")) {
 
-      if (ImGui::MenuItem("Open")) {
+      if (ImGui::MenuItem(ICON_FA_FILE_ARROW_DOWN " Open .wcat file")) {
         pfd::open_file file("Select a .wcat file to load",
                             std::filesystem::current_path().generic_string(),
                             {"Wildcat Files", "*.wcat"});
@@ -44,7 +49,7 @@ void WildcatMainWindow::render() {
 
       ImGui::BeginDisabled(m_saveFile == nullptr);
 
-      if (ImGui::MenuItem("Save")) {
+      if (ImGui::MenuItem(ICON_FA_FILE_ARROW_UP " Save .wcat file")) {
         loadFromCurrent(); // Update save data in memory
 
         pfd::save_file file("Select a location to save this .wcat file",
@@ -56,12 +61,16 @@ void WildcatMainWindow::render() {
 
       ImGui::EndDisabled();
 
+      if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit Wildcat")) {
+        std::exit(EXIT_SUCCESS);
+      }
+
       ImGui::EndMenu();
     }
 
     if (ImGui::BeginMenu("Devices")) {
 
-      if (ImGui::MenuItem("Load from device")) {
+      if (ImGui::MenuItem(ICON_FA_FLOPPY_DISK " Load from device")) {
         m_device->setProgramMode(true);
 
         for (int i = 0; i < SCANNER_CHANNELS; i++) {
@@ -73,7 +82,7 @@ void WildcatMainWindow::render() {
         loadFromCurrent();
       }
 
-      if (ImGui::MenuItem("Write to device")) {
+      if (ImGui::MenuItem(ICON_FA_PEN_NIB " Write to device")) {
         m_device->setProgramMode(true);
 
         for (int i = 0; i < SCANNER_CHANNELS; i++) {
@@ -85,7 +94,7 @@ void WildcatMainWindow::render() {
 
       ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(1.f, 0, 0, 1.f));
 
-      if (ImGui::MenuItem("Erase device memory")) {
+      if (ImGui::MenuItem(ICON_FA_TRASH " Erase device memory")) {
         mb_promptForErase = true;
       }
 
@@ -96,7 +105,12 @@ void WildcatMainWindow::render() {
 
     if (ImGui::BeginMenu("Help")) {
 
-      if (ImGui::MenuItem("About")) {
+      if (ImGui::MenuItem(ICON_FA_GEAR " Preferences")) {
+        mb_shownSettingsWin = !mb_shownSettingsWin;
+      }
+
+      if (ImGui::MenuItem(ICON_FA_INFO " About")) {
+        mb_shownAboutWin = !mb_shownAboutWin;
       }
 
       ImGui::EndMenu();
@@ -253,6 +267,9 @@ void WildcatMainWindow::render() {
 
     ImGui::EndPopup();
   }
+
+  mb_shownAboutWin = m_aboutWindow->render(mb_shownAboutWin);
+  mb_shownSettingsWin = m_settingsWindow->render(mb_shownSettingsWin);
 }
 
 void WildcatMainWindow::loadFromCurrent() {
@@ -263,13 +280,13 @@ void WildcatMainWindow::loadFromCurrent() {
   m_saveFile->header = SCANNER_SAVE_DATA_HEADER;
   m_saveFile->version = SCANNER_SAVE_DATA_VERSION;
 
-  for (int i = 0; i < m_channelList.size(); i++) {
+  for (size_t i = 0; i < m_channelList.size(); i++) {
     m_saveFile->channels[i] = m_channelList[i];
   }
 }
 
 void WildcatMainWindow::saveFromCurrent() {
-  for (int i = 0; i < m_saveFile->channels.size(); i++) {
+  for (size_t i = 0; i < m_saveFile->channels.size(); i++) {
     m_channelList[i] = m_saveFile->channels[i];
   }
 }

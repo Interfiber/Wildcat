@@ -1,6 +1,5 @@
 #include "wildcatdevice.h"
 #include "SDL_log.h"
-#include "SDL_messagebox.h"
 #include "helpers.h"
 #include "scanner.hpp"
 #include "wildcatchannel.h"
@@ -82,11 +81,16 @@ WildcatDevice::WildcatDevice(int port) : m_port(port) {
   SDL_Log("File descriptor: %i", m_device);
 
   if (m_device < 0) {
-    SDL_ShowSimpleMessageBox(
-        SDL_MESSAGEBOX_ERROR, "Wildcat Error",
-        ("Failed to open serial device from: " + m_devicePath.generic_string())
-            .c_str(),
-        nullptr);
+    if (!std::filesystem::exists(m_devicePath)) {
+      Helper_ErrorMsg("No scanner device connected on port " +
+                      std::to_string(port) +
+                      "!\nMake sure your "
+                      "device is plugged in and turned on");
+    } else {
+      Helper_ErrorMsg("Failed to open serial device from: " +
+                      m_devicePath.generic_string() +
+                      "\nMake sure you are in the 'dialout' group");
+    }
 
     std::exit(EXIT_FAILURE);
   }
@@ -113,9 +117,7 @@ int WildcatDevice::setInterfaceAttributes(int fd, int speed, int parity) {
   if (tcgetattr(fd, &tty) != 0) {
     SDL_Log("tcgetattr(...): %s", strerror(errno));
 
-    SDL_ShowSimpleMessageBox(
-        SDL_MESSAGEBOX_ERROR, "Wildcat Error",
-        "Failed to set interface attributes on serial device", nullptr);
+    Helper_ErrorMsg("Failed to set interface attributes on serial device");
 
     return -1;
   }
@@ -141,9 +143,7 @@ int WildcatDevice::setInterfaceAttributes(int fd, int speed, int parity) {
   if (tcsetattr(fd, TCSANOW, &tty) != 0) {
     SDL_Log("tcsetattr(...): %s", strerror(errno));
 
-    SDL_ShowSimpleMessageBox(
-        SDL_MESSAGEBOX_ERROR, "Wildcat Error",
-        "Failed to set interface attributes on serial device (2)", nullptr);
+    Helper_ErrorMsg("Failed to set interface attributes on serial device (2)");
     return -1;
   }
 
@@ -158,9 +158,7 @@ void WildcatDevice::setBlocking(int file, bool blocking) {
   if (tcgetattr(file, &serial) != 0) {
     SDL_Log("tcgetattr(...): %s", strerror(errno));
 
-    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Wildcat Error",
-                             "Failed to set blocking on serial device",
-                             nullptr);
+    Helper_ErrorMsg("Failed to set blocking on serial device");
 
     std::exit(-1);
   }
@@ -171,9 +169,7 @@ void WildcatDevice::setBlocking(int file, bool blocking) {
   if (tcsetattr(file, TCSANOW, &serial) != 0) {
     SDL_Log("tcsetattr(...): %s", strerror(errno));
 
-    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Wildcat Error",
-                             "Failed to set blocking on serial device (2)",
-                             nullptr);
+    Helper_ErrorMsg("Failed to set blocking on serial device (2)");
 
     std::exit(-1);
   }
@@ -210,7 +206,7 @@ std::string WildcatDevice::writeToDevice(std::string msg) {
 }
 
 void WildcatDevice::setProgramMode(bool enabled) {
-  SDL_Log("Setting program mode to: %b", enabled);
+  SDL_Log("Setting program mode to: %i", enabled);
 
   if (enabled) {
     writeToDevice3(
@@ -344,7 +340,7 @@ void WildcatDevice::setChannelInfo(int index, const WildcatChannel &channel,
 
 void WildcatDevice::eraseMemory() {
   SDL_Log("Erasing scanner memory...");
-  
+
   setProgramMode(true);
 
   writeToDevice3(Helper_MessageTypeToString(WildcatMessageType::ClearMemory));

@@ -1,3 +1,3 @@
 #include "wildcatchannel.h"
 
-WildcatChannel::WildcatChannel() {}
+WildcatChannel::WildcatChannel() = default;

@@ -2,8 +2,8 @@
 #include <cstdio>
 
 int main() {
-    printf("User Driver: Starting...\n");
-    WildcatUserDriver *driver = new WildcatUserDriver(true);
+  printf("User Driver: Starting...\n");
+  WildcatUserDriver *driver = new WildcatUserDriver(true);
 
-    delete driver;
+  delete driver;
 }

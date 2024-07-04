@@ -1,6 +1,5 @@
 #ifndef SCANNER_H
 #define SCANNER_H
-#include <cstddef>
 #include <termios.h>
 
 /**
@@ -18,7 +17,6 @@ const int SCANNER_SPEED = B115200;
  * usleep((charCount + 25) * SCANNER_TRANSFER_WAIT_TIME);
  */
 const int SCANNER_TRANSFER_WAIT_TIME = 100;
-
 
 /**
  * WCAT

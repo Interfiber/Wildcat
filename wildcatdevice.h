@@ -6,7 +6,7 @@
 
 class WildcatDevice {
 public:
-  WildcatDevice(int comPort = 0);
+  explicit WildcatDevice(int comPort = 0);
 
   enum class WildcatMessageType {
     EnterProgramMode,
