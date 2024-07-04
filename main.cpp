@@ -8,7 +8,7 @@
 #include <cstdlib>
 #include <imgui.h>
 
-int main() {
+int main(int argc, char ** argv) {
   SDL_Log("Starting Wildcat...");
 
   std::unique_ptr<WildcatAuth> auth = std::make_unique<WildcatAuth>();
@@ -21,11 +21,20 @@ int main() {
     return EXIT_FAILURE;
   }
 
-  if (std::getenv("WILDCAT_NO_DRIVER") == nullptr) {
-    SDL_Log("Invoking user driver...");
+  if (!std::filesystem::exists("/tmp/.wildcat_cookie")) {
+    if (std::getenv("WILDCAT_NO_DRIVER") == nullptr) {
+      SDL_Log("Invoking user driver...");
+#ifndef NDEBUG
+      if (!auth->spawnAsRoot("./wildcatdriver")) {
+        return EXIT_FAILURE;
+      }
+#endif
 
-    if (!auth->spawnAsRoot("./wildcatdriver")) {
-      return EXIT_FAILURE;
+#ifdef NDEBUG
+      if (!auth->spawnAsRoot("/usr/local/bin/wildcatdriver")) {
+        return EXIT_FAILURE;
+      }
+#endif
     }
   }
 
@@ -82,11 +91,13 @@ int main() {
   icons_config.GlyphMinAdvanceX = iconFontSize;
 
 #ifdef NDEBUG
-  font = io.Fonts->AddFontFromFileTTF("resources/fonts/Inter-Regular.ttf", 18.f,
-                                      nullptr, nullptr);
+  font = io.Fonts->AddFontFromFileTTF(
+      "/usr/local/share/wildcat/resources/fonts/Inter-Regular.ttf", 18.f,
+      nullptr, nullptr);
 
-  iconFont = io.Fonts->AddFontFromFileTTF("resources/fonts/fa-solid-900.ttf",
-                                          18.f, &icons_config, icon_ranges);
+  iconFont = io.Fonts->AddFontFromFileTTF(
+      "/usr/local/share/wildcat/resources/fonts/fa-solid-900.ttf", 18.f,
+      &icons_config, icon_ranges);
 #endif
 
 #ifndef NDEBUG // If we are in debug mode we are executing from the build dir
@@ -114,6 +125,14 @@ int main() {
   ImVec4 clear_color = ImVec4(0.45f, 0.55f, 0.60f, 1.00f);
 
   WildcatMainWindow *wWindow = new WildcatMainWindow();
+
+  if (argc != 1) {
+    std::filesystem::path path = argv[1];
+
+    SDL_Log("Opening: %s", path.c_str());
+
+    wWindow->load(path);
+  }
 
   while (!closed) {
     SDL_Event event;

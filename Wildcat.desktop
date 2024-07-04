@@ -1,0 +1,11 @@
+[Desktop Entry]
+Comment=
+Exec=/usr/local/bin/wildcat %f
+GenericName=\sGraphical Uniden BC125AT programmer for Linux\s
+Name=Wildcat
+NoDisplay=false
+Path=
+StartupNotify=true
+Terminal=false
+TerminalOptions=
+Type=Application

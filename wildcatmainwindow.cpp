@@ -7,9 +7,9 @@
 #include <misc/cpp/imgui_stdlib.h>
 
 WildcatMainWindow::WildcatMainWindow() {
-  int port = std::getenv("WILDCAT_COM_PORT") == nullptr
+  int port = std::getenv("WILDCAT_SERIAL_PORT") == nullptr
                  ? 0
-                 : std::stoi(std::getenv("WILDCAT_COM_PORT"));
+                 : std::stoi(std::getenv("WILDCAT_SERIAL_PORT"));
 
   m_device = std::make_unique<WildcatDevice>(port);
   m_aboutWindow = std::make_unique<WildcatAboutWindow>();
@@ -49,8 +49,6 @@ void WildcatMainWindow::render() {
         saveFromCurrent();
       }
 
-      ImGui::BeginDisabled(m_saveFile == nullptr);
-
       if (ImGui::MenuItem(ICON_FA_FILE_ARROW_UP " Save .wcat file")) {
         loadFromCurrent(); // Update save data in memory
 
@@ -60,8 +58,6 @@ void WildcatMainWindow::render() {
 
         m_saveFile->writeToDisk(file.result());
       }
-
-      ImGui::EndDisabled();
 
       if (ImGui::MenuItem(ICON_FA_POWER_OFF " Exit Wildcat")) {
         std::exit(EXIT_SUCCESS);
@@ -196,11 +192,9 @@ void WildcatMainWindow::render() {
       static const char *delayModes[] = {"-10", "-5", "0", "1",
                                          "2",   "3",  "4", "5"};
 
-      if (ImGui::Combo("##DelayCombo",
-                       &channel.internalState.delaySelected, delayModes,
-                       IM_ARRAYSIZE(delayModes))) {
-        int mode =
-            std::stoi(delayModes[channel.internalState.delaySelected]);
+      if (ImGui::Combo("##DelayCombo", &channel.internalState.delaySelected,
+                       delayModes, IM_ARRAYSIZE(delayModes))) {
+        int mode = std::stoi(delayModes[channel.internalState.delaySelected]);
 
         channel.delay = mode;
       }
@@ -284,6 +278,15 @@ void WildcatMainWindow::render() {
 
   mb_shownAboutWin = m_aboutWindow->render(mb_shownAboutWin);
   mb_shownSettingsWin = m_settingsWindow->render(mb_shownSettingsWin);
+}
+
+void WildcatMainWindow::load(const std::filesystem::path &path) {
+  m_saveFile.reset();
+
+  m_saveFile = std::make_unique<WildcatSaveFile>();
+  m_saveFile->readFromDisk(path);
+
+  saveFromCurrent();
 }
 
 void WildcatMainWindow::loadFromCurrent() {

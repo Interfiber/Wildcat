@@ -15,6 +15,8 @@ public:
 
   void render();
 
+  void load(const std::filesystem::path &path);
+
 private:
   void loadFromCurrent();
 

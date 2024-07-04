@@ -41,3 +41,7 @@ install(TARGETS wildcat wildcatdriver
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
 )
+
+install(DIRECTORY resources DESTINATION /usr/local/share/wildcat)
+install(FILES Wildcat.desktop DESTINATION /usr/local/share/applications/)
+install(CODE "execute_process(COMMAND install.sh)")

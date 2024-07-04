@@ -1,0 +1,40 @@
+site_name: Wildcat
+
+repo_url: https://github.com/Interfiber/Wildcat
+repo_name: Interfiber/Wildcat
+
+markdown_extensions:
+  - attr_list
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  features:
+    - navigation.top
+    - navigation.tabs
+    - admonition
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: indigo
+      toggle:
+        icon: material/toggle-switch-off
+        name: Switch to system preference
+
+nav:
+  - Home: index.md
+  - Getting Started:
+    - Installation: install.md
+    - Common Problems: problems.md
+  - Configuration: config.md
+  - Screenshots: screenshots.md
+  - WCAT database: wcat.db.md
