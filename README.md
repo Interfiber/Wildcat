@@ -1,9 +1,9 @@
 # Wildcat
-Open-Source Uniden BC125AT GUI programmer for Linux 
+Graphical Uniden BC125AT programmer for Linux 
 
-<p align="center">
-    <img src="./preview_dark.png?raw=true" height="280" />
+<p float="left">
     <img src="./preview_light.png?raw=true" height="280" />
+    <img src="./preview_dark.png?raw=true" height="280" />
 </p>
 
 ## Features
