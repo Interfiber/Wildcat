@@ -2,6 +2,8 @@
 #include "SDL_log.h"
 #include "SDL_messagebox.h"
 #include "helpers.h"
+#include "scanner.hpp"
+#include "wildcatchannel.h"
 #include <cassert>
 #include <cstdio>
 #include <fcntl.h>
@@ -64,6 +66,8 @@ Helper_MessageTypeToString(WildcatDevice::WildcatMessageType msgType) {
   };
 
   assert(0);
+
+  return "";
 }
 
 WildcatDevice::WildcatDevice(int port) : m_port(port) {
@@ -87,7 +91,7 @@ WildcatDevice::WildcatDevice(int port) : m_port(port) {
     std::exit(EXIT_FAILURE);
   }
 
-  setInterfaceAttributes(m_device, B115200, 0);
+  setInterfaceAttributes(m_device, SCANNER_SPEED, 0);
   setBlocking(m_device);
 
   SDL_Log("Querying scanner hardware information...");
@@ -176,47 +180,56 @@ void WildcatDevice::setBlocking(int file, bool blocking) {
 }
 
 std::string WildcatDevice::writeToDevice(std::string msg) {
+  SDL_Log("Writing to device: %s", msg.c_str());
+
   msg += "\r";
 
   size_t msgSize = msg.size();
 
   write(m_device, msg.c_str(), msgSize);
 
-  usleep((msgSize + 25) * 100);
+  usleep((msgSize + 25) * SCANNER_TRANSFER_WAIT_TIME);
 
-  char *buffer = (char *)malloc(sizeof(char) * 500);
+  char *buffer = (char *)malloc(sizeof(char) * SCANNER_TRANSFER_BUFFER_SIZE);
   int cBufferIndex = 0;
 
   char tmp;
 
-  while (read(m_device, &tmp, 1) != -1) {
-    if (tmp != '\r') {
-      if (cBufferIndex + 1 > 500) {
-        SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Wildcat Error",
-                                 "Message too long!", nullptr);
+  while (read(m_device, &tmp, sizeof(tmp)) > 0 && tmp != '\r' && tmp != '\n') {
+    if (cBufferIndex + 1 > SCANNER_TRANSFER_BUFFER_SIZE) {
+      SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Wildcat Error",
+                               "Message too long!", nullptr);
 
-        std::exit(-1);
-      }
-
-      buffer[cBufferIndex] = tmp;
-
-      cBufferIndex++;
-    } else {
-      break;
+      std::exit(-1);
     }
-  }
 
+    buffer[cBufferIndex] = tmp;
+
+    cBufferIndex++;
+  }
 
   SDL_Log("Response from scanner: %s\n", buffer);
 
   std::string res = buffer;
 
-  if (res.back() == '\r')
+  if (res.back() == '\r' || res.back() == '\n')
     res.pop_back();
 
   free(buffer);
 
   return res;
+}
+
+void WildcatDevice::setProgramMode(bool enabled) {
+  SDL_Log("Setting program mode to: %b", enabled);
+
+  if (enabled) {
+    writeToDevice3(
+        Helper_MessageTypeToString(WildcatMessageType::EnterProgramMode));
+  } else {
+    writeToDevice3(
+        Helper_MessageTypeToString(WildcatMessageType::ExitProgramMode));
+  }
 }
 
 std::vector<std::string> WildcatDevice::writeToDevice3(std::string msg) {
@@ -226,4 +239,59 @@ std::vector<std::string> WildcatDevice::writeToDevice3(std::string msg) {
   split1.erase(split1.begin());
 
   return split1;
+}
+
+std::vector<std::string> WildcatDevice::writeToDevice2(const Message &msg) {
+  std::string cmd = Helper_MessageTypeToString(msg.msgType);
+
+  std::string fullCmd = cmd + ",";
+
+  for (const std::string &param : msg.params) {
+    fullCmd += param + ",";
+  }
+
+  if (fullCmd.back() == ',')
+    fullCmd.pop_back();
+
+  return writeToDevice3(fullCmd);
+}
+
+WildcatChannel WildcatDevice::getChannelInfo(int index, bool programMode) {
+  if (programMode)
+    setProgramMode(true);
+
+  Message msg{};
+  msg.msgType = WildcatMessageType::SetChannelInfo;
+  msg.params = {std::to_string(index + 1)};
+
+  std::vector<std::string> result = writeToDevice2(msg);
+  result.erase(result.begin()); // Remove first parameter (index)
+
+  if (programMode)
+    setProgramMode(false);
+
+  WildcatChannel channel{};
+  channel.name = result[0].empty() ? "NO NAME" : result[0];
+  //   channel.frequency = result[1] == "00000000" ? 0.0f :
+  //   std::stof(result[0]);
+
+  std::string mod = result[2];
+
+  if (mod == "AUTO") {
+    channel.mod = WildcatChannel::Modulation::Auto;
+    channel.internalState.modSelected = 0;
+  } else if (mod == "AM") {
+    channel.mod = WildcatChannel::Modulation::Am;
+    channel.internalState.modSelected = 1;
+  } else if (mod == "FM") {
+    channel.mod = WildcatChannel::Modulation::Fm;
+    channel.internalState.modSelected = 2;
+  } else if (mod == "NFM") {
+    channel.mod = WildcatChannel::Modulation::Nfm;
+    channel.internalState.modSelected = 3;
+  } else {
+    assert(0);
+  }
+
+  return channel;
 }

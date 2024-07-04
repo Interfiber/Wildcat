@@ -1,5 +1,6 @@
 #ifndef WILDCATDEVICE_H
 #define WILDCATDEVICE_H
+#include "wildcatchannel.h"
 #include <filesystem>
 #include <vector>
 
@@ -62,6 +63,17 @@ public:
   [[nodiscard]] inline DeviceInfo getDeviceInfo() const {
     return m_devInfo;
   }
+
+  /**
+   * Enable/disable program mode
+   */
+  void setProgramMode(bool enabled);
+
+  /**
+   * Get information on the given channel
+   * @param programMode Should we toggle to program mode? Turn to false if bulk importing
+   */
+  WildcatChannel getChannelInfo(int index, bool programMode = true);
 
 private:
   int setInterfaceAttributes(int fd, int speed, int parity);

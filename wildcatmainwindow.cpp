@@ -1,11 +1,12 @@
 #include "wildcatmainwindow.h"
+#include "scanner.hpp"
 #include <imgui.h>
 #include <misc/cpp/imgui_stdlib.h>
 
 WildcatMainWindow::WildcatMainWindow() {
     m_device = std::make_unique<WildcatDevice>();
 
-    for (int i = 0; i < 100; i++) { // Fill with 100 blank channels, FIXME: Remove this or something
+    for (int i = 0; i < SCANNER_CHANNELS; i++) { // Fill with 500 blank channels
         m_channelList.push_back(WildcatChannel());
     }
 }
@@ -38,7 +39,13 @@ void WildcatMainWindow::render() {
         if (ImGui::BeginMenu("Devices")) {
             
             if (ImGui::MenuItem("Load from device")) {
+                m_device->setProgramMode(true);
 
+                for (int i = 0; i < SCANNER_CHANNELS; i++) {
+                    m_channelList[i] = m_device->getChannelInfo(i, false);
+                }
+
+                m_device->setProgramMode(false);
             }
 
             if (ImGui::MenuItem("Write to device")) {
