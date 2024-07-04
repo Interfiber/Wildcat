@@ -75,6 +75,8 @@ public:
    */
   WildcatChannel getChannelInfo(int index, bool programMode = true);
 
+  void setChannelInfo(int index, const WildcatChannel &channel);
+
 private:
   int setInterfaceAttributes(int fd, int speed, int parity);
   void setBlocking(int file, bool blocking = true);

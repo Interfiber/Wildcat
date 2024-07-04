@@ -307,3 +307,38 @@ WildcatChannel WildcatDevice::getChannelInfo(int index, bool programMode) {
 
   return channel;
 }
+
+void WildcatDevice::setChannelInfo(int index, const WildcatChannel &channel) {
+  if (channel.name == "NO NAME")
+    return; // Ignore
+
+  Message msg{};
+  msg.msgType = WildcatMessageType::SetChannelInfo;
+
+  msg.params.push_back(std::to_string(index + 1));
+  msg.params.push_back(channel.name);
+  msg.params.push_back(std::to_string((int) std::round(channel.frequency * 10000)));
+
+  switch (channel.mod) {
+  case WildcatChannel::Modulation::Auto:
+    msg.params.push_back("AUTO");
+    break;
+  case WildcatChannel::Modulation::Am:
+    msg.params.push_back("AM");
+    break;
+  case WildcatChannel::Modulation::Fm:
+    msg.params.push_back("FM");
+    break;
+  case WildcatChannel::Modulation::Nfm:
+    msg.params.push_back("NFM");
+    break;
+  }
+
+  msg.params.push_back(""); // I hate CTCSS/DCS
+
+  msg.params.push_back(std::to_string(channel.delay));
+  msg.params.push_back(std::to_string(channel.lockout == WildcatChannel::LockoutMode::Off ? 0 : 1));
+  msg.params.push_back(std::to_string(channel.priority == WildcatChannel::Priority::Off ? 0 : 1));
+
+  writeToDevice2(msg);
+}
