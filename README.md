@@ -14,7 +14,7 @@ Graphical Uniden BC125AT programmer for Linux
 * Ability to erase the scanners memory
 
 ## Documentation
-For more information on now to install Wildcat see the documentation located [here](https://www.interfiber.dev/wildcat)
+For more information on now to install Wildcat see the documentation located [here](https://www.interfiber.dev/Wildcat)
 
 ## Notice!
 Wildcat will use root privileges once to create the scanners device files, in order for an ordinary user to write to them you must be in the ```dialout``` group.
