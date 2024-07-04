@@ -51,6 +51,7 @@ bool WildcatSettingsWindow::render(bool shown) {
   ImGui::NewLine();
 
   if (ImGui::Button("Cancel")) {
+    ImGui::End();
     return false;
   }
 
