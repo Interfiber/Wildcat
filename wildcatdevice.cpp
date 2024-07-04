@@ -272,7 +272,12 @@ WildcatChannel WildcatDevice::getChannelInfo(int index, bool programMode) {
 
   WildcatChannel channel{};
   channel.name = result[0].empty() ? "NO NAME" : result[0];
-  //   channel.frequency = result[1] == "00000000" ? 0.0f :
+  channel.frequency = result[1] == "00000000" ? 0.0f : -1.f;
+
+  if (channel.frequency == -1.f) {
+    channel.frequency = std::stof(result[1]) / 10000;
+  }
+
   //   std::stof(result[0]);
 
   std::string mod = result[2];
