@@ -41,6 +41,7 @@ public:
     int modSelected = 0;
     int lockoutSelected = 0;
     int prioritySelected = 0;
+    int delaySelected = 4;
   } internalState;
 };
 

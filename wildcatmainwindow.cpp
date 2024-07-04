@@ -7,7 +7,9 @@
 #include <misc/cpp/imgui_stdlib.h>
 
 WildcatMainWindow::WildcatMainWindow() {
-  int port = std::getenv("WILDCAT_COM_PORT") == nullptr ? 0 : std::stoi(std::getenv("WILDCAT_COM_PORT"));
+  int port = std::getenv("WILDCAT_COM_PORT") == nullptr
+                 ? 0
+                 : std::stoi(std::getenv("WILDCAT_COM_PORT"));
 
   m_device = std::make_unique<WildcatDevice>(port);
   m_aboutWindow = std::make_unique<WildcatAboutWindow>();
@@ -132,7 +134,7 @@ void WildcatMainWindow::render() {
     ImGui::TableSetupColumn("Modulation");
     ImGui::TableSetupColumn("CTCSS/DCS");
     ImGui::TableSetupColumn("Lockout");
-    ImGui::TableSetupColumn("Delay");
+    ImGui::TableSetupColumn("Delay (Seconds)");
     ImGui::TableSetupColumn("Priority");
 
     ImGui::TableHeadersRow();
@@ -189,7 +191,19 @@ void WildcatMainWindow::render() {
 
       ImGui::TableNextColumn();
 
-      ImGui::InputInt("##Delay", &channel.delay);
+      // ImGui::InputInt("##Delay", &channel.delay);
+
+      static const char *delayModes[] = {"-10", "-5", "0", "1",
+                                         "2",   "3",  "4", "5"};
+
+      if (ImGui::Combo("##DelayCombo",
+                       &channel.internalState.delaySelected, delayModes,
+                       IM_ARRAYSIZE(delayModes))) {
+        int mode =
+            std::stoi(delayModes[channel.internalState.delaySelected]);
+
+        channel.delay = mode;
+      }
 
       ImGui::TableNextColumn();
 
