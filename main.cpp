@@ -75,6 +75,8 @@ int main(int argc, char ** argv) {
     ImGui::StyleColorsDark();
     // ImGui::StyleColorsLight();
 
+    ImGui::GetStyle().WindowBorderSize = 0.0f;
+
     // Setup Platform/Renderer backends
     ImGui_ImplSDL2_InitForSDLRenderer(window, renderer);
     ImGui_ImplSDLRenderer2_Init(renderer);

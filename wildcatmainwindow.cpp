@@ -170,7 +170,7 @@ void WildcatMainWindow::render() {
 
     ImGui::SetNextWindowSize(ImVec2(io.DisplaySize.x, 30));
 
-    ImGui::Begin("DeviceInfo", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove);
+    ImGui::Begin("DeviceInfo", nullptr, ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoScrollWithMouse);
 
         WildcatDevice::DeviceInfo devInfo = m_device->getDeviceInfo();
 
