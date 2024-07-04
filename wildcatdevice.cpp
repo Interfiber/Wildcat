@@ -278,8 +278,6 @@ WildcatChannel WildcatDevice::getChannelInfo(int index, bool programMode) {
     channel.frequency = std::stof(result[1]) / 10000;
   }
 
-  //   std::stof(result[0]);
-
   std::string mod = result[2];
 
   if (mod == "AUTO") {
@@ -297,6 +295,15 @@ WildcatChannel WildcatDevice::getChannelInfo(int index, bool programMode) {
   } else {
     assert(0);
   }
+
+  // Skip CTCSS/DCS
+
+  channel.delay = std::stoi(result[4]);
+  channel.lockout = result[5] == "0" ? WildcatChannel::LockoutMode::Off
+                                     : WildcatChannel::LockoutMode::LO;
+
+  channel.priority = result[6] == "0" ? WildcatChannel::Priority::Off
+                                      : WildcatChannel::Priority::Off;
 
   return channel;
 }
