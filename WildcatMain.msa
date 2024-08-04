@@ -1,0 +1,44 @@
+%Project Wildcat Main
+
+
+%Include .
+%Include vendor/iconfont
+%Include vendor/SDL/include 
+%Include vendor/imgui
+
+%CompilerDefine NDEBUG true
+
+%Files
+{
+	%File main.cpp
+	%File wildcatmainwindow.cpp
+	%File wildcatchannel.cpp
+	%File wildcatuserdriver.cpp
+	%File wildcatauth.cpp
+	%File wildcatdevice.cpp
+	%File wildcatsavefile.cpp
+	%File wildcatsettingswindow.cpp
+	%File wildcataboutwindow.cpp
+
+	%File vendor/imgui/backends/imgui_impl_sdl2.cpp
+	%File vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp
+	%File vendor/imgui/imgui.cpp
+	%File vendor/imgui/imgui_widgets.cpp
+	%File vendor/imgui/imgui_demo.cpp
+	%File vendor/imgui/imgui_tables.cpp
+	%File vendor/imgui/imgui_draw.cpp
+	%File vendor/imgui/misc/cpp/imgui_stdlib.cpp
+}
+
+%Config
+{
+	%Config OutputName wildcat
+	%Config BuildType Executable
+	%Config OptimizationMode O3
+	%Config EnableDebugSymbols true
+}
+
+%Packages
+{
+	%PackageCMake SDL SDL2-2.0
+}

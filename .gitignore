@@ -1,4 +1,6 @@
 vendor/imgui
+vendor/SDL
 vendor/iconfont
+bin/
 build/
 .cache/

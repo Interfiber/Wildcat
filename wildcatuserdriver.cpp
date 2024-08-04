@@ -39,6 +39,6 @@ WildcatUserDriver::WildcatUserDriver(bool run) {
     SDL_Log("Created device files!");
 
   } catch (std::exception &e) {
-    Helper_ErrorMsg("Driver failed to initalize! " + std::string(e.what()));
+    Helper_ErrorMsg("Driver failed to initalize! " + std::string(e.what()) + ", is a scanner connected?");
   }
 }

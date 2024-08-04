@@ -8,6 +8,8 @@
 #include <fcntl.h>
 #include <termio.h>
 #include <unistd.h>
+#include <cmath>
+#include <string.h>
 
 std::string
 Helper_MessageTypeToString(WildcatDevice::WildcatMessageType msgType) {

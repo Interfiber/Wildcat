@@ -1,0 +1,26 @@
+%Project Wildcat Usermode Driver
+
+
+%Include .
+%Include vendor/SDL/include
+
+%CompilerDefine NDEBUG true
+
+%Files
+{
+	%File main_driver.cpp
+	%File wildcatuserdriver.cpp
+}
+
+%Config
+{
+	%Config OutputName wildcatuserdriver
+	%Config BuildType Executable
+	%Config OptimizationMode O3
+	%Config EnableDebugSymbols true
+}
+
+%Packages
+{
+	%PackageCMake SDL SDL2-2.0
+}

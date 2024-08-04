@@ -1,7 +1,7 @@
 # Installing Wildcat
 
 ## Dependencies
-* CMake
+* [Mesa build](https://github.com/Interfiber/Mesa.git)
 * Ninja
 * Git
 
@@ -16,13 +16,12 @@ Now inside of the ```Wildcat``` folder use the ```installdeps.sh``` script to cl
 
 ## Step 3. Build
 ```shell
-cd build
-cmake -S .. -B . -GNinja
-ninja
+mesa build
+make -j
 ```
 
 ## Step 4. Install
 ```shell
-sudo ninja install
+sudo sh install.sh
 ```
-Now wildcat has been installed to ```/usr/local/share```
+Now wildcat has been installed to ```/usr/local``` and can be launched using ```wildcat``` or using its installed desktop launcher entry

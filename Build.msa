@@ -1,0 +1,16 @@
+%Workspace Wildcat
+
+
+%Config
+{
+	%Property CompilerName Clang++
+	%Property BuildDirectory bin
+	%Property EnableColor true
+	%Property C++Standard 17
+}
+
+
+%ImportCMake vendor/SDL
+%Import WildcatUserDriver.msa
+%Import WildcatMain.msa
+%Import data:Compilers.msa
