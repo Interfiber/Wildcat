@@ -690,7 +690,7 @@
 <h1 id="installing-wildcat">Installing Wildcat</h1>
 <h2 id="dependencies">Dependencies</h2>
 <ul>
-<li>CMake</li>
+<li><a href="https://github.com/Interfiber/Mesa.git">Mesa build</a></li>
 <li>Ninja</li>
 <li>Git</li>
 </ul>
@@ -701,14 +701,13 @@
 <h2 id="step-2-clone-the-dependencies">Step 2. Clone the dependencies</h2>
 <p>Now inside of the <code>Wildcat</code> folder use the <code>installdeps.sh</code> script to clone required dependencies</p>
 <h2 id="step-3-build">Step 3. Build</h2>
-<pre><code class="language-shell">cd build
-cmake -S .. -B . -GNinja
-ninja
+<pre><code class="language-shell">mesa build
+make -j
 </code></pre>
 <h2 id="step-4-install">Step 4. Install</h2>
-<pre><code class="language-shell">sudo ninja install
+<pre><code class="language-shell">sudo sh install.sh
 </code></pre>
-<p>Now wildcat has been installed to <code>/usr/local/share</code></p>
+<p>Now wildcat has been installed to <code>/usr/local</code> and can be launched using <code>wildcat</code> or using its installed desktop launcher entry</p>
 
 
 
