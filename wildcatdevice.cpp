@@ -4,9 +4,10 @@
 #include "scanner.hpp"
 #include "wildcatchannel.h"
 #include <cassert>
+#include <cerrno>
 #include <cstdio>
 #include <fcntl.h>
-#include <termio.h>
+#include <termios.h>
 #include <unistd.h>
 
 std::string
@@ -89,7 +90,7 @@ WildcatDevice::WildcatDevice(int port) : m_port(port) {
     } else {
       Helper_ErrorMsg("Failed to open serial device from: " +
                       m_devicePath.generic_string() +
-                      "\nMake sure you are in the 'dialout' group");
+                      "\nMake sure you are in the 'dialout' group. " + std::string(strerror(errno)));
     }
 
     std::exit(EXIT_FAILURE);
