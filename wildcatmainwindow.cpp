@@ -1,6 +1,7 @@
 #include "wildcatmainwindow.h"
 #include "filedialogs.h"
 #include "scanner.hpp"
+#include "wildcatchannel.h"
 #include <IconsFontAwesome6.h>
 #include <filesystem>
 #include <imgui.h>
@@ -135,12 +136,35 @@ void WildcatMainWindow::render() {
 
     ImGui::TableHeadersRow();
 
-    int x = 0;
-    for (auto &channel : m_channelList) {
+    int bankCounter = 0;
+    for (int x = 0; x < (int) m_channelList.size(); x++) {
+      WildcatChannel& channel = m_channelList[x];
+
       ImGui::PushID(x);
+
+      if (bankCounter % 51 == 0) { // +1 since we start at zero
+
+        // Fill in all 7 columns we have
+
+        for (int i = 0; i < 7; i++) {
+          ImGui::TableNextColumn();
+
+          if (i == 0)
+            ImGui::Text("Bank #%i", bankCounter / 51);
+        }
+
+        x -= 1; // Move back one channel to the one we skipped
+
+        bankCounter += 1;
+
+        ImGui::PopID();
+        continue;
+      }
 
       ImGui::TableNextColumn();
 
+      ImGui::Text("%i", x+1);
+      ImGui::SameLine();
       ImGui::InputText("##InputName", &channel.name);
 
       ImGui::TableNextColumn();
@@ -219,7 +243,8 @@ void WildcatMainWindow::render() {
       ImGui::TableNextRow();
 
       ImGui::PopID();
-      x++;
+
+      bankCounter++;
     }
 
     ImGui::EndTable();

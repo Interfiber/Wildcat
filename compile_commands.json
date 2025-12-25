@@ -1,188 +1,116 @@
 [
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "",
-    "file": "CMakeFiles/wildcat.dir",
-    "output": "cmake_object_order_depends_target_wildcat"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/main.cpp.o -MF CMakeFiles/wildcat.dir/main.cpp.o.d -o CMakeFiles/wildcat.dir/main.cpp.o -c /home/interfiber/dev/Wildcat/main.cpp",
-    "file": "/home/interfiber/dev/Wildcat/main.cpp",
-    "output": "CMakeFiles/wildcat.dir/main.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdl2.cpp.o -MF CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdl2.cpp.o.d -o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdl2.cpp.o -c /home/interfiber/dev/Wildcat/vendor/imgui/backends/imgui_impl_sdl2.cpp",
-    "file": "/home/interfiber/dev/Wildcat/vendor/imgui/backends/imgui_impl_sdl2.cpp",
-    "output": "CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdl2.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp.o -MF CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp.o.d -o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp.o -c /home/interfiber/dev/Wildcat/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp",
-    "file": "/home/interfiber/dev/Wildcat/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp",
-    "output": "CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/vendor/imgui/imgui.cpp.o -MF CMakeFiles/wildcat.dir/vendor/imgui/imgui.cpp.o.d -o CMakeFiles/wildcat.dir/vendor/imgui/imgui.cpp.o -c /home/interfiber/dev/Wildcat/vendor/imgui/imgui.cpp",
-    "file": "/home/interfiber/dev/Wildcat/vendor/imgui/imgui.cpp",
-    "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/vendor/imgui/imgui_draw.cpp.o -MF CMakeFiles/wildcat.dir/vendor/imgui/imgui_draw.cpp.o.d -o CMakeFiles/wildcat.dir/vendor/imgui/imgui_draw.cpp.o -c /home/interfiber/dev/Wildcat/vendor/imgui/imgui_draw.cpp",
-    "file": "/home/interfiber/dev/Wildcat/vendor/imgui/imgui_draw.cpp",
-    "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui_draw.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/vendor/imgui/imgui_widgets.cpp.o -MF CMakeFiles/wildcat.dir/vendor/imgui/imgui_widgets.cpp.o.d -o CMakeFiles/wildcat.dir/vendor/imgui/imgui_widgets.cpp.o -c /home/interfiber/dev/Wildcat/vendor/imgui/imgui_widgets.cpp",
-    "file": "/home/interfiber/dev/Wildcat/vendor/imgui/imgui_widgets.cpp",
-    "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui_widgets.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/vendor/imgui/imgui_demo.cpp.o -MF CMakeFiles/wildcat.dir/vendor/imgui/imgui_demo.cpp.o.d -o CMakeFiles/wildcat.dir/vendor/imgui/imgui_demo.cpp.o -c /home/interfiber/dev/Wildcat/vendor/imgui/imgui_demo.cpp",
-    "file": "/home/interfiber/dev/Wildcat/vendor/imgui/imgui_demo.cpp",
-    "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui_demo.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/vendor/imgui/imgui_tables.cpp.o -MF CMakeFiles/wildcat.dir/vendor/imgui/imgui_tables.cpp.o.d -o CMakeFiles/wildcat.dir/vendor/imgui/imgui_tables.cpp.o -c /home/interfiber/dev/Wildcat/vendor/imgui/imgui_tables.cpp",
-    "file": "/home/interfiber/dev/Wildcat/vendor/imgui/imgui_tables.cpp",
-    "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui_tables.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/vendor/imgui/misc/cpp/imgui_stdlib.cpp.o -MF CMakeFiles/wildcat.dir/vendor/imgui/misc/cpp/imgui_stdlib.cpp.o.d -o CMakeFiles/wildcat.dir/vendor/imgui/misc/cpp/imgui_stdlib.cpp.o -c /home/interfiber/dev/Wildcat/vendor/imgui/misc/cpp/imgui_stdlib.cpp",
-    "file": "/home/interfiber/dev/Wildcat/vendor/imgui/misc/cpp/imgui_stdlib.cpp",
-    "output": "CMakeFiles/wildcat.dir/vendor/imgui/misc/cpp/imgui_stdlib.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/wildcatmainwindow.cpp.o -MF CMakeFiles/wildcat.dir/wildcatmainwindow.cpp.o.d -o CMakeFiles/wildcat.dir/wildcatmainwindow.cpp.o -c /home/interfiber/dev/Wildcat/wildcatmainwindow.cpp",
-    "file": "/home/interfiber/dev/Wildcat/wildcatmainwindow.cpp",
-    "output": "CMakeFiles/wildcat.dir/wildcatmainwindow.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/wildcatchannel.cpp.o -MF CMakeFiles/wildcat.dir/wildcatchannel.cpp.o.d -o CMakeFiles/wildcat.dir/wildcatchannel.cpp.o -c /home/interfiber/dev/Wildcat/wildcatchannel.cpp",
-    "file": "/home/interfiber/dev/Wildcat/wildcatchannel.cpp",
-    "output": "CMakeFiles/wildcat.dir/wildcatchannel.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/wildcatuserdriver.cpp.o -MF CMakeFiles/wildcat.dir/wildcatuserdriver.cpp.o.d -o CMakeFiles/wildcat.dir/wildcatuserdriver.cpp.o -c /home/interfiber/dev/Wildcat/wildcatuserdriver.cpp",
-    "file": "/home/interfiber/dev/Wildcat/wildcatuserdriver.cpp",
-    "output": "CMakeFiles/wildcat.dir/wildcatuserdriver.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/wildcatauth.cpp.o -MF CMakeFiles/wildcat.dir/wildcatauth.cpp.o.d -o CMakeFiles/wildcat.dir/wildcatauth.cpp.o -c /home/interfiber/dev/Wildcat/wildcatauth.cpp",
-    "file": "/home/interfiber/dev/Wildcat/wildcatauth.cpp",
-    "output": "CMakeFiles/wildcat.dir/wildcatauth.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/wildcatdevice.cpp.o -MF CMakeFiles/wildcat.dir/wildcatdevice.cpp.o.d -o CMakeFiles/wildcat.dir/wildcatdevice.cpp.o -c /home/interfiber/dev/Wildcat/wildcatdevice.cpp",
-    "file": "/home/interfiber/dev/Wildcat/wildcatdevice.cpp",
-    "output": "CMakeFiles/wildcat.dir/wildcatdevice.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcat.dir/wildcatsavefile.cpp.o -MF CMakeFiles/wildcat.dir/wildcatsavefile.cpp.o.d -o CMakeFiles/wildcat.dir/wildcatsavefile.cpp.o -c /home/interfiber/dev/Wildcat/wildcatsavefile.cpp",
-    "file": "/home/interfiber/dev/Wildcat/wildcatsavefile.cpp",
-    "output": "CMakeFiles/wildcat.dir/wildcatsavefile.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": ": && /usr/lib64/ccache/c++ -g  CMakeFiles/wildcat.dir/main.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdl2.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_draw.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_widgets.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_demo.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/imgui_tables.cpp.o CMakeFiles/wildcat.dir/vendor/imgui/misc/cpp/imgui_stdlib.cpp.o CMakeFiles/wildcat.dir/wildcatmainwindow.cpp.o CMakeFiles/wildcat.dir/wildcatchannel.cpp.o CMakeFiles/wildcat.dir/wildcatuserdriver.cpp.o CMakeFiles/wildcat.dir/wildcatauth.cpp.o CMakeFiles/wildcat.dir/wildcatdevice.cpp.o CMakeFiles/wildcat.dir/wildcatsavefile.cpp.o -o wildcat  /usr/lib64/libSDL2-2.0.so.0.3000.3 && :",
-    "file": "CMakeFiles/wildcat.dir/main.cpp.o",
-    "output": "wildcat"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "",
-    "file": "CMakeFiles/wildcatdriver.dir",
-    "output": "cmake_object_order_depends_target_wildcatdriver"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcatdriver.dir/main_driver.cpp.o -MF CMakeFiles/wildcatdriver.dir/main_driver.cpp.o.d -o CMakeFiles/wildcatdriver.dir/main_driver.cpp.o -c /home/interfiber/dev/Wildcat/main_driver.cpp",
-    "file": "/home/interfiber/dev/Wildcat/main_driver.cpp",
-    "output": "CMakeFiles/wildcatdriver.dir/main_driver.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/lib64/ccache/c++  -I/home/interfiber/dev/Wildcat/vendor/imgui -I/home/interfiber/dev/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -MD -MT CMakeFiles/wildcatdriver.dir/wildcatuserdriver.cpp.o -MF CMakeFiles/wildcatdriver.dir/wildcatuserdriver.cpp.o.d -o CMakeFiles/wildcatdriver.dir/wildcatuserdriver.cpp.o -c /home/interfiber/dev/Wildcat/wildcatuserdriver.cpp",
-    "file": "/home/interfiber/dev/Wildcat/wildcatuserdriver.cpp",
-    "output": "CMakeFiles/wildcatdriver.dir/wildcatuserdriver.cpp.o"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": ": && /usr/lib64/ccache/c++ -g  CMakeFiles/wildcatdriver.dir/main_driver.cpp.o CMakeFiles/wildcatdriver.dir/wildcatuserdriver.cpp.o -o wildcatdriver  /usr/lib64/libSDL2-2.0.so.0.3000.3 && :",
-    "file": "CMakeFiles/wildcatdriver.dir/main_driver.cpp.o",
-    "output": "wildcatdriver"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "",
-    "file": "CMakeFiles/edit_cache.util",
-    "output": "edit_cache"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "",
-    "file": "CMakeFiles/rebuild_cache.util",
-    "output": "rebuild_cache"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "cd /home/interfiber/dev/Wildcat/build && /usr/bin/cmake -P cmake_install.cmake",
-    "file": "all",
-    "output": "CMakeFiles/install.util"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "",
-    "file": "CMakeFiles/install.util",
-    "output": "install"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "cd /home/interfiber/dev/Wildcat/build && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake",
-    "file": "all",
-    "output": "CMakeFiles/install/local.util"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "",
-    "file": "CMakeFiles/install/local.util",
-    "output": "install/local"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "cd /home/interfiber/dev/Wildcat/build && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake",
-    "file": "all",
-    "output": "CMakeFiles/install/strip.util"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "",
-    "file": "CMakeFiles/install/strip.util",
-    "output": "install/strip"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "",
-    "file": "wildcat",
-    "output": "all"
-  },
-  {
-    "directory": "/home/interfiber/dev/Wildcat/build",
-    "command": "/usr/bin/cmake --regenerate-during-build -S/home/interfiber/dev/Wildcat -B/home/interfiber/dev/Wildcat/build",
-    "file": "/home/interfiber/dev/Wildcat/CMakeLists.txt",
-    "output": "build.ninja"
-  }
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/main.cpp.o -c /home/hstasonis/git/Wildcat/main.cpp",
+  "file": "/home/hstasonis/git/Wildcat/main.cpp",
+  "output": "CMakeFiles/wildcat.dir/main.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdl2.cpp.o -c /home/hstasonis/git/Wildcat/vendor/imgui/backends/imgui_impl_sdl2.cpp",
+  "file": "/home/hstasonis/git/Wildcat/vendor/imgui/backends/imgui_impl_sdl2.cpp",
+  "output": "CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdl2.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp.o -c /home/hstasonis/git/Wildcat/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp",
+  "file": "/home/hstasonis/git/Wildcat/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp",
+  "output": "CMakeFiles/wildcat.dir/vendor/imgui/backends/imgui_impl_sdlrenderer2.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/vendor/imgui/imgui.cpp.o -c /home/hstasonis/git/Wildcat/vendor/imgui/imgui.cpp",
+  "file": "/home/hstasonis/git/Wildcat/vendor/imgui/imgui.cpp",
+  "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/vendor/imgui/imgui_draw.cpp.o -c /home/hstasonis/git/Wildcat/vendor/imgui/imgui_draw.cpp",
+  "file": "/home/hstasonis/git/Wildcat/vendor/imgui/imgui_draw.cpp",
+  "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui_draw.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/vendor/imgui/imgui_widgets.cpp.o -c /home/hstasonis/git/Wildcat/vendor/imgui/imgui_widgets.cpp",
+  "file": "/home/hstasonis/git/Wildcat/vendor/imgui/imgui_widgets.cpp",
+  "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui_widgets.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/vendor/imgui/imgui_demo.cpp.o -c /home/hstasonis/git/Wildcat/vendor/imgui/imgui_demo.cpp",
+  "file": "/home/hstasonis/git/Wildcat/vendor/imgui/imgui_demo.cpp",
+  "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui_demo.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/vendor/imgui/imgui_tables.cpp.o -c /home/hstasonis/git/Wildcat/vendor/imgui/imgui_tables.cpp",
+  "file": "/home/hstasonis/git/Wildcat/vendor/imgui/imgui_tables.cpp",
+  "output": "CMakeFiles/wildcat.dir/vendor/imgui/imgui_tables.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/vendor/imgui/misc/cpp/imgui_stdlib.cpp.o -c /home/hstasonis/git/Wildcat/vendor/imgui/misc/cpp/imgui_stdlib.cpp",
+  "file": "/home/hstasonis/git/Wildcat/vendor/imgui/misc/cpp/imgui_stdlib.cpp",
+  "output": "CMakeFiles/wildcat.dir/vendor/imgui/misc/cpp/imgui_stdlib.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/wildcatmainwindow.cpp.o -c /home/hstasonis/git/Wildcat/wildcatmainwindow.cpp",
+  "file": "/home/hstasonis/git/Wildcat/wildcatmainwindow.cpp",
+  "output": "CMakeFiles/wildcat.dir/wildcatmainwindow.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/wildcatchannel.cpp.o -c /home/hstasonis/git/Wildcat/wildcatchannel.cpp",
+  "file": "/home/hstasonis/git/Wildcat/wildcatchannel.cpp",
+  "output": "CMakeFiles/wildcat.dir/wildcatchannel.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/wildcatuserdriver.cpp.o -c /home/hstasonis/git/Wildcat/wildcatuserdriver.cpp",
+  "file": "/home/hstasonis/git/Wildcat/wildcatuserdriver.cpp",
+  "output": "CMakeFiles/wildcat.dir/wildcatuserdriver.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/wildcatauth.cpp.o -c /home/hstasonis/git/Wildcat/wildcatauth.cpp",
+  "file": "/home/hstasonis/git/Wildcat/wildcatauth.cpp",
+  "output": "CMakeFiles/wildcat.dir/wildcatauth.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/wildcatdevice.cpp.o -c /home/hstasonis/git/Wildcat/wildcatdevice.cpp",
+  "file": "/home/hstasonis/git/Wildcat/wildcatdevice.cpp",
+  "output": "CMakeFiles/wildcat.dir/wildcatdevice.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/wildcatsavefile.cpp.o -c /home/hstasonis/git/Wildcat/wildcatsavefile.cpp",
+  "file": "/home/hstasonis/git/Wildcat/wildcatsavefile.cpp",
+  "output": "CMakeFiles/wildcat.dir/wildcatsavefile.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/wildcatsettingswindow.cpp.o -c /home/hstasonis/git/Wildcat/wildcatsettingswindow.cpp",
+  "file": "/home/hstasonis/git/Wildcat/wildcatsettingswindow.cpp",
+  "output": "CMakeFiles/wildcat.dir/wildcatsettingswindow.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcat.dir/wildcataboutwindow.cpp.o -c /home/hstasonis/git/Wildcat/wildcataboutwindow.cpp",
+  "file": "/home/hstasonis/git/Wildcat/wildcataboutwindow.cpp",
+  "output": "CMakeFiles/wildcat.dir/wildcataboutwindow.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcatdriver.dir/main_driver.cpp.o -c /home/hstasonis/git/Wildcat/main_driver.cpp",
+  "file": "/home/hstasonis/git/Wildcat/main_driver.cpp",
+  "output": "CMakeFiles/wildcatdriver.dir/main_driver.cpp.o"
+},
+{
+  "directory": "/home/hstasonis/git/Wildcat/b",
+  "command": "/usr/bin/c++  -I/home/hstasonis/git/Wildcat/vendor/imgui -I/home/hstasonis/git/Wildcat/vendor/iconfont -isystem /usr/include/SDL2 -g -std=gnu++17 -Wall -Wextra -Wpedantic -Werror -o CMakeFiles/wildcatdriver.dir/wildcatuserdriver.cpp.o -c /home/hstasonis/git/Wildcat/wildcatuserdriver.cpp",
+  "file": "/home/hstasonis/git/Wildcat/wildcatuserdriver.cpp",
+  "output": "CMakeFiles/wildcatdriver.dir/wildcatuserdriver.cpp.o"
+}
 ]
