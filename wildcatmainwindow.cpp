@@ -150,7 +150,7 @@ void WildcatMainWindow::render() {
           ImGui::TableNextColumn();
 
           if (i == 0)
-            ImGui::Text("Bank #%i", bankCounter / 51);
+            ImGui::Text("Bank #%i", (bankCounter / 51)+1);
         }
 
         x -= 1; // Move back one channel to the one we skipped
