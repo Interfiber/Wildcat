@@ -15,6 +15,14 @@ class WildcatMainWindow : public QMainWindow
 {
 public:
     WildcatMainWindow();
+    ~WildcatMainWindow() override;
+
+    static WildcatMainWindow* get()
+    {
+        static auto instance = new WildcatMainWindow();
+
+        return instance;
+    }
 
 public slots:
     void connectToDevice();
@@ -49,4 +57,6 @@ private:
     ChannelsWidget *m_channelsWidget;
 
     std::shared_ptr<WildcatDevice> m_device;
+
+    friend class ChannelsWidget;
 };

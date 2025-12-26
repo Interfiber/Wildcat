@@ -6,6 +6,7 @@
 #include "iodriver.h"
 #include <thread>
 
+class WildcatChannel;
 class WildcatMessage;
 class WildcatIODriver;
 class WildcatDevice;
@@ -86,6 +87,12 @@ public:
      */
     [[nodiscard]] std::future<WildcatMessage> issue(const WildcatMessage &msg);
 
+    /**
+     * Return a newly created channel
+     * @note This channel will only exist locally until written
+     */
+    [[nodiscard]] std::shared_ptr<WildcatChannel> newChannel();
+
 private:
     std::mutex m_deviceLock;
 
@@ -95,6 +102,9 @@ private:
     static void handleError(const WildcatIODriver::IOResult &result);
 
     std::shared_ptr<WildcatIODriver> m_driver;
+
+    /// @brief  Local channels which can be written to the device on demand
+    std::vector<std::shared_ptr<WildcatChannel>> m_channels;
 
     std::string m_name;
 };

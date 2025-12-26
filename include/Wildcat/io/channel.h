@@ -3,7 +3,8 @@
 //
 
 #pragma once
-#include <vector>
+#include <QtContainerFwd>
+#include <QList>
 #include "Wildcat/io/device.h"
 
 /**
@@ -31,7 +32,7 @@ public:
     };
 
     /// @brief Valid delay values
-    const std::vector<int> DELAY_VALUES = {-10, -5, 0, 1, 2, 3, 4, 5};
+    static inline const QStringList DELAY_VALUES = {"-10", "-5", "0", "1", "2", "3", "4", "5"};
 
     /// @brief  Priority modes
     enum class PriorityMode

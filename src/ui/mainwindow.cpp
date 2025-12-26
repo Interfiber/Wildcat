@@ -29,6 +29,11 @@ WildcatMainWindow::WildcatMainWindow()
     initMenuBar();
 }
 
+WildcatMainWindow::~WildcatMainWindow()
+{
+    delete m_channelsWidget;
+}
+
 void WildcatMainWindow::connectToDevice()
 {
     if (m_device == nullptr)
@@ -43,6 +48,8 @@ void WildcatMainWindow::connectToDevice()
     const WildcatDevice::Info info = m_device->getInfo();
 
     QMessageBox::information(nullptr, "Wildcat", ("Connected to device " + info.model + " running firmware " + info.firmware).data());
+
+    statusBar()->showMessage(("Connected to " + info.model).data());
 }
 
 void WildcatMainWindow::initMenuBar()

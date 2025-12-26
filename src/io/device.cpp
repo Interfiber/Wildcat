@@ -5,6 +5,7 @@
 #include <QMessageBox>
 #include <Wildcat/io/device.h>
 
+#include "Wildcat/io/channel.h"
 #include "Wildcat/io/message.h"
 
 #ifdef __linux__
@@ -70,6 +71,14 @@ std::future<std::string> WildcatDevice::issue(const std::string& command)
 std::future<WildcatMessage> WildcatDevice::issue(const WildcatMessage& msg)
 {
     return std::async(std::launch::async, &WildcatDevice::issueAsyncMsg, this, msg.toString());
+}
+
+std::shared_ptr<WildcatChannel> WildcatDevice::newChannel()
+{
+    const auto channel = std::make_shared<WildcatChannel>();
+    m_channels.push_back(channel);
+
+    return channel;
 }
 
 std::string WildcatDevice::issueAsync(const std::string& buffer)

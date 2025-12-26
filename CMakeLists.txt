@@ -37,7 +37,9 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         src/io/device.cpp
         src/io/channel.cpp
         include/Wildcat/io/message.h
-        src/io/message.cpp)
+        src/io/message.cpp
+        include/Wildcat/io/ctcss.h
+        src/io/ctcss.cpp)
 
 # Wildcat platform libraries (static)
 # On linux we have our own user space "driver" that couples with the linux-specific serial IO "driver" used inside wildcat for communications
