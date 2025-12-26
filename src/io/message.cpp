@@ -47,6 +47,11 @@ WildcatMessage WildcatMessage::firmware()
     return WildcatMessage(MessageType::GetFirmwareInfo, {});
 }
 
+WildcatMessage WildcatMessage::channelInfo()
+{
+    return WildcatMessage(MessageType::SetChannelInfo, {});
+}
+
 std::string WildcatMessage::messageToString(const MessageType type)
 {
     switch (type) {
@@ -220,4 +225,9 @@ std::string WildcatMessage::toString() const
     }
 
     return msg;
+}
+
+void WildcatMessage::setParameters(const std::vector<std::string>& parameters)
+{
+    this->m_parameters = parameters;
 }

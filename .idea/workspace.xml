@@ -26,21 +26,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/include/Wildcat/io/ctcss.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/io/ctcss.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/editor.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Wildcat/io/channel.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/channel.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/mainwindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/message.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/message.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/io/channel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/channel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/message.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,7 +126,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1766774039716</updated>
-      <workItem from="1766774040796" duration="3684000" />
+      <workItem from="1766774040796" duration="6259000" />
     </task>
     <servers />
   </component>

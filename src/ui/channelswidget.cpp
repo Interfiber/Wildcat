@@ -41,6 +41,7 @@ void ChannelsWidget::addChannel()
         return;
 
     m_table->setRowCount(m_table->rowCount() + 1);
+    m_table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
 
     const int rowCount = m_table->rowCount() - 1;
 
@@ -66,7 +67,7 @@ void ChannelsWidget::addChannel()
 
     channel.ctcss = new QComboBox(nullptr);
     channel.ctcss->addItems(Wildcat_GetCTCSSCodes());
-    channel.ctcss->setMinimumContentsLength(14);
+    channel.ctcss->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 
     // Lockout
 
@@ -96,4 +97,6 @@ void ChannelsWidget::addChannel()
     m_table->setCellWidget(rowCount, 4, channel.lockout);
     m_table->setCellWidget(rowCount, 5, channel.delay);
     m_table->setCellWidget(rowCount, 6, channel.priority);
+
+    m_table->resizeColumnsToContents();
 }

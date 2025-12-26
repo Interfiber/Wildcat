@@ -56,6 +56,9 @@ public:
     /// @brief  Get device firmware version message
     static WildcatMessage firmware();
 
+    /// @brief  Get/set channel information
+    static WildcatMessage channelInfo();
+
     /**
      * Convert `type` into a device-readable string
      */
@@ -75,7 +78,10 @@ public:
     [[nodiscard]] MessageType getMessageType() const { return m_type; }
 
     /// @brief  Get the parameters of this message
-    [[nodiscard]] std::vector<std::string>& getParameters() { return m_parameters; }
+    [[nodiscard]] std::vector<std::string> getParameters() { return m_parameters; }
+
+    /// @brief  Set the parameters of this message
+    void setParameters(const std::vector<std::string> &parameters);
 
 protected:
     MessageType m_type;
