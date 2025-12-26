@@ -25,12 +25,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="">
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat/fix: link up quick actions">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FEATURES2.md" beforeDir="false" afterPath="$PROJECT_DIR$/FEATURES2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/channel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/channel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +64,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.wildcat2.executor": "Debug",
+    "CMake Application.wildcat2.executor": "Run",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -125,11 +123,24 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1766774039716</updated>
-      <workItem from="1766774040796" duration="12578000" />
+      <workItem from="1766774040796" duration="13230000" />
     </task>
+    <task id="LOCAL-00001" summary="feat/fix: link up quick actions">
+      <option name="closed" value="true" />
+      <created>1766786932659</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1766786932659</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat/fix: link up quick actions" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat/fix: link up quick actions" />
   </component>
 </project>

@@ -36,8 +36,8 @@ class WildcatDevice : public QObject
 public:
     explicit WildcatDevice(const std::string &deviceName);
 
-    static constexpr int MAX_BANKS = 50;
-    static constexpr int MAX_CHANNELS_PER_BANK = 100;
+    static constexpr int MAX_BANKS = 10;
+    static constexpr int MAX_CHANNELS_PER_BANK = 50;
 
     static constexpr int MAX_CHANNELS = MAX_BANKS * MAX_CHANNELS_PER_BANK;
 

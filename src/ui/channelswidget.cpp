@@ -6,6 +6,7 @@
 #include "Wildcat/io/device.h"
 #include "Wildcat/io/channel.h"
 #include <QLineEdit>
+#include <QMessageBox>
 #include <QPushButton>
 
 #include "Wildcat/io/ctcss.h"
@@ -100,13 +101,24 @@ void ChannelsWidget::addChannel()
 
     auto table = static_cast<QTableWidget*>(m_tabWidget->currentWidget());
 
+    if (table->rowCount() + 1 > WildcatDevice::MAX_CHANNELS_PER_BANK)
+    {
+       QMessageBox::warning(this, "Wildcat", ("This bank is full (" + std::to_string(WildcatDevice::MAX_CHANNELS_PER_BANK) + " channels per bank), please either clear out frequencies or switch to another bank.").data());
+
+        return;
+    }
+
     table->setRowCount(table->rowCount() + 1);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+
+    table->scrollToBottom();
 
     const int rowCount = table->rowCount() - 1;
 
     UIChannel channel{};
     channel.channel = WildcatMainWindow::get()->m_device->newChannel();
+
+    channel.channel->bank = m_tabWidget->currentIndex();
 
     constexpr float floatMax = std::numeric_limits<float>::max();
     const QDoubleValidator* dv = new QDoubleValidator(-floatMax, floatMax, 4);
