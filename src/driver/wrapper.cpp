@@ -39,7 +39,7 @@ void Wildcat_RunDriverWrapper()
 
     if (std::filesystem::exists(WildcatDriver::COOKIE_PATH))
     {
-        printf("Not executing driver: cookie file '%s' already exists!", WildcatDriver::COOKIE_PATH.c_str());
+        printf("Not executing driver: cookie file '%s' already exists!\n", WildcatDriver::COOKIE_PATH.c_str());
         return;
     }
 
