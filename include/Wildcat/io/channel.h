@@ -50,7 +50,7 @@ public:
     std::string name;
 
     /// @brief  Frequency in MHz
-    float frequency;
+    float frequency = 0.f;
 
     /// @brief  Modulation mode
     ModulationMode modulation;

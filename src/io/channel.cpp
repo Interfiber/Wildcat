@@ -11,9 +11,21 @@ void WildcatChannel::writeToDevice(WildcatDevice* device)
 {
   WildcatMessage setChInfo = WildcatMessage::channelInfo();
 
+  if (name.empty())
+  {
+    printf("Skipping writing channel with ID '%i' to scanner as no name was provided!\n", index);
+    return;
+  }
+
   if (name.size() > 16)
   {
     QMessageBox::warning(nullptr, "WildcatChannel", ("Not updating channel '" + name + "', name cannot be over 16 characters long").data());
+    return;
+  }
+
+  if (frequency < 0 || frequency == 0)
+  {
+    QMessageBox::warning(nullptr, "WildcatChannel", ("Not updating channel '" + name + "', invalid frequency provided!").data());
     return;
   }
 

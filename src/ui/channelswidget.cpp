@@ -118,7 +118,7 @@ void ChannelsWidget::addChannel()
     UIChannel channel{};
     channel.channel = WildcatMainWindow::get()->m_device->newChannel();
 
-    channel.channel->bank = m_tabWidget->currentIndex();
+    channel.channel->bank = m_tabWidget->currentIndex() + 1;
 
     constexpr float floatMax = std::numeric_limits<float>::max();
     const QDoubleValidator* dv = new QDoubleValidator(-floatMax, floatMax, 4);

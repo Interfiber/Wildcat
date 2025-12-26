@@ -25,9 +25,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat/fix: link up quick actions">
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: fix size constants for channels/bank + add max channels warning">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/channel.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/channel.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/channel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/channel.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +124,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1766774039716</updated>
-      <workItem from="1766774040796" duration="13230000" />
+      <workItem from="1766774040796" duration="13798000" />
     </task>
     <task id="LOCAL-00001" summary="feat/fix: link up quick actions">
       <option name="closed" value="true" />
@@ -133,7 +134,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766786932659</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="feat: fix size constants for channels/bank + add max channels warning">
+      <option name="closed" value="true" />
+      <created>1766787599345</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1766787599345</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -141,6 +150,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="feat/fix: link up quick actions" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat/fix: link up quick actions" />
+    <MESSAGE value="feat: fix size constants for channels/bank + add max channels warning" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: fix size constants for channels/bank + add max channels warning" />
   </component>
 </project>
