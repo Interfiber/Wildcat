@@ -7,12 +7,13 @@
 int main(int argc, char* argv[])
 {
     QApplication app(argc, argv);
-    app.setStyle("Breeze");
 
     // Step 1. Execute the user mode driver if needed
+
     Wildcat_RunDriverWrapper();
 
-    WildcatMainWindow::get()->show();
+    // Step 2. Run the app
 
+    WildcatMainWindow::get()->show();
     QApplication::exec();
 }

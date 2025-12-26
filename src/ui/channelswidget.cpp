@@ -6,6 +6,7 @@
 #include "Wildcat/io/device.h"
 #include "Wildcat/io/channel.h"
 #include <QLineEdit>
+#include <QPushButton>
 
 #include "Wildcat/io/ctcss.h"
 #include "Wildcat/ui/mainwindow.h"
@@ -13,25 +14,77 @@
 ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 {
     // Init UI
-    m_layout = new QVBoxLayout(this);
+    m_layout = new QHBoxLayout(this);
 
-    m_table = new QTableWidget(0, 7); // Start off with zero channels programmed
-    m_table->setHorizontalHeaderLabels({ "Name", "Frequency", "Modulation", "CTCSS/DCS", "Lockout", "Delay", "Priority" });
-    m_table->setAlternatingRowColors(true);
-    m_table->setSelectionMode(QAbstractItemView::SingleSelection);
+    m_tabWidget = new QTabWidget(this);
 
-    m_layout->addWidget(m_table);
+    m_banks.reserve(WildcatDevice::MAX_BANKS);
 
-    //m_noDevice = new QLabel("Use 'File -> Connect to serial device' to get started!");
+    for (int i = 0; i < WildcatDevice::MAX_BANKS; i++)
+    {
+        auto table = new QTableWidget(0, 7); // Start off with zero channels programmed
+        table->setHorizontalHeaderLabels({ "Name", "Frequency", "Modulation", "CTCSS/DCS", "Lockout", "Delay", "Priority" });
+        table->setAlternatingRowColors(true);
+        table->setSelectionMode(QAbstractItemView::SingleSelection);
 
-    //m_layout->addWidget(m_noDevice, 0, Qt::AlignCenter);
+        m_banks.push_back(table);
+
+        m_tabWidget->addTab(table, ("Bank #" + std::to_string(i + 1)).data());
+    }
+
+    QSizePolicy spLeft(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    spLeft.setHorizontalStretch(7);
+
+    m_tabWidget->setSizePolicy(spLeft);
+
+    m_layout->addWidget(m_tabWidget);
+
+    // Quick actions
+
+    m_quickActionsLayout = new QVBoxLayout();
+    m_quickActionsLayout->setAlignment(Qt::AlignTop);
+
+    QSizePolicy spRight(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    spRight.setHorizontalStretch(1);
+
+    // Title bar of quick actionss
+
+    m_quickActionsLayout->addSpacing(20);
+
+    m_quickActionsLabel = new QLabel(nullptr);
+    m_quickActionsLabel->setText("Quick actions");
+
+    m_quickActionsLayout->addWidget(m_quickActionsLabel);
+
+    // Write to device quick action
+
+    m_writeToDevice = new QPushButton(nullptr);
+    m_writeToDevice->setText("Write to device");
+    m_writeToDevice->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSend));
+    m_writeToDevice->setSizePolicy(spRight);
+
+    m_quickActionsLayout->addWidget(m_writeToDevice);
+
+    // Load from device quick action
+
+    m_loadFromDevice = new QPushButton(nullptr);
+    m_loadFromDevice->setText("Load from device");
+    m_loadFromDevice->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen));
+    m_loadFromDevice->setSizePolicy(spRight);
+
+    m_quickActionsLayout->addWidget(m_loadFromDevice);
+
+    m_quickActions = new QWidget();
+    m_quickActions->setSizePolicy(spRight);
+    m_quickActions->setLayout(m_quickActionsLayout);
+
+    m_layout->addWidget(m_quickActions);
 }
 
 ChannelsWidget::~ChannelsWidget()
 {
     m_channels.clear();
 
-    delete m_table;
     delete m_layout;
 }
 
@@ -40,10 +93,12 @@ void ChannelsWidget::addChannel()
     if (WildcatMainWindow::get()->m_device == nullptr)
         return;
 
-    m_table->setRowCount(m_table->rowCount() + 1);
-    m_table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+    auto table = static_cast<QTableWidget*>(m_tabWidget->currentWidget());
 
-    const int rowCount = m_table->rowCount() - 1;
+    table->setRowCount(table->rowCount() + 1);
+    table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
+
+    const int rowCount = table->rowCount() - 1;
 
     UIChannel channel{};
     channel.channel = WildcatMainWindow::get()->m_device->newChannel();
@@ -144,13 +199,14 @@ void ChannelsWidget::addChannel()
     m_channels.push_back(channel);
 
     // Insert channel into the UI
-    m_table->setCellWidget(rowCount, 0, channel.name);
-    m_table->setCellWidget(rowCount, 1, channel.freq);
-    m_table->setCellWidget(rowCount, 2, channel.modulation);
-    m_table->setCellWidget(rowCount, 3, channel.ctcss);
-    m_table->setCellWidget(rowCount, 4, channel.lockout);
-    m_table->setCellWidget(rowCount, 5, channel.delay);
-    m_table->setCellWidget(rowCount, 6, channel.priority);
+    table->setCellWidget(rowCount, 0, channel.name);
+    table->setCellWidget(rowCount, 1, channel.freq);
+    table->setCellWidget(rowCount, 2, channel.modulation);
+    table->setCellWidget(rowCount, 3, channel.ctcss);
+    table->setCellWidget(rowCount, 4, channel.lockout);
+    table->setCellWidget(rowCount, 5, channel.delay);
+    table->setCellWidget(rowCount, 6, channel.priority);
 
-    m_table->resizeColumnsToContents();
+    table->resizeColumnsToContents();
+    table->resizeRowsToContents();
 }

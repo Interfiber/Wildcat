@@ -5,6 +5,7 @@
 #pragma once
 #include <QMainWindow>
 
+class DeviceConnectionWidget;
 class WildcatDevice;
 class ChannelsWidget;
 
@@ -55,6 +56,7 @@ private:
     QAction* ma_aboutWildcat;
 
     ChannelsWidget *m_channelsWidget;
+    DeviceConnectionWidget* m_connectionWidget;
 
     std::shared_ptr<WildcatDevice> m_device;
 

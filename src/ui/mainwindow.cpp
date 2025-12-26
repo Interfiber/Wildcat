@@ -11,6 +11,7 @@
 
 #include "Wildcat/io/device.h"
 #include "Wildcat/ui/channelswidget.h"
+#include "Wildcat/ui/connectionwidget.h"
 
 WildcatMainWindow::WildcatMainWindow()
 {
@@ -22,6 +23,8 @@ WildcatMainWindow::WildcatMainWindow()
 
     // Main UI
     m_channelsWidget = new ChannelsWidget();
+    m_connectionWidget = new DeviceConnectionWidget();
+
     setCentralWidget(m_channelsWidget);
 
     // Init the menu bar
@@ -44,6 +47,8 @@ void WildcatMainWindow::connectToDevice()
     {
         m_device->reconnect();
     }
+
+    m_connectionWidget->deviceConnected();
 
     const WildcatDevice::Info info = m_device->getInfo();
 
@@ -112,6 +117,8 @@ void WildcatMainWindow::initMenuBar()
 
     help->addAction(ma_aboutWildcat);
     help->addAction(ma_aboutQt);
+
+    menuBar()->setCornerWidget(m_connectionWidget, Qt::TopRightCorner);
 
     // Connections
 

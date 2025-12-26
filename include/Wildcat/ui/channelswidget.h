@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <QComboBox>
 
+class QPushButton;
 class WildcatChannel;
 /**
  * List of available channels
@@ -42,8 +43,19 @@ public slots:
    void addChannel();
 
 private:
-   QVBoxLayout *m_layout;
-   QTableWidget *m_table;
+   QHBoxLayout *m_layout;
+   QVBoxLayout *m_quickActionsLayout;
+
+   QWidget* m_quickActions;
+
+   QLabel* m_quickActionsLabel;
+
+   QPushButton *m_writeToDevice;
+   QPushButton *m_loadFromDevice;
+
+   std::vector<QTableWidget*> m_banks;
+
+   QTabWidget *m_tabWidget;
 
    QLabel *m_noDevice;
 

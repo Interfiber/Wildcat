@@ -43,6 +43,9 @@ public:
     /// @brief Index of the channel, starts at 1, zero is invalid
     int index = 0;
 
+    /// @brief  Bank of the channel, starts at 1, zero is invalid
+    int bank = 0;
+
     /// @brief  Channel name, max of 16 chars
     std::string name;
 

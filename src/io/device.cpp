@@ -87,6 +87,8 @@ std::shared_ptr<WildcatChannel> WildcatDevice::newChannel()
 {
     const auto channel = std::make_shared<WildcatChannel>();
     channel->index = m_channels.size() + 1;
+    channel->bank = 1;
+
     m_channels.push_back(channel);
 
     return channel;
