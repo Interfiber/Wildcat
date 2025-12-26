@@ -2,9 +2,8 @@
 #include <filesystem>
 #include <future>
 #include <mutex>
-
+#include <QObject>
 #include "iodriver.h"
-#include <thread>
 
 class WildcatChannel;
 class WildcatMessage;
@@ -24,15 +23,16 @@ public:
      * Write commands for this class to `device`
      * @param device Device to write the commands too
      */
-    virtual void writeToDevice(const std::shared_ptr<WildcatDevice> &device) = 0;
+    virtual void writeToDevice(WildcatDevice *device) = 0;
 };
 
 /**
  * Connection to a remote scanner device over serial
  * @note Under the hood WildcatDevice manages the IO thread and is thread safe
  */
-class WildcatDevice
+class WildcatDevice : public QObject
 {
+    Q_OBJECT
 public:
     explicit WildcatDevice(const std::string &deviceName);
 
@@ -92,6 +92,12 @@ public:
      * @note This channel will only exist locally until written
      */
     [[nodiscard]] std::shared_ptr<WildcatChannel> newChannel();
+
+public slots:
+    /**
+     * Update all registered channels
+     */
+    void updateChannels();
 
 private:
     std::mutex m_deviceLock;

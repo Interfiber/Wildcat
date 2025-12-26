@@ -52,6 +52,14 @@ WildcatMessage WildcatMessage::channelInfo()
     return WildcatMessage(MessageType::SetChannelInfo, {});
 }
 
+WildcatMessage WildcatMessage::setProgramMode(bool enabled)
+{
+    if (enabled)
+        return WildcatMessage(MessageType::EnterProgramMode, {});
+
+    return WildcatMessage(MessageType::ExitProgramMode, {});
+}
+
 std::string WildcatMessage::messageToString(const MessageType type)
 {
     switch (type) {

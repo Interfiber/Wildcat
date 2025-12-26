@@ -48,15 +48,30 @@ void ChannelsWidget::addChannel()
     UIChannel channel{};
     channel.channel = WildcatMainWindow::get()->m_device->newChannel();
 
+    constexpr float floatMax = std::numeric_limits<float>::max();
+    const QDoubleValidator* dv = new QDoubleValidator(-floatMax, floatMax, 4);
+
     // Name
 
     channel.name = new QLineEdit(nullptr);
     channel.name->setPlaceholderText("Channel name");
+    channel.name->setMaxLength(16);
+
+    connect(channel.name, &QLineEdit::textChanged, this, [channel](const QString& text)
+    {
+        channel.channel->name = text.toStdString();
+    });
 
     // Frequency
 
     channel.freq = new QLineEdit(nullptr);
     channel.freq->setPlaceholderText("Frequency (MHz)");
+    channel.freq->setValidator(dv);
+
+    connect(channel.freq, &QLineEdit::textChanged, this, [channel](const QString& text)
+    {
+        channel.channel->frequency = std::stof(text.toStdString());
+    });
 
     // Modulation
 
@@ -64,6 +79,30 @@ void ChannelsWidget::addChannel()
     channel.modulation->addItems({
     "Automatic","AM", "FM", "NFM"
     });
+
+    connect(channel.modulation, &QComboBox::currentIndexChanged, this, [channel](const int index)
+    {
+        switch (index)
+        {
+        case 0:
+            channel.channel->modulation = WildcatChannel::ModulationMode::Automatic;
+            break;
+        case 1:
+            channel.channel->modulation = WildcatChannel::ModulationMode::AM;
+            break;
+        case 2:
+            channel.channel->modulation = WildcatChannel::ModulationMode::FM;
+            break;
+        case 3:
+            channel.channel->modulation = WildcatChannel::ModulationMode::NFM;
+            break;
+        default:
+            break;
+        }
+    });
+
+
+    // CTCSS / DCS
 
     channel.ctcss = new QComboBox(nullptr);
     channel.ctcss->addItems(Wildcat_GetCTCSSCodes());
@@ -76,16 +115,31 @@ void ChannelsWidget::addChannel()
     "Off", "Lockout"
     });
 
+    connect(channel.lockout, &QComboBox::currentIndexChanged, this, [channel](const int index)
+    {
+        channel.channel->lockoutMode = index == 0 ? WildcatChannel::LockoutMode::Off : WildcatChannel::LockoutMode::Lockout;
+    });
+
     // Delay
 
     channel.delay = new QComboBox(nullptr);
     channel.delay->addItems(WildcatChannel::DELAY_VALUES);
     channel.delay->setCurrentIndex(WildcatChannel::DELAY_VALUES.indexOf("2"));
 
+    connect(channel.delay, &QComboBox::currentIndexChanged, this, [channel](const int index)
+    {
+        channel.channel->delay = std::stoi(WildcatChannel::DELAY_VALUES.at(index).toStdString());
+    });
+
     // Priority
 
     channel.priority = new QComboBox(nullptr);
     channel.priority->addItems({ "Off", "PCH" });
+
+    connect(channel.priority, &QComboBox::currentIndexChanged, this, [channel](const int index)
+    {
+        channel.channel->priority = index == 0 ? WildcatChannel::PriorityMode::Off : WildcatChannel::PriorityMode::PCH;
+    });
 
     m_channels.push_back(channel);
 

@@ -59,6 +59,9 @@ public:
     /// @brief  Get/set channel information
     static WildcatMessage channelInfo();
 
+    /// @brief  Set program mode
+    static WildcatMessage setProgramMode(bool enabled);
+
     /**
      * Convert `type` into a device-readable string
      */

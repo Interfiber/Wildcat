@@ -68,5 +68,5 @@ public:
      * Write this channel to a device
      * @param device Device to write this channel too
      */
-    void writeToDevice(const std::shared_ptr<WildcatDevice>& device) override;
+    void writeToDevice(WildcatDevice* device) override;
 };

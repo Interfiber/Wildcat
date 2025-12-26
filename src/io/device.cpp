@@ -31,6 +31,16 @@ void WildcatDevice::reconnect() const
     printf("Reconnected to serial device: %s\n", m_name.c_str());
 }
 
+void WildcatDevice::issue(const std::shared_ptr<WildcatDeviceCommandable>& command)
+{
+    command->writeToDevice(this);
+}
+
+void WildcatDevice::setProgramMode(const bool enabled)
+{
+    issue(WildcatMessage::setProgramMode(enabled)).wait();
+}
+
 WildcatDevice::Info WildcatDevice::getInfo()
 {
     std::future<WildcatMessage> model = issue(WildcatMessage::model());
@@ -76,9 +86,22 @@ std::future<WildcatMessage> WildcatDevice::issue(const WildcatMessage& msg)
 std::shared_ptr<WildcatChannel> WildcatDevice::newChannel()
 {
     const auto channel = std::make_shared<WildcatChannel>();
+    channel->index = m_channels.size() + 1;
     m_channels.push_back(channel);
 
     return channel;
+}
+
+void WildcatDevice::updateChannels()
+{
+    setProgramMode(true);
+
+    for (auto &c : m_channels)
+    {
+        issue(c);
+    }
+
+    setProgramMode(false);
 }
 
 std::string WildcatDevice::issueAsync(const std::string& buffer)

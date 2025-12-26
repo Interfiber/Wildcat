@@ -47,6 +47,13 @@ void WildcatMainWindow::connectToDevice()
 
     const WildcatDevice::Info info = m_device->getInfo();
 
+    connect(ma_writeChannels, &QAction::triggered, this, [this]
+    {
+        m_device->updateChannels();
+
+        statusBar()->showMessage("Wrote channels to device!");
+    });
+
     QMessageBox::information(nullptr, "Wildcat", ("Connected to device " + info.model + " running firmware " + info.firmware).data());
 
     statusBar()->showMessage(("Connected to " + info.model).data());
@@ -113,4 +120,6 @@ void WildcatMainWindow::initMenuBar()
     connect(ma_newChannel, &QAction::triggered, m_channelsWidget, &ChannelsWidget::addChannel);
 
     connect(ma_connectToDevice, &QAction::triggered, this, &WildcatMainWindow::connectToDevice);
+
+    // Device specific connects in connectToDevice()
 }

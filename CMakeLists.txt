@@ -35,6 +35,7 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         src/ui/channelswidget.cpp
         include/Wildcat/io/channel.h
         src/io/device.cpp
+        include/Wildcat/io/device.h
         src/io/channel.cpp
         include/Wildcat/io/message.h
         src/io/message.cpp
@@ -59,6 +60,12 @@ target_include_directories(wildcat2 PUBLIC include)
 target_include_directories(wildcatplatform2 PUBLIC include)
 
 target_compile_definitions(wildcat2 PUBLIC GIT_HASH_BUILD="${GIT_HASH}" GIT_BRANCH_BUILD="${GIT_BRANCH}")
+
+target_link_libraries(wildcatplatform2 PUBLIC
+    Qt::Core
+    Qt::Gui
+    Qt::Widgets
+)
 
 target_link_libraries(wildcat2
         PUBLIC

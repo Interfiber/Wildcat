@@ -7,7 +7,7 @@
 
 #include "Wildcat/io/message.h"
 
-void WildcatChannel::writeToDevice(const std::shared_ptr<WildcatDevice>& device)
+void WildcatChannel::writeToDevice(WildcatDevice* device)
 {
   WildcatMessage setChInfo = WildcatMessage::channelInfo();
 
@@ -36,12 +36,15 @@ void WildcatChannel::writeToDevice(const std::shared_ptr<WildcatDevice>& device)
   }
 
   setChInfo.setParameters({
+    std::to_string(index),
     name,
     std::to_string(static_cast<int>(std::round(frequency * 10000))),
     modulationStr,
-    std::to_string(ctcss),
+    "", // FIXME: CTCSS/DCS
     std::to_string(delay),
     lockoutMode == LockoutMode::Off ? "0" : "1",
     priority == PriorityMode::Off ? "0" : "1"
   });
+
+  device->issue(setChInfo).wait();
 }
