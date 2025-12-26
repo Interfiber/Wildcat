@@ -63,6 +63,11 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
     m_writeToDevice->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::DocumentSend));
     m_writeToDevice->setSizePolicy(spRight);
 
+    // Parent should always be the main window
+    auto mainWindow = static_cast<WildcatMainWindow*>(parent);
+
+    connect(m_writeToDevice, &QPushButton::clicked, mainWindow->ma_writeChannels, &QAction::trigger);
+
     m_quickActionsLayout->addWidget(m_writeToDevice);
 
     // Load from device quick action

@@ -21,15 +21,20 @@ WildcatMainWindow::WildcatMainWindow()
 
     resize(800, 600);
 
-    // Main UI
-    m_channelsWidget = new ChannelsWidget();
-    m_connectionWidget = new DeviceConnectionWidget();
-
-    setCentralWidget(m_channelsWidget);
-
     // Init the menu bar
 
     initMenuBar();
+
+    // Main UI
+
+    m_channelsWidget = new ChannelsWidget(this);
+    m_connectionWidget = new DeviceConnectionWidget();
+
+    // Connect menu bar actions to widgets
+
+    connect(ma_newChannel, &QAction::triggered, m_channelsWidget, &ChannelsWidget::addChannel);
+
+    setCentralWidget(m_channelsWidget);
 }
 
 WildcatMainWindow::~WildcatMainWindow()
@@ -54,6 +59,8 @@ void WildcatMainWindow::connectToDevice()
 
     connect(ma_writeChannels, &QAction::triggered, this, [this]
     {
+        if (m_device == nullptr) return;
+
         m_device->updateChannels();
 
         statusBar()->showMessage("Wrote channels to device!");
@@ -123,9 +130,6 @@ void WildcatMainWindow::initMenuBar()
     // Connections
 
     connect(ma_aboutQt, &QAction::triggered, this, QApplication::aboutQt);
-
-    connect(ma_newChannel, &QAction::triggered, m_channelsWidget, &ChannelsWidget::addChannel);
-
     connect(ma_connectToDevice, &QAction::triggered, this, &WildcatMainWindow::connectToDevice);
 
     // Device specific connects in connectToDevice()

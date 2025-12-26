@@ -36,7 +36,7 @@ void WildcatChannel::writeToDevice(WildcatDevice* device)
   }
 
   setChInfo.setParameters({
-    std::to_string(index),
+    std::to_string(index * bank),
     name,
     std::to_string(static_cast<int>(std::round(frequency * 10000))),
     modulationStr,
