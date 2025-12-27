@@ -25,15 +25,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="fix/feat: IO robustness work">
-      <change afterPath="$PROJECT_DIR$/include/Wildcat/ui/devicepicker.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/devicepicker.cpp" afterDir="false" />
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: device connection selector">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/message.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/message.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/connectionwidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/connectionwidget.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +127,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1766774039716</updated>
-      <workItem from="1766774040796" duration="22767000" />
+      <workItem from="1766774040796" duration="23026000" />
     </task>
     <task id="LOCAL-00001" summary="feat/fix: link up quick actions">
       <option name="closed" value="true" />
@@ -167,7 +161,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766796603035</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="feat: device connection selector">
+      <option name="closed" value="true" />
+      <created>1766797624926</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1766797624926</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,17 +180,7 @@
     <MESSAGE value="feat: fix size constants for channels/bank + add max channels warning" />
     <MESSAGE value="feat: sanity checks for channel writing" />
     <MESSAGE value="fix/feat: IO robustness work" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix/feat: IO robustness work" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
-          <url>file://$PROJECT_DIR$/src/ui/connectionwidget.cpp</url>
-          <line>30</line>
-          <option name="timeStamp" value="25" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="feat: device connection selector" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: device connection selector" />
   </component>
 </project>

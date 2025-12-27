@@ -3,6 +3,8 @@
 //
 
 #include "Wildcat/ui/connectionwidget.h"
+#include <QStyleHints>
+#include <qguiapplication.h>
 
 DeviceConnectionWidget::DeviceConnectionWidget(QWidget* parent)
 {
@@ -17,7 +19,15 @@ DeviceConnectionWidget::DeviceConnectionWidget(QWidget* parent)
 void DeviceConnectionWidget::deviceConnected() const
 {
   m_connectionLabel->setText("Connected");
-  m_connectionLabel->setStyleSheet("color: rgb(102, 255, 0);");
+
+  if (QGuiApplication::styleHints()->colorScheme() == Qt::ColorScheme::Dark)
+  {
+    m_connectionLabel->setStyleSheet("color: rgb(102, 255, 0);");
+  }
+  else
+  {
+    m_connectionLabel->setStyleSheet("color: rgb(0, 100, 0);");
+  }
 }
 
 void DeviceConnectionWidget::deviceDisconnected() const
