@@ -25,8 +25,11 @@ WildcatMessage::WildcatMessage(const MessageType type, const std::vector<std::st
 WildcatMessage::WildcatMessage(const std::string& message)
 {
     std::vector<std::string> split = Helper_Split(message, ',');
-    if (split.size() < 0)
-        throw std::runtime_error("Message must have at least the message type");
+    if (split.size() <= 0)
+    {
+        printf("Message must have at least the message type! Skipping parse...");
+        return;
+    }
 
     m_type = messageTypeFromString(split[0]);
 
@@ -163,7 +166,7 @@ MessageType WildcatMessage::messageTypeFromString(const std::string& message)
     {
         return MessageType::DeleteChannel;
     }
-    else if (message == "SIN")
+    else if (message == "CIN")
     {
         return MessageType::SetChannelInfo;
     }

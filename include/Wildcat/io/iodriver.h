@@ -60,4 +60,9 @@ public:
      * Disconnect from the active device, fail silently if no device is present
      */
     virtual void releaseDevice() = 0;
+
+    /**
+     * Is this device connected?
+     */
+    [[nodiscard]] virtual bool isConnected() = 0;
 };

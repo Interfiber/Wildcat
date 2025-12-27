@@ -18,6 +18,8 @@ public slots:
   void deviceConnected() const;
   void deviceDisconnected() const;
 
+  void deviceStatusChanged(bool connected) const;
+
 private:
   QHBoxLayout* m_layout;
   QLabel* m_connectionLabel;

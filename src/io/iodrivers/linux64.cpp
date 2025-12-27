@@ -81,7 +81,7 @@ WildcatIODriver::IOResult WildcatLinux64Driver::connectToDevice(const std::strin
 
     m_device = open(name.c_str(), O_RDWR | O_NOCTTY | O_SYNC);
 
-    if (m_device != 0)
+    if (m_device < 0)
     {
         return IOResult("Failed to open serial device with O_RDWR, O_NOCTTY, and O_SYNC: " + std::string(strerror(errno)), true);
     }
@@ -121,6 +121,13 @@ WildcatIODriver::IOResult WildcatLinux64Driver::readFromDevice()
         buffer += tmp;
     }
 
+    if (tmp == '\000') // No data was read
+    {
+        m_device = -1;
+
+        return IOResult("Disconnected from serial device", true);
+    }
+
     // Remove trailing \r or \n
 
     if (buffer.back() == '\n')
@@ -137,9 +144,14 @@ WildcatIODriver::IOResult WildcatLinux64Driver::readFromDevice()
 void WildcatLinux64Driver::releaseDevice()
 {
     close(m_device);
-    m_device = 0; // Reset fd
+    m_device = -1; // Reset fd
 
     printf("Linux64 driver disconnected from device\n");
+}
+
+bool WildcatLinux64Driver::isConnected()
+{
+    return !checkDevice().failed;
 }
 
 WildcatIODriver::IOResult WildcatLinux64Driver::checkDevice()
@@ -150,7 +162,7 @@ WildcatIODriver::IOResult WildcatLinux64Driver::checkDevice()
     // Make sure our file descriptor is still valid (unplugged from device, driver failure, etc)
     if (fcntl(m_device, F_GETFL) == -1 || errno == EBADF)
     {
-        m_device = 0; // Just disconnect from the device so the user is forced to reconnect
+        m_device = -1; // Just disconnect from the device so the user is forced to reconnect
 
         return IOResult("Device file descriptor is no longer valid, did the device disconnect?", true);
     }

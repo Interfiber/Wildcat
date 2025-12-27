@@ -23,6 +23,7 @@ public:
     IOResult writeToDevice(const std::string &buffer) override;
     IOResult readFromDevice() override;
     void releaseDevice() override;
+    bool isConnected() override;
 
 private:
     IOResult checkDevice();
@@ -34,5 +35,5 @@ private:
     void setBlocking(bool blocking) const;
 
     /// @brief  File descriptor for the connected serial device
-    int m_device = 0;
+    int m_device = -1;
 };

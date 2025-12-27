@@ -25,3 +25,10 @@ void DeviceConnectionWidget::deviceDisconnected() const
   m_connectionLabel->setText("Disconnected");
   m_connectionLabel->setStyleSheet("color: #F08080;");
 }
+
+void DeviceConnectionWidget::deviceStatusChanged(const bool connected) const
+{
+  if (connected) return deviceConnected();
+
+  deviceDisconnected();
+}

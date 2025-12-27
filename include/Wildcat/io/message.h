@@ -47,6 +47,7 @@ enum class MessageType
 class WildcatMessage
 {
 public:
+    WildcatMessage() = default;
     WildcatMessage(MessageType type, const std::vector<std::string> &parameters);
     explicit WildcatMessage(const std::string &message);
 

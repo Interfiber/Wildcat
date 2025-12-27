@@ -30,6 +30,8 @@ WildcatMainWindow::WildcatMainWindow()
     m_channelsWidget = new ChannelsWidget(this);
     m_connectionWidget = new DeviceConnectionWidget();
 
+    menuBar()->setCornerWidget(m_connectionWidget, Qt::TopRightCorner);
+
     // Connect menu bar actions to widgets
 
     connect(ma_newChannel, &QAction::triggered, m_channelsWidget, &ChannelsWidget::addChannel);
@@ -53,6 +55,15 @@ void WildcatMainWindow::connectToDevice()
         m_device->reconnect();
     }
 
+    if (!m_device->isConnected())
+    {
+        m_connectionWidget->deviceDisconnected();
+
+        return;
+    }
+
+    connect(m_device.get(), &WildcatDevice::deviceStatusChanged, m_connectionWidget, &DeviceConnectionWidget::deviceStatusChanged);
+
     m_connectionWidget->deviceConnected();
 
     const WildcatDevice::Info info = m_device->getInfo();
@@ -69,6 +80,11 @@ void WildcatMainWindow::connectToDevice()
     QMessageBox::information(nullptr, "Wildcat", ("Connected to device " + info.model + " running firmware " + info.firmware).data());
 
     statusBar()->showMessage(("Connected to " + info.model).data());
+}
+
+void WildcatMainWindow::alertWarning(const std::string& content)
+{
+    QMessageBox::warning(this, "Wildcat", content.data());
 }
 
 void WildcatMainWindow::initMenuBar()
@@ -124,8 +140,6 @@ void WildcatMainWindow::initMenuBar()
 
     help->addAction(ma_aboutWildcat);
     help->addAction(ma_aboutQt);
-
-    menuBar()->setCornerWidget(m_connectionWidget, Qt::TopRightCorner);
 
     // Connections
 

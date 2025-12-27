@@ -4,7 +4,9 @@
 #include <mutex>
 #include <QObject>
 #include "iodriver.h"
+#include "Wildcat/ui/mainwindow.h"
 
+class WildcatMainWindow;
 class WildcatChannel;
 class WildcatMessage;
 class WildcatIODriver;
@@ -54,10 +56,72 @@ public:
         std::string firmware;
     };
 
+    template<typename T>
+    struct DeviceResult
+    {
+        static DeviceResult<T> withResult(const T &result)
+        {
+            DeviceResult<T> res;
+            res.result = result;
+
+            return res;
+        }
+
+        static DeviceResult<T> withFailure(const std::string &msg)
+        {
+            DeviceResult<T> res;
+            res.error.msg = msg;
+            res.error.didFail = true;
+
+            return res;
+        }
+
+        static DeviceResult<T> fromIOResult(const WildcatIODriver::IOResult &result)
+        {
+            DeviceResult<T> res;
+            res.result = result.message;
+            res.error.didFail = result.failed;
+            res.error.msg = result.failed ? result.message : "";
+
+            return res;
+        }
+
+        T unwrap(const std::function<void(std::string)> &callback = nullptr)
+        {
+            if (error.didFail && callback != nullptr)
+            {
+               callback(error.msg);
+            } else if (error.didFail && callback == nullptr)
+            {
+                WildcatMainWindow::get()->alertWarning(error.msg);
+
+                return T();
+            }
+
+            return result.value();
+        }
+
+        [[nodiscard]] bool didFail() const
+        {
+            return error.didFail;
+        }
+
+        /// @brief  Result of the function, empty if an error occured
+        std::optional<T> result;
+
+        struct {
+            /// @brief  Error message
+            std::string msg;
+
+            /// @brief  Did this function fail?
+            bool didFail = false;
+        } error;
+    };
+
     /**
      * Reconnect to the serial device
      */
-    void reconnect() const;
+    void reconnect();
 
     /**
      * Issue commands to this device
@@ -68,7 +132,7 @@ public:
     /**
      * Enter and exit program mode (required for writing channels)
      */
-    void setProgramMode(bool enabled);
+    DeviceResult<WildcatMessage> setProgramMode(bool enabled);
 
     /**
      * Query device information
@@ -81,14 +145,14 @@ public:
      * @param command Command to issue to the device
      * @return Next response from the device
      */
-    [[nodiscard]] std::future<std::string> issue(const std::string &command);
+    DeviceResult<std::string> issue(const std::string &command);
 
     /**
      * Issue a prepared command to the device
      * @param msg Message to issue
      * @return Next response from the device
      */
-    [[nodiscard]] std::future<WildcatMessage> issue(const WildcatMessage &msg);
+    DeviceResult<WildcatMessage> issue(const WildcatMessage &msg);
 
     /**
      * Return a newly created channel
@@ -96,11 +160,20 @@ public:
      */
     [[nodiscard]] std::shared_ptr<WildcatChannel> newChannel();
 
+    /**
+     * Check if this device is connected
+     */
+    bool isConnected() const;
+
 public slots:
     /**
      * Update all registered channels
      */
     void updateChannels();
+
+signals:
+    void showWarning(const std::string &message);
+    void deviceStatusChanged(bool connected);
 
 private:
     std::mutex m_deviceLock;
@@ -108,7 +181,7 @@ private:
     std::string issueAsync(const std::string &buffer);
     WildcatMessage issueAsyncMsg(const std::string &buffer);
 
-    static void handleError(const WildcatIODriver::IOResult &result);
+    bool handleError(const WildcatIODriver::IOResult &result);
 
     std::shared_ptr<WildcatIODriver> m_driver;
 

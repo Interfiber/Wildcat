@@ -5,6 +5,7 @@
 #include <Wildcat/ui/channelswidget.h>
 #include "Wildcat/io/device.h"
 #include "Wildcat/io/channel.h"
+#include <QCheckBox>
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QPushButton>
@@ -69,16 +70,25 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 
     connect(m_writeToDevice, &QPushButton::clicked, mainWindow->ma_writeChannels, &QAction::trigger);
 
-    m_quickActionsLayout->addWidget(m_writeToDevice);
-
     // Load from device quick action
 
-    m_loadFromDevice = new QPushButton(nullptr);
-    m_loadFromDevice->setText("Load from device");
-    m_loadFromDevice->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen));
-    m_loadFromDevice->setSizePolicy(spRight);
+    m_enableHotload = new QCheckBox(nullptr);
+    m_enableHotload->setText("Enable hot channel loading?");
 
-    m_quickActionsLayout->addWidget(m_loadFromDevice);
+    connect(m_enableHotload, &QCheckBox::clicked, this, [this, parent]
+    {
+        static_cast<WildcatMainWindow*>(parent)->hotload = m_enableHotload->isChecked();
+
+        if (m_enableHotload->isChecked())
+        {
+            QMessageBox::information(this, "Wildcat", "Enabled hot loading of channels!\n\nWhen a bank is viewed for the first time Wildcat will attempt to load it from the scanner, however if the first five channels are empty, Wildcat will cancel the operation for performance");
+        }
+    });
+
+    // Add widgets
+
+    m_quickActionsLayout->addWidget(m_enableHotload);
+    m_quickActionsLayout->addWidget(m_writeToDevice);
 
     m_quickActions = new QWidget();
     m_quickActions->setSizePolicy(spRight);

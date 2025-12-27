@@ -25,8 +25,12 @@ public:
         return instance;
     }
 
+    /// @brief  When enabled, empty banks will be automatically loaded from the scanner
+    bool hotload = false;
+
 public slots:
     void connectToDevice();
+    void alertWarning(const std::string &content);
 
 private:
     void initMenuBar();

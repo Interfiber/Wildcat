@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <QComboBox>
 
+class QCheckBox;
 class QPushButton;
 class WildcatChannel;
 /**
@@ -51,7 +52,7 @@ private:
    QLabel* m_quickActionsLabel;
 
    QPushButton *m_writeToDevice;
-   QPushButton *m_loadFromDevice;
+   QCheckBox *m_enableHotload;
 
    std::vector<QTableWidget*> m_banks;
 

@@ -58,5 +58,5 @@ void WildcatChannel::writeToDevice(WildcatDevice* device)
     priority == PriorityMode::Off ? "0" : "1"
   });
 
-  device->issue(setChInfo).wait();
+  device->issue(setChInfo).unwrap();
 }
