@@ -26,6 +26,16 @@ WildcatDevice::WildcatDevice(const std::string& deviceName)
     handleError(m_driver->connectToDevice(m_name));
 }
 
+std::vector<std::string> WildcatDevice::getConnectableDevices()
+{
+#ifdef __linux__
+    WildcatLinux64Driver driver;
+    return driver.getConnectedDevices();
+#endif
+
+    return {""}; // FIXME: Platform
+}
+
 void WildcatDevice::reconnect()
 {
     m_driver->releaseDevice();

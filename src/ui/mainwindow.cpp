@@ -12,6 +12,7 @@
 #include "Wildcat/io/device.h"
 #include "Wildcat/ui/channelswidget.h"
 #include "Wildcat/ui/connectionwidget.h"
+#include "Wildcat/ui/devicepicker.h"
 
 WildcatMainWindow::WildcatMainWindow()
 {
@@ -48,7 +49,14 @@ void WildcatMainWindow::connectToDevice()
 {
     if (m_device == nullptr)
     {
-        m_device = std::make_shared<WildcatDevice>("/dev/ttyACM0");
+        if (DevicePickerDialog devicePicker(this); devicePicker.exec() == QDialog::Accepted)
+        {
+            m_device = std::make_shared<WildcatDevice>(devicePicker.getSelectedDevice());
+        }
+        else
+        {
+            return;
+        }
     }
     else
     {

@@ -38,6 +38,9 @@ class WildcatDevice : public QObject
 public:
     explicit WildcatDevice(const std::string &deviceName);
 
+    /// @brief  Return a list of connectable devices
+    static std::vector<std::string> getConnectableDevices();
+
     static constexpr int MAX_BANKS = 10;
     static constexpr int MAX_CHANNELS_PER_BANK = 50;
 
