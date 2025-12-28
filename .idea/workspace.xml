@@ -28,16 +28,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="fix(ui): better connected color in light mode">
-      <change afterPath="$PROJECT_DIR$/.idea/editor.xml" afterDir="false" />
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: add basic channel loading from device when creating a new channel">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/channel.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/channel.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/message.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/message.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/io/channel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/channel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/message.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -78,7 +71,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    "CMake Application.wildcat2.executor": "Run",
+    "CMake Application.wildcat2.executor": "Debug",
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.RadMigrateCodeStyle": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -134,7 +127,7 @@
       <option name="presentableId" value="Default" />
       <updated>1766774039716</updated>
       <workItem from="1766774040796" duration="24791000" />
-      <workItem from="1766837068862" duration="3049000" />
+      <workItem from="1766837068862" duration="3321000" />
     </task>
     <task id="LOCAL-00001" summary="feat/fix: link up quick actions">
       <option name="closed" value="true" />
@@ -184,7 +177,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766797873557</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="feat: add basic channel loading from device when creating a new channel">
+      <option name="closed" value="true" />
+      <created>1766931105790</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1766931105790</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,6 +198,7 @@
     <MESSAGE value="fix/feat: IO robustness work" />
     <MESSAGE value="feat: device connection selector" />
     <MESSAGE value="fix(ui): better connected color in light mode" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix(ui): better connected color in light mode" />
+    <MESSAGE value="feat: add basic channel loading from device when creating a new channel" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add basic channel loading from device when creating a new channel" />
   </component>
 </project>

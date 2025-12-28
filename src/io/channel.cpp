@@ -16,7 +16,7 @@ WildcatChannel::WildcatChannel(const WildcatMessage& msg)
 
   // Index isn't read in, it must be manually set
   name = msg.getParameters()[1];
-  frequency = static_cast<float>(std::round(std::stoi(msg.getParameters()[2]) / 10000));
+  frequency = std::stof(msg.getParameters()[2]) / 10000;
 
   if (const std::string modulationStr = msg.getParameters()[3]; modulationStr == "AUTO")
   {
