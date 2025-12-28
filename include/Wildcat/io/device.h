@@ -208,6 +208,13 @@ public:
     DeviceResult<WildcatMessage> issue(const WildcatMessage &msg) const;
 
     /**
+     * Issue a command to the device (blocking)
+     * @param msg Command to issue to the device
+     * @return Next response from the device
+     */
+    DeviceResult<WildcatMessage> issueBlock(const WildcatMessage &msg);
+
+    /**
      * Return a newly created channel
      * @note This channel will only exist locally until written
      */
@@ -248,7 +255,7 @@ private:
     /// @brief  Local channels which can be written to the device on demand
     std::vector<std::shared_ptr<WildcatChannel>> m_channels;
 
-    std::unique_ptr<WildcatIOThread> m_ioThread;
+    std::shared_ptr<WildcatIOThread> m_ioThread;
 
     std::string m_name;
 

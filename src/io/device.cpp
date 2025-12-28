@@ -27,7 +27,7 @@ WildcatDevice::WildcatDevice(const std::string& deviceName)
     handleError(m_driver->connectToDevice(m_name));
 
     // Startup the IO thread
-    m_ioThread = std::make_unique<WildcatIOThread>(this);
+    m_ioThread = std::make_shared<WildcatIOThread>(this);
 }
 
 std::vector<std::string> WildcatDevice::getConnectableDevices()
@@ -55,13 +55,13 @@ void WildcatDevice::issue(const std::shared_ptr<WildcatDeviceCommandable>& comma
 
 WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::setProgramMode(const bool enabled)
 {
-    return issue(WildcatMessage::setProgramMode(enabled));
+    return issueBlock(WildcatMessage::setProgramMode(enabled));
 }
 
 WildcatDevice::Info WildcatDevice::getInfo()
 {
-    const WildcatMessage model = issue(WildcatMessage::model()).unwrap();
-    const WildcatMessage firmware = issue(WildcatMessage::firmware()).unwrap();
+    const WildcatMessage model = issueBlock(WildcatMessage::model()).unwrap();
+    const WildcatMessage firmware = issueBlock(WildcatMessage::firmware()).unwrap();
 
     Info info{};
     info.firmware = firmware.getParameters()[0];
@@ -103,6 +103,16 @@ WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::issue(const WildcatMe
 
         return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.result.value()));
     });
+}
+
+WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::issueBlock(const WildcatMessage& msg)
+{
+    auto raw = issueAsync(msg.toString());
+
+    if (raw.error.didFail)
+        return DeviceResult<WildcatMessage>::withFailure(raw.error.msg);
+
+    return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.result.value()));
 }
 
 std::shared_ptr<WildcatChannel> WildcatDevice::newChannel()
