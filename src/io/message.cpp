@@ -25,7 +25,7 @@ WildcatMessage::WildcatMessage(const MessageType type, const std::vector<std::st
 WildcatMessage::WildcatMessage(const std::string& message)
 {
     std::vector<std::string> split = Helper_Split(message, ',');
-    if (split.size() <= 0)
+    if (split.empty())
     {
         printf("Message must have at least the message type! Skipping parse...");
         return;
@@ -42,25 +42,30 @@ WildcatMessage::WildcatMessage(const std::string& message)
 
 WildcatMessage WildcatMessage::model()
 {
-    return WildcatMessage(MessageType::GetModelInfo, {});
+    return { MessageType::GetModelInfo, {} };
 }
 
 WildcatMessage WildcatMessage::firmware()
 {
-    return WildcatMessage(MessageType::GetFirmwareInfo, {});
+    return { MessageType::GetFirmwareInfo, {} };
 }
 
 WildcatMessage WildcatMessage::channelInfo()
 {
-    return WildcatMessage(MessageType::SetChannelInfo, {});
+    return { MessageType::SetChannelInfo, {} };
 }
 
-WildcatMessage WildcatMessage::setProgramMode(bool enabled)
+WildcatMessage WildcatMessage::channelInfo(const int index)
+{
+    return { MessageType::SetChannelInfo, {std::to_string(index)} };
+}
+
+WildcatMessage WildcatMessage::setProgramMode(const bool enabled)
 {
     if (enabled)
-        return WildcatMessage(MessageType::EnterProgramMode, {});
+        return { MessageType::EnterProgramMode, {} };
 
-    return WildcatMessage(MessageType::ExitProgramMode, {});
+    return { MessageType::ExitProgramMode, {} };
 }
 
 std::string WildcatMessage::messageToString(const MessageType type)
@@ -108,9 +113,9 @@ std::string WildcatMessage::messageToString(const MessageType type)
         return "CSG";
     case MessageType::SetCustomSearchSettings:
         return "CSP";
-    case MessageType::SetWeatherSettings:
-        return "WXS";
     case MessageType::SetLCDContrastSettings:
+        return "WXS";
+    case MessageType::SetWeatherSettings:
         return "CNT";
     case MessageType::SetVolumeLevel:
         return "VOL";
@@ -200,7 +205,7 @@ MessageType WildcatMessage::messageTypeFromString(const std::string& message)
     }
     else if (message == "CSP")
     {
-        return MessageType::SetWeatherSettings;
+        return MessageType::SetLCDContrastSettings;
     }
     else if (message == "WXS")
     {

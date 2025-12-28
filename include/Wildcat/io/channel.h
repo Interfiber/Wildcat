@@ -13,6 +13,7 @@ class WildcatChannel : public WildcatDeviceCommandable
 {
 public:
     WildcatChannel() = default;
+    explicit WildcatChannel(const WildcatMessage &msg);
 
     /// @brief Supported modulation modes
     enum class ModulationMode
@@ -22,6 +23,9 @@ public:
         FM,
         NFM
     };
+
+    static std::string modulationModeToString(ModulationMode mode);
+    static ModulationMode stringToModulationMode(const std::string& modulationMode);
 
     /// @brief Lockout modes
     enum class LockoutMode
@@ -53,19 +57,19 @@ public:
     float frequency = 0.f;
 
     /// @brief  Modulation mode
-    ModulationMode modulation;
+    ModulationMode modulation = ModulationMode::Automatic;
 
     /// @brief  CTCSS/DCS code
-    int ctcss;
+    int ctcss = 0;
 
     /// @brief  Lockout mode
-    LockoutMode lockoutMode;
+    LockoutMode lockoutMode = LockoutMode::Off;
 
     /// @brief  Delay, must be a value within DELAY_VALUES
-    int delay;
+    int delay = 2;
 
     /// @brief  Priority mode
-    PriorityMode priority;
+    PriorityMode priority = PriorityMode::Off;
 
     /**
      * Write this channel to a device

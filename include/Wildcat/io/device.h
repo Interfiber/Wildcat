@@ -164,9 +164,18 @@ public:
     [[nodiscard]] std::shared_ptr<WildcatChannel> newChannel();
 
     /**
+     * Get a channel by location from the local cache or from the scanner
+     * @param index Index of the channel within `bank`, one indexed
+     * @param bank Bank to find the channel in, one indexed
+     * @param skipCache When enabled this function will not check the local cache for the channel
+     * @return Pointer to the channel, nullptr if none was found
+     */
+    [[nodiscard]] std::shared_ptr<WildcatChannel> getChannel(int index, int bank, bool skipCache = false);
+
+    /**
      * Check if this device is connected
      */
-    bool isConnected() const;
+    [[nodiscard]] bool isConnected() const;
 
 public slots:
     /**

@@ -7,6 +7,80 @@
 
 #include "Wildcat/io/message.h"
 
+WildcatChannel::WildcatChannel(const WildcatMessage& msg)
+{
+  if (msg.getMessageType() != MessageType::SetChannelInfo)
+  {
+    throw std::runtime_error("WildcatChannel can only be constructed from a SetChannelInfo message");
+  }
+
+  // Index isn't read in, it must be manually set
+  name = msg.getParameters()[1];
+  frequency = static_cast<float>(std::round(std::stoi(msg.getParameters()[2]) / 10000));
+
+  if (const std::string modulationStr = msg.getParameters()[3]; modulationStr == "AUTO")
+  {
+    modulation = ModulationMode::Automatic;
+  }
+  else if (modulationStr == "AM")
+  {
+    modulation = ModulationMode::AM;
+  }
+  else if (modulationStr == "FM")
+  {
+    modulation = ModulationMode::FM;
+  }
+  else if (modulationStr == "NFM")
+  {
+    modulation = ModulationMode::NFM;
+  }
+
+  // FIXME: Impl CTCSS/DCS
+
+  delay = std::stoi(msg.getParameters()[5]);
+  lockoutMode = msg.getParameters()[6] == "0" ? LockoutMode::Off : LockoutMode::Lockout;
+  priority = msg.getParameters()[7] == "0" ? PriorityMode::Off : PriorityMode::PCH;
+}
+
+std::string WildcatChannel::modulationModeToString(const ModulationMode mode)
+{
+  switch (mode)
+  {
+  case ModulationMode::Automatic:
+    return "AUTO";
+  case ModulationMode::AM:
+    return "AM";
+  case ModulationMode::FM:
+    return "FM";
+  case ModulationMode::NFM:
+    return "NFM";
+  default:
+    return "AUTO";
+  }
+}
+
+WildcatChannel::ModulationMode WildcatChannel::stringToModulationMode(const std::string& modulationMode)
+{
+  if (modulationMode == "AUTO")
+  {
+    return ModulationMode::Automatic;
+  }
+  if (modulationMode == "AM")
+  {
+    return ModulationMode::AM;
+  }
+  if (modulationMode == "FM")
+  {
+    return ModulationMode::FM;
+  }
+  if (modulationMode == "NFM")
+  {
+    return ModulationMode::NFM;
+  }
+
+  throw std::runtime_error("Invalid modulationMode '" + modulationMode + "'");
+}
+
 void WildcatChannel::writeToDevice(WildcatDevice* device)
 {
   WildcatMessage setChInfo = WildcatMessage::channelInfo();
@@ -29,29 +103,11 @@ void WildcatChannel::writeToDevice(WildcatDevice* device)
     return;
   }
 
-  std::string modulationStr;
-
-  switch (modulation)
-  {
-  case ModulationMode::Automatic:
-    modulationStr = "AUTO";
-    break;
-  case ModulationMode::AM:
-    modulationStr = "AM";
-    break;
-  case ModulationMode::FM:
-    modulationStr = "FM";
-    break;
-  case ModulationMode::NFM:
-    modulationStr = "NFM";
-    break;
-  }
-
   setChInfo.setParameters({
     std::to_string(index * bank),
     name,
     std::to_string(static_cast<int>(std::round(frequency * 10000))),
-    modulationStr,
+    modulationModeToString(modulation),
     "", // FIXME: CTCSS/DCS
     std::to_string(delay),
     lockoutMode == LockoutMode::Off ? "0" : "1",

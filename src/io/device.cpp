@@ -56,8 +56,8 @@ WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::setProgramMode(const 
 
 WildcatDevice::Info WildcatDevice::getInfo()
 {
-    WildcatMessage model = issue(WildcatMessage::model()).unwrap();
-    WildcatMessage firmware = issue(WildcatMessage::firmware()).unwrap();
+    const WildcatMessage model = issue(WildcatMessage::model()).unwrap();
+    const WildcatMessage firmware = issue(WildcatMessage::firmware()).unwrap();
 
     Info info{};
     info.firmware = firmware.getParameters()[0];
@@ -116,6 +116,45 @@ std::shared_ptr<WildcatChannel> WildcatDevice::newChannel()
     channel->bank = 1;
 
     m_channels.push_back(channel);
+
+    return channel;
+}
+
+std::shared_ptr<WildcatChannel> WildcatDevice::getChannel(const int index, const int bank, const bool skipCache)
+{
+    const int realIndex = index * bank;
+
+    if (!skipCache)
+    {
+        // Quick local cache search
+        for (const auto &channel : m_channels)
+        {
+            if (channel->bank == bank && channel->index == index)
+                return channel;
+        }
+    }
+
+    setProgramMode(true).unwrap();
+
+    DeviceResult<WildcatMessage> issueResult = issue(WildcatMessage::channelInfo(realIndex));
+
+    const WildcatMessage msg = issueResult.unwrap();
+
+    if (issueResult.didFail())
+    {
+        setProgramMode(false).unwrap();
+        return nullptr;
+    }
+
+    // Construct a new channel
+
+    auto channel = std::make_shared<WildcatChannel>(msg);
+    channel->index = index;
+    channel->bank = bank;
+
+    m_channels.push_back(channel);
+
+    setProgramMode(false).unwrap();
 
     return channel;
 }
