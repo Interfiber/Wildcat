@@ -35,7 +35,10 @@ WildcatMainWindow::WildcatMainWindow()
 
     // Connect menu bar actions to widgets
 
-    connect(ma_newChannel, &QAction::triggered, m_channelsWidget, &ChannelsWidget::addChannel);
+    connect(ma_newChannel, &QAction::triggered, this, [this]
+    {
+        m_channelsWidget->addChannel(nullptr);
+    });
 
     setCentralWidget(m_channelsWidget);
 }
@@ -153,6 +156,11 @@ void WildcatMainWindow::initMenuBar()
 
     connect(ma_aboutQt, &QAction::triggered, this, QApplication::aboutQt);
     connect(ma_connectToDevice, &QAction::triggered, this, &WildcatMainWindow::connectToDevice);
+
+    connect(ma_aboutWildcat, &QAction::triggered, this, [this]
+    {
+        QMessageBox::information(this, "About Wildcat", ("Wildcat v2\nGit branch: " + std::string(GIT_BRANCH_BUILD) + "\nGit hash: " + std::string(GIT_HASH_BUILD) + "\nGitHub: https://github.com/Interfiber/Wildcat.git").data());
+    });
 
     // Device specific connects in connectToDevice()
 }

@@ -56,8 +56,8 @@ private:
 
     // Help
 
-    QAction* ma_aboutQt;
-    QAction* ma_aboutWildcat;
+    QAction* ma_aboutQt = nullptr;
+    QAction* ma_aboutWildcat = nullptr;
 
     ChannelsWidget *m_channelsWidget;
     DeviceConnectionWidget* m_connectionWidget;

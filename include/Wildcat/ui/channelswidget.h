@@ -41,7 +41,7 @@ signals:
    void deviceConnectionChanged();
 
 public slots:
-   void addChannel();
+   void addChannel(const std::shared_ptr<WildcatChannel> &channel = nullptr);
 
 private:
    QHBoxLayout *m_layout;

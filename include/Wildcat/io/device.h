@@ -3,9 +3,12 @@
 #include <future>
 #include <mutex>
 #include <QObject>
+#include <thread>
+
 #include "iodriver.h"
 #include "Wildcat/ui/mainwindow.h"
 
+class WildcatIOThread;
 class WildcatMainWindow;
 class WildcatChannel;
 class WildcatMessage;
@@ -89,6 +92,28 @@ public:
             return res;
         }
 
+        /**
+         * Create a future evaluatable object
+         * @tparam U Old DeviceResult T value
+         * @param waitable Device result to wait upon
+         * @param callback Callback to execute to form the new result upon completion of `waitable`
+         * @return Waitable DeviceResult<T>
+         */
+        template<typename U>
+        static DeviceResult<T> future(const DeviceResult<U> &waitable, const std::function<DeviceResult<T>(const DeviceResult<U> &raw)> &callback)
+        {
+            DeviceResult<T> res;
+            res.async.isAsync = true;
+            res.async.hasCompleted = false;
+
+            res.async.transform = [waitable, callback]
+            {
+                return callback(waitable);
+            };
+
+            return res;
+        }
+
         T unwrap(const std::function<void(std::string)> &callback = nullptr)
         {
             if (error.didFail && callback != nullptr)
@@ -109,7 +134,20 @@ public:
             return error.didFail;
         }
 
-        /// @brief  Result of the function, empty if an error occured
+        /// @brief  Wait until completion if this is an async result
+        DeviceResult<T> wait() const
+        {
+            if (!async.isAsync) return *this;
+
+            while (async.hasCompleted)
+            {
+                std::this_thread::sleep_for(std::chrono::milliseconds(30));
+            }
+
+            return *this;
+        }
+
+        /// @brief  Result of the function, empty if an error occurred
         std::optional<T> result;
 
         struct {
@@ -119,6 +157,18 @@ public:
             /// @brief  Did this function fail?
             bool didFail = false;
         } error;
+
+        struct
+        {
+            /// @brief  Will this result be returned async?
+            bool isAsync = false;
+
+            /// @brief  Set to true on completion
+            bool hasCompleted = false;
+
+            /// @brief  Transform callback called upon the completion of result
+            std::function<DeviceResult<T>()> transform = nullptr;
+        } async;
     };
 
     /**
@@ -148,14 +198,14 @@ public:
      * @param command Command to issue to the device
      * @return Next response from the device
      */
-    DeviceResult<std::string> issue(const std::string &command);
+    DeviceResult<std::string>& issue(const std::string& command) const;
 
     /**
      * Issue a prepared command to the device
      * @param msg Message to issue
      * @return Next response from the device
      */
-    DeviceResult<WildcatMessage> issue(const WildcatMessage &msg);
+    DeviceResult<WildcatMessage> issue(const WildcatMessage &msg) const;
 
     /**
      * Return a newly created channel
@@ -188,10 +238,8 @@ signals:
     void deviceStatusChanged(bool connected);
 
 private:
-    std::mutex m_deviceLock;
 
-    std::string issueAsync(const std::string &buffer);
-    WildcatMessage issueAsyncMsg(const std::string &buffer);
+    std::mutex m_deviceLock;
 
     bool handleError(const WildcatIODriver::IOResult &result);
 
@@ -200,5 +248,16 @@ private:
     /// @brief  Local channels which can be written to the device on demand
     std::vector<std::shared_ptr<WildcatChannel>> m_channels;
 
+    std::unique_ptr<WildcatIOThread> m_ioThread;
+
     std::string m_name;
+
+    /**
+     * Actual blocking function called by the IO thread to perform IO operations
+     * @param buffer Buffer to write to the scanner
+     * @return Result of the operation
+     */
+    DeviceResult<std::string> issueAsync(const std::string &buffer);
+
+    friend class WildcatIOThread;
 };

@@ -44,7 +44,9 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         include/Wildcat/ui/connectionwidget.h
         src/ui/connectionwidget.cpp
         include/Wildcat/ui/devicepicker.h
-        src/ui/devicepicker.cpp)
+        src/ui/devicepicker.cpp
+        include/Wildcat/io/iothread.h
+        src/io/iothread.cpp)
 
 # Wildcat platform libraries (static)
 # On linux we have our own user space "driver" that couples with the linux-specific serial IO "driver" used inside wildcat for communications

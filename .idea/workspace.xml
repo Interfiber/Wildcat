@@ -5,6 +5,7 @@
   </component>
   <component name="BackendCodeEditorMiscSettings">
     <option name="/Default/Housekeeping/FeatureSuggestion/FeatureSuggestionManager/DisabledSuggesters/=SwitchToGoToActionSuggester/@EntryIndexedValue" value="true" type="bool" />
+    <option name="/Default/Housekeeping/LiveTemplatesHousekeeping/HotspotSessionHintIsShown/@EntryValue" value="true" type="bool" />
   </component>
   <component name="CMakePresetLoader">{
   &quot;useNewFormat&quot;: true
@@ -28,9 +29,17 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: add basic channel loading from device when creating a new channel">
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="fix: frequency loading">
+      <change afterPath="$PROJECT_DIR$/include/Wildcat/io/iothread.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/io/iothread.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/channel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/channel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/mainwindow.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -90,11 +99,16 @@
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "org.rust.first.attach.projects": "true",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
   <component name="RunManager" selected="CMake Application.wildcat2">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+      <method v="2">
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="wildcat2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" WORKING_DIR="file://$PROJECT_DIR$" PASS_PARENT_ENVS_2="true" PROJECT_NAME="wildcat2" TARGET_NAME="wildcat2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="wildcat2" RUN_TARGET_NAME="wildcat2">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -127,7 +141,7 @@
       <option name="presentableId" value="Default" />
       <updated>1766774039716</updated>
       <workItem from="1766774040796" duration="24791000" />
-      <workItem from="1766837068862" duration="3321000" />
+      <workItem from="1766837068862" duration="11483000" />
     </task>
     <task id="LOCAL-00001" summary="feat/fix: link up quick actions">
       <option name="closed" value="true" />
@@ -185,7 +199,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766931105790</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="fix: frequency loading">
+      <option name="closed" value="true" />
+      <created>1766931430467</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1766931430467</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -199,6 +221,11 @@
     <MESSAGE value="feat: device connection selector" />
     <MESSAGE value="fix(ui): better connected color in light mode" />
     <MESSAGE value="feat: add basic channel loading from device when creating a new channel" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add basic channel loading from device when creating a new channel" />
+    <MESSAGE value="fix: frequency loading" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: frequency loading" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

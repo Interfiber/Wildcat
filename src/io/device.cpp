@@ -6,6 +6,7 @@
 #include <Wildcat/io/device.h>
 
 #include "Wildcat/io/channel.h"
+#include "Wildcat/io/iothread.h"
 #include "Wildcat/io/message.h"
 #include "Wildcat/ui/mainwindow.h"
 
@@ -24,6 +25,9 @@ WildcatDevice::WildcatDevice(const std::string& deviceName)
     connect(this, &WildcatDevice::showWarning, WildcatMainWindow::get(), &WildcatMainWindow::alertWarning);
 
     handleError(m_driver->connectToDevice(m_name));
+
+    // Startup the IO thread
+    m_ioThread = std::make_unique<WildcatIOThread>(this);
 }
 
 std::vector<std::string> WildcatDevice::getConnectableDevices()
@@ -83,30 +87,22 @@ WildcatDevice::Info WildcatDevice::getInfo()
     return info;
 }
 
-WildcatDevice::DeviceResult<std::string> WildcatDevice::issue(const std::string& command)
+WildcatDevice::DeviceResult<std::string>& WildcatDevice::issue(const std::string& command) const
 {
-    std::lock_guard lock(m_deviceLock);
-
-    if (const WildcatIODriver::IOResult writeResult = m_driver->writeToDevice(command + "\r"); writeResult.failed) return DeviceResult<std::string>::fromIOResult(writeResult);
-
-    deviceStatusChanged(isConnected());
-
-    // We need to keep the IOResult for the command response
-    const WildcatIODriver::IOResult readResult = m_driver->readFromDevice();
-
-    deviceStatusChanged(isConnected());
-
-    return DeviceResult<std::string>::fromIOResult(readResult);
+    return m_ioThread->issueAsyncWrite(command);
 }
 
-WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::issue(const WildcatMessage& msg)
+WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::issue(const WildcatMessage& msg) const
 {
     const DeviceResult<std::string> issueAsync = issue(msg.toString());
 
-    if (issueAsync.error.didFail)
-        return DeviceResult<WildcatMessage>::withFailure(issueAsync.error.msg);
+    return DeviceResult<WildcatMessage>::future<std::string>(issueAsync, [] (const DeviceResult<std::string> &raw)
+    {
+        if (raw.error.didFail)
+            return DeviceResult<WildcatMessage>::withFailure(raw.error.msg);
 
-    return DeviceResult<WildcatMessage>::withResult(WildcatMessage(issueAsync.result.value()));
+        return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.result.value()));
+    });
 }
 
 std::shared_ptr<WildcatChannel> WildcatDevice::newChannel()
@@ -183,25 +179,6 @@ void WildcatDevice::updateChannels()
     }
 }
 
-std::string WildcatDevice::issueAsync(const std::string& buffer)
-{
-    std::lock_guard lock(m_deviceLock);
-
-    if (handleError(m_driver->writeToDevice(buffer + "\r"))) return "";
-
-    // We need to keep the IOResult for the command response
-    const WildcatIODriver::IOResult readResult = m_driver->readFromDevice();
-
-    if (handleError(readResult)) return "";
-
-    return readResult.message;
-}
-
-WildcatMessage WildcatDevice::issueAsyncMsg(const std::string& buffer)
-{
-    return WildcatMessage(issueAsync(buffer));
-}
-
 bool WildcatDevice::handleError(const WildcatIODriver::IOResult& result)
 {
     if (result.failed)
@@ -210,4 +187,20 @@ bool WildcatDevice::handleError(const WildcatIODriver::IOResult& result)
     }
 
     return result.failed;
+}
+
+WildcatDevice::DeviceResult<std::string> WildcatDevice::issueAsync(const std::string& buffer)
+{
+    std::lock_guard lock(m_deviceLock);
+
+    if (const WildcatIODriver::IOResult writeResult = m_driver->writeToDevice(buffer + "\r"); writeResult.failed) return DeviceResult<std::string>::fromIOResult(writeResult);
+
+    deviceStatusChanged(isConnected());
+
+    // We need to keep the IOResult for the command response
+    const WildcatIODriver::IOResult readResult = m_driver->readFromDevice();
+
+    deviceStatusChanged(isConnected());
+
+    return DeviceResult<std::string>::fromIOResult(readResult);
 }

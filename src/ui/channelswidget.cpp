@@ -104,7 +104,7 @@ ChannelsWidget::~ChannelsWidget()
     delete m_layout;
 }
 
-void ChannelsWidget::addChannel()
+void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheChannel)
 {
     if (WildcatMainWindow::get()->m_device == nullptr)
         return;
@@ -127,15 +127,10 @@ void ChannelsWidget::addChannel()
 
     // Create the new channel
 
-    const int bank = m_tabWidget->currentIndex() + 1;
-
     UIChannel channel{};
 
-    // Pre-fetch the channel from the scanner
-    auto preChannel = WildcatMainWindow::get()->m_device->getChannel(table->rowCount(), bank);
-
     // Determine which channel to use
-    channel.channel = preChannel == nullptr ? WildcatMainWindow::get()->m_device->newChannel() : preChannel;
+    channel.channel = precacheChannel == nullptr ? WildcatMainWindow::get()->m_device->newChannel() : precacheChannel;
 
     channel.channel->bank = m_tabWidget->currentIndex() + 1;
 
