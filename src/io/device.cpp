@@ -74,7 +74,7 @@ void WildcatDevice::clearMemory()
         setProgramMode(false).unwrap();
 
         display->close();
-        delete display;
+        display->deleteLater();
     }).detach();
 }
 
