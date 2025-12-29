@@ -159,8 +159,6 @@ void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheC
     table->setRowCount(table->rowCount() + 1);
     table->setSizeAdjustPolicy(QAbstractScrollArea::AdjustToContents);
 
-    table->scrollToBottom();
-
     const int rowCount = table->rowCount() - 1;
 
     // Create the new channel

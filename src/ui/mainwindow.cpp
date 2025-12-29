@@ -41,6 +41,7 @@ WildcatMainWindow::WildcatMainWindow()
     });
 
     setCentralWidget(m_channelsWidget);
+    setWindowIcon(QIcon(":/resources/wcat2.png"));
 }
 
 WildcatMainWindow::~WildcatMainWindow()

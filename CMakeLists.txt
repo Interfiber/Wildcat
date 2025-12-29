@@ -50,6 +50,10 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         include/Wildcat/io/basicfuture.h
         src/io/basicfuture.cpp)
 
+qt_add_resources(wildcat2 "resources"
+    PREFIX "/resources"
+    FILES wcat2.png)
+
 # Wildcat platform libraries (static)
 # On linux we have our own user space "driver" that couples with the linux-specific serial IO "driver" used inside wildcat for communications
 # Windows impl is TBD

@@ -19,6 +19,7 @@
   <component name="CMakeRunConfigurationManager">
     <generated>
       <config projectName="wildcat2" targetName="wildcat2" />
+      <config projectName="wildcat2" targetName="wildcat2_other_files" />
       <config projectName="wildcat2" targetName="wildcatdriver2" />
       <config projectName="wildcat2" targetName="wildcatplatform2" />
     </generated>
@@ -31,11 +32,9 @@
   <component name="ChangeListManager">
     <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: better channel loader on a QThread">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/channel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/channel.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,6 +109,11 @@
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="wildcat2_other_files" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="wildcat2" TARGET_NAME="wildcat2_other_files" CONFIG_NAME="Debug">
+      <method v="2">
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="wildcatdriver2" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="wildcat2" TARGET_NAME="wildcatdriver2" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="wildcat2" RUN_TARGET_NAME="wildcatdriver2">
       <method v="2">
         <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
@@ -122,6 +126,7 @@
     </configuration>
     <list>
       <item itemvalue="CMake Application.wildcat2" />
+      <item itemvalue="CMake Application.wildcat2_other_files" />
       <item itemvalue="CMake Application.wildcatdriver2" />
       <item itemvalue="CMake Application.wildcatplatform2" />
     </list>
