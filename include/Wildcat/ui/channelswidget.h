@@ -42,6 +42,7 @@ signals:
 
 public slots:
    void addChannel(const std::shared_ptr<WildcatChannel> &channel = nullptr);
+   void loadCurrentBank();
 
 private:
    QHBoxLayout *m_layout;

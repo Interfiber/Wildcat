@@ -4,7 +4,7 @@
 
 #include <cstring>
 #include <filesystem>
-#include <Wildcat/io/iodrivers/linux64.h>
+#include <Wildcat/io/iodrivers/unixtty.h>
 #include <grp.h>
 #include <unistd.h>
 #include <pwd.h>
@@ -13,7 +13,15 @@
 
 #include "Wildcat/io/device.h"
 
-std::vector<std::string> WildcatLinux64Driver::getConnectedDevices()
+#ifdef __FreeBSD__
+#define TTY_PREFIX "cuaU"
+#endif
+
+#ifdef __linux__
+#define TTY_PREFIX "ttyACM"
+#endif
+
+std::vector<std::string> WildcatUnixTTYDriver::getConnectedDevices()
 {
     // Inspect the contents of /dev/serial/ttyACM*
 
@@ -21,8 +29,8 @@ std::vector<std::string> WildcatLinux64Driver::getConnectedDevices()
 
     for (auto const& entry : std::filesystem::directory_iterator("/dev/"))
     {
-        // See if this is a serial device (ACM)
-        if (const std::filesystem::path path = entry.path(); path.generic_string().find("ACM") != std::string::npos)
+        // See if this is a serial device with no extension (FreeBSD has .lock files and stuff)
+        if (const std::filesystem::path path = entry.path(); path.generic_string().find(TTY_PREFIX) != std::string::npos && !path.has_extension())
         {
             results.push_back(path.generic_string());
         }
@@ -31,13 +39,13 @@ std::vector<std::string> WildcatLinux64Driver::getConnectedDevices()
     return results;
 }
 
-WildcatIODriver::IOResult WildcatLinux64Driver::connectToDevice(const std::string& name)
+WildcatIODriver::IOResult WildcatUnixTTYDriver::connectToDevice(const std::string& name)
 {
     // Here we make sure the user is in the dialout group or uucp for arch
 
     // Obtain user info
-    __uid_t uid = getuid();
-    passwd* pw = getpwuid(uid);
+    const __uid_t uid = getuid();
+    const passwd* pw = getpwuid(uid);
 
     // Get number of groups the user is in
     int ngroups = 0;
@@ -54,7 +62,7 @@ WildcatIODriver::IOResult WildcatLinux64Driver::connectToDevice(const std::strin
         const group* gr = getgrgid(groups[i]);
         if (gr == nullptr)
         {
-            printf("Wildcat Linux64 driver error in group check: %s", strerror(errno));
+            printf("Wildcat UnixTTY driver error in group check: %s", strerror(errno));
             continue;
         }
 
@@ -71,7 +79,7 @@ WildcatIODriver::IOResult WildcatLinux64Driver::connectToDevice(const std::strin
 
     // User has been verified to be within the correct groups, now we can connect to the serial device
 
-    printf("Linux64 driver connecting to device: %s\n", name.c_str());
+    printf("UnixTTY driver connecting to device: %s\n", name.c_str());
 
     // Sanity check
     if (!std::filesystem::exists(name))
@@ -94,18 +102,18 @@ WildcatIODriver::IOResult WildcatLinux64Driver::connectToDevice(const std::strin
     return IOResult("Connected to serial device " + name, false);
 }
 
-WildcatIODriver::IOResult WildcatLinux64Driver::writeToDevice(const std::string& buffer)
+WildcatIODriver::IOResult WildcatUnixTTYDriver::writeToDevice(const std::string& buffer)
 {
     if (IOResult devCheck = checkDevice(); devCheck.failed) return devCheck;
 
     write(m_device, buffer.c_str(), buffer.size());
 
-    printf("Linux64 driver write to device: %s", buffer.c_str()); // \n included in message
+    printf("UnixTTY driver write to device: %s", buffer.c_str()); // \n included in message
 
     return IOResult("Buffer written to device", false);
 }
 
-WildcatIODriver::IOResult WildcatLinux64Driver::readFromDevice()
+WildcatIODriver::IOResult WildcatUnixTTYDriver::readFromDevice()
 {
     if (IOResult devCheck = checkDevice(); devCheck.failed) return devCheck;
 
@@ -136,25 +144,25 @@ WildcatIODriver::IOResult WildcatLinux64Driver::readFromDevice()
     if (buffer.back() == '\r')
         buffer.pop_back();
 
-    printf("Linux64 driver read: %s\n", buffer.c_str());
+    printf("UnixTTY driver read: %s\n", buffer.c_str());
 
     return IOResult(buffer, false);
 }
 
-void WildcatLinux64Driver::releaseDevice()
+void WildcatUnixTTYDriver::releaseDevice()
 {
     close(m_device);
     m_device = -1; // Reset fd
 
-    printf("Linux64 driver disconnected from device\n");
+    printf("UnixTTY driver disconnected from device\n");
 }
 
-bool WildcatLinux64Driver::isConnected()
+bool WildcatUnixTTYDriver::isConnected()
 {
     return !checkDevice().failed;
 }
 
-WildcatIODriver::IOResult WildcatLinux64Driver::checkDevice()
+WildcatIODriver::IOResult WildcatUnixTTYDriver::checkDevice()
 {
     if (m_device == 0)
         return IOResult("No connected device!", true);
@@ -170,7 +178,7 @@ WildcatIODriver::IOResult WildcatLinux64Driver::checkDevice()
     return IOResult("Device is valid", false);
 }
 
-void WildcatLinux64Driver::setInterfaceAttrs(const int speed, const int parity) const
+void WildcatUnixTTYDriver::setInterfaceAttrs(const int speed, const int parity) const
 {
     termios serial{};
     if (tcgetattr(m_device, &serial) != 0)
@@ -204,7 +212,7 @@ void WildcatLinux64Driver::setInterfaceAttrs(const int speed, const int parity) 
     }
 }
 
-void WildcatLinux64Driver::setBlocking(const bool blocking) const
+void WildcatUnixTTYDriver::setBlocking(const bool blocking) const
 {
     termios serial{};
 

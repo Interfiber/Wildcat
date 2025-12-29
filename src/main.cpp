@@ -10,7 +10,10 @@ int main(int argc, char* argv[])
 
     // Step 1. Execute the user mode driver if needed
 
+    // FreeBSD & Windows expose the device without prior setup
+#ifdef __linux__
     Wildcat_RunDriverWrapper();
+#endif
 
     // Step 2. Run the app
 

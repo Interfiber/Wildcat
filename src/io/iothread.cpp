@@ -4,6 +4,8 @@
 
 #include <Wildcat/io/iothread.h>
 
+#include "Wildcat/io/basicfuture.h"
+
 WildcatIOThread::WildcatIOThread(WildcatDevice* device)
 {
     m_device = device;
@@ -16,13 +18,13 @@ WildcatIOThread::WildcatIOThread(WildcatDevice* device)
     m_thread.detach();
 }
 
-WildcatDevice::DeviceResult<std::string>& WildcatIOThread::issueAsyncWrite(const std::string& buffer)
+WildcatDevice::DeviceResult<std::string> WildcatIOThread::issueAsyncWrite(const std::string& buffer)
 {
     std::lock_guard<std::mutex> _g(m_queueLock);
 
     WildcatDevice::DeviceResult<std::string> result{};
     result.async.isAsync = true;
-    result.async.hasCompleted = false;
+    result.async.future = std::make_shared<SimpleFuture>();
 
     // Add the write operation
 
@@ -41,10 +43,15 @@ WildcatDevice::DeviceResult<std::string>& WildcatIOThread::issueAsyncWrite(const
 
     while (true)
     {
+        // Don't hog CPU time
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
         std::lock_guard<std::mutex> _g(m_queueLock);
 
-        // Don't hog CPU time
-        std::this_thread::sleep_for(std::chrono::milliseconds(30));
+        if (m_writes.empty())
+            continue;
+
+        m_device->setProgramMode(true);
 
         for (auto &op : m_writes)
         {
@@ -52,10 +59,15 @@ WildcatDevice::DeviceResult<std::string>& WildcatIOThread::issueAsyncWrite(const
 
             WildcatDevice::DeviceResult<std::string> result = m_device->issueAsync(op.writeBuffer);
             result.async.isAsync = true;
-            result.async.hasCompleted = true;
 
-            op.result =  result;
+            // Copy old result
+            result.async.future = op.result.async.future;
+            result.async.future->setCompleted(true, result.unwrap());
+
+            op.result = result;
         }
+
+        m_device->setProgramMode(false);
 
         m_writes.clear();
     }
@@ -73,4 +85,6 @@ WildcatIOStatusDisplay::WildcatIOStatusDisplay()
 
     m_layout->addWidget(m_title);
     m_layout->addWidget(m_progress);
+
+    setLayout(m_layout);
 }

@@ -46,7 +46,9 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         include/Wildcat/ui/devicepicker.h
         src/ui/devicepicker.cpp
         include/Wildcat/io/iothread.h
-        src/io/iothread.cpp)
+        src/io/iothread.cpp
+        include/Wildcat/io/basicfuture.h
+        src/io/basicfuture.cpp)
 
 # Wildcat platform libraries (static)
 # On linux we have our own user space "driver" that couples with the linux-specific serial IO "driver" used inside wildcat for communications
@@ -56,7 +58,7 @@ if (WIN32)
     # TODO: Windows platform code
 else()
     # Linux platform code
-    add_library(wildcatplatform2 STATIC src/io/iodrivers/linux64.cpp)
+    add_library(wildcatplatform2 STATIC src/io/iodrivers/unixtty.cpp)
 
     add_executable(wildcatdriver2 src/driver/environ.cpp src/driver/main.cpp src/driver/driver.cpp)
     target_include_directories(wildcatdriver2 PUBLIC include)

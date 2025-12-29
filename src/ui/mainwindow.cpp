@@ -76,6 +76,7 @@ void WildcatMainWindow::connectToDevice()
     connect(m_device.get(), &WildcatDevice::deviceStatusChanged, m_connectionWidget, &DeviceConnectionWidget::deviceStatusChanged);
 
     m_connectionWidget->deviceConnected();
+    m_channelsWidget->loadCurrentBank();
 
     const WildcatDevice::Info info = m_device->getInfo();
 

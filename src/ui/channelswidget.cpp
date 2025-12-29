@@ -11,6 +11,7 @@
 #include <QPushButton>
 
 #include "Wildcat/io/ctcss.h"
+#include "Wildcat/io/iothread.h"
 #include "Wildcat/ui/mainwindow.h"
 
 ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
@@ -158,7 +159,13 @@ void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheC
 
     connect(channel.freq, &QLineEdit::textChanged, this, [channel](const QString& text)
     {
-        channel.channel->frequency = std::stof(text.toStdString());
+        try
+        {
+            channel.channel->frequency = std::stof(text.toStdString());
+        } catch (std::exception &e)
+        {
+            printf("Failed to convert input string to frequency (float): %s\n", e.what());
+        }
     });
 
     // Modulation
@@ -248,4 +255,32 @@ void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheC
 
     table->resizeColumnsToContents();
     table->resizeRowsToContents();
+}
+
+void ChannelsWidget::loadCurrentBank()
+{
+    const int bank = m_tabWidget->currentIndex() + 1;
+
+
+    WildcatIOStatusDisplay display;
+    display.show();
+
+    std::vector<WildcatDevice::DeviceResult<WildcatChannel>> channelResults;
+
+    for (int i = 0; i < WildcatDevice::MAX_CHANNELS_PER_BANK; i++)
+    {
+        channelResults.push_back(WildcatMainWindow::get()->m_device->getChannelAsync(i + 1, bank));
+    }
+
+    for (auto &channel : channelResults)
+    {
+        WildcatChannel c = channel.wait().unwrap();
+
+        // Skip empty channels
+        if (c.name.empty()) break;
+
+        addChannel(std::make_shared<WildcatChannel>(c));
+    }
+
+    display.close();
 }

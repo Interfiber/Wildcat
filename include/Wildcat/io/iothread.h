@@ -19,12 +19,12 @@ class WildcatIOThread
 public:
     explicit WildcatIOThread(WildcatDevice* device);
 
-    /**
+     /**
      * Write a buffer to the device async
      * @param buffer Buffer to write
      * @return Future result of the write operation
      */
-    WildcatDevice::DeviceResult<std::string>& issueAsyncWrite(const std::string &buffer);
+    WildcatDevice::DeviceResult<std::string> issueAsyncWrite(const std::string &buffer);
 
 signals:
     /// @brief  Called at the start of an IO operation

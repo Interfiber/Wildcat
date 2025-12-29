@@ -10,14 +10,14 @@
 #include "Wildcat/io/message.h"
 #include "Wildcat/ui/mainwindow.h"
 
-#ifdef __linux__
-#include "Wildcat/io/iodrivers/linux64.h"
+#ifdef __unix__
+#include "Wildcat/io/iodrivers/unixtty.h"
 #endif
 
 WildcatDevice::WildcatDevice(const std::string& deviceName)
 {
-#ifdef __linux__
-    m_driver = std::make_shared<WildcatLinux64Driver>();
+#ifdef __unix__
+    m_driver = std::make_shared<WildcatUnixTTYDriver>();
 #endif
 
     m_name = deviceName;
@@ -32,8 +32,8 @@ WildcatDevice::WildcatDevice(const std::string& deviceName)
 
 std::vector<std::string> WildcatDevice::getConnectableDevices()
 {
-#ifdef __linux__
-    WildcatLinux64Driver driver;
+#ifdef __unix__
+    WildcatUnixTTYDriver driver;
     return driver.getConnectedDevices();
 #endif
 
@@ -87,7 +87,7 @@ WildcatDevice::Info WildcatDevice::getInfo()
     return info;
 }
 
-WildcatDevice::DeviceResult<std::string>& WildcatDevice::issue(const std::string& command) const
+WildcatDevice::DeviceResult<std::string> WildcatDevice::issue(const std::string& command) const
 {
     return m_ioThread->issueAsyncWrite(command);
 }
@@ -101,7 +101,7 @@ WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::issue(const WildcatMe
         if (raw.error.didFail)
             return DeviceResult<WildcatMessage>::withFailure(raw.error.msg);
 
-        return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.result.value()));
+        return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.async.future->getValue()));
     });
 }
 
@@ -142,7 +142,7 @@ std::shared_ptr<WildcatChannel> WildcatDevice::getChannel(const int index, const
 
     setProgramMode(true).unwrap();
 
-    DeviceResult<WildcatMessage> issueResult = issue(WildcatMessage::channelInfo(realIndex));
+    DeviceResult<WildcatMessage> issueResult = issue(WildcatMessage::channelInfo(realIndex)).wait();
 
     const WildcatMessage msg = issueResult.unwrap();
 
@@ -163,6 +163,19 @@ std::shared_ptr<WildcatChannel> WildcatDevice::getChannel(const int index, const
     setProgramMode(false).unwrap();
 
     return channel;
+}
+
+WildcatDevice::DeviceResult<WildcatChannel> WildcatDevice::getChannelAsync(const int index, const int bank) const
+{
+    const int realIndex = index * bank;
+
+    return DeviceResult<WildcatChannel>::future<WildcatMessage>(issue(WildcatMessage::channelInfo(realIndex)), [] (const DeviceResult<WildcatMessage> &v)
+    {
+        // Kinda hacky but calling future on an already async result overrides the previous completion function
+        // Therefor we have to parse the message here
+
+        return DeviceResult<WildcatChannel>::withResult(WildcatChannel(WildcatMessage(v.async.future->getValue())));
+    });
 }
 
 bool WildcatDevice::isConnected() const

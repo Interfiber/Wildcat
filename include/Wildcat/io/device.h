@@ -6,8 +6,10 @@
 #include <thread>
 
 #include "iodriver.h"
+#include "basicfuture.h"
 #include "Wildcat/ui/mainwindow.h"
 
+class SimpleFuture;
 class WildcatIOThread;
 class WildcatMainWindow;
 class WildcatChannel;
@@ -96,7 +98,7 @@ public:
          * Create a future evaluatable object
          * @tparam U Old DeviceResult T value
          * @param waitable Device result to wait upon
-         * @param callback Callback to execute to form the new result upon completion of `waitable`
+         * @param callback Callback to execute to form the new result upon completion of `waitable` in `unwrap`
          * @return Waitable DeviceResult<T>
          */
         template<typename U>
@@ -104,7 +106,7 @@ public:
         {
             DeviceResult<T> res;
             res.async.isAsync = true;
-            res.async.hasCompleted = false;
+            res.async.future = waitable.async.future; // Copy ptr to shared bool
 
             res.async.transform = [waitable, callback]
             {
@@ -126,6 +128,14 @@ public:
                 return T();
             }
 
+            if (async.isAsync && async.future->isCompleted() && async.transform != nullptr)
+            {
+                auto value = async.transform();
+                value.async.isAsync = false;
+
+                return value.unwrap(callback);
+            }
+
             return result.value();
         }
 
@@ -139,9 +149,8 @@ public:
         {
             if (!async.isAsync) return *this;
 
-            while (async.hasCompleted)
+            while (!async.future->isCompleted())
             {
-                std::this_thread::sleep_for(std::chrono::milliseconds(30));
             }
 
             return *this;
@@ -164,7 +173,7 @@ public:
             bool isAsync = false;
 
             /// @brief  Set to true on completion
-            bool hasCompleted = false;
+            std::shared_ptr<SimpleFuture> future = nullptr;
 
             /// @brief  Transform callback called upon the completion of result
             std::function<DeviceResult<T>()> transform = nullptr;
@@ -198,7 +207,7 @@ public:
      * @param command Command to issue to the device
      * @return Next response from the device
      */
-    DeviceResult<std::string>& issue(const std::string& command) const;
+    DeviceResult<std::string> issue(const std::string& command) const;
 
     /**
      * Issue a prepared command to the device
@@ -228,6 +237,15 @@ public:
      * @return Pointer to the channel, nullptr if none was found
      */
     [[nodiscard]] std::shared_ptr<WildcatChannel> getChannel(int index, int bank, bool skipCache = false);
+
+    /**
+     *
+     * @param index Index of the channel within `bank`
+     * @param bank Bank to find the channel in
+     * @note Program mode must be enabled before this call
+     * @return Future DeviceResult for the channel
+     */
+    [[nodiscard]] DeviceResult<WildcatChannel> getChannelAsync(int index, int bank) const;
 
     /**
      * Check if this device is connected

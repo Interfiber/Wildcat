@@ -4,19 +4,19 @@
 
 #pragma once
 
-#ifndef __linux__
-#error Linux64 IO driver can only be built under a Linux build environment, is CMake improperly configured?
+#ifndef __unix__
+#error Unix TTY IO driver can only be built under a Unix build environment, is CMake improperly configured?
 #endif
 
 #include "Wildcat/io/iodriver.h"
 
 /**
- * Linux IO driver
+ * UNIX IO driver
  */
-class WildcatLinux64Driver : public WildcatIODriver
+class WildcatUnixTTYDriver : public WildcatIODriver
 {
 public:
-    WildcatLinux64Driver() = default;
+    WildcatUnixTTYDriver() = default;
 
     std::vector<std::string> getConnectedDevices() override;
     IOResult connectToDevice(const std::string& name) override;
