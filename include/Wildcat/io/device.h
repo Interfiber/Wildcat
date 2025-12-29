@@ -230,6 +230,12 @@ public:
     [[nodiscard]] std::shared_ptr<WildcatChannel> newChannel();
 
     /**
+     * Add a new channel to this device
+     * @param channel Channel to add
+     */
+    void addChannel(const std::shared_ptr<WildcatChannel> &channel);
+
+    /**
      * Get a channel by location from the local cache or from the scanner
      * @param index Index of the channel within `bank`, one indexed
      * @param bank Bank to find the channel in, one indexed

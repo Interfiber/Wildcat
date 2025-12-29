@@ -63,6 +63,9 @@ WildcatDevice::Info WildcatDevice::getInfo()
     const WildcatMessage model = issueBlock(WildcatMessage::model()).unwrap();
     const WildcatMessage firmware = issueBlock(WildcatMessage::firmware()).unwrap();
 
+    if (model.getParameters().empty() || firmware.getParameters().empty()) return {
+    "Nodev", "???"};
+
     Info info{};
     info.firmware = firmware.getParameters()[0];
     info.model = model.getParameters()[0];
@@ -126,9 +129,22 @@ std::shared_ptr<WildcatChannel> WildcatDevice::newChannel()
     return channel;
 }
 
+void WildcatDevice::addChannel(const std::shared_ptr<WildcatChannel>& channel)
+{
+    for (auto &c : m_channels)
+    {
+        if (c->index == channel->index && c->bank == channel->bank)
+        {
+            return;
+        }
+    }
+
+    m_channels.push_back(channel);
+}
+
 std::shared_ptr<WildcatChannel> WildcatDevice::getChannel(const int index, const int bank, const bool skipCache)
 {
-    const int realIndex = index * bank;
+    const int realIndex = ((bank - 1) * MAX_CHANNELS_PER_BANK) + index;
 
     if (!skipCache)
     {
@@ -167,7 +183,7 @@ std::shared_ptr<WildcatChannel> WildcatDevice::getChannel(const int index, const
 
 WildcatDevice::DeviceResult<WildcatChannel> WildcatDevice::getChannelAsync(const int index, const int bank) const
 {
-    const int realIndex = index * bank;
+    const int realIndex = ((bank - 1) * MAX_CHANNELS_PER_BANK) + index;
 
     return DeviceResult<WildcatChannel>::future<WildcatMessage>(issue(WildcatMessage::channelInfo(realIndex)), [] (const DeviceResult<WildcatMessage> &v)
     {

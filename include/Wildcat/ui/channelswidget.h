@@ -56,9 +56,6 @@ public:
       QComboBox *priority;
    };
 
-signals:
-   void deviceConnectionChanged();
-
 public slots:
    void addChannel(const std::shared_ptr<WildcatChannel> &channel = nullptr);
    void loadCurrentBank();
@@ -81,4 +78,5 @@ private:
    QLabel *m_noDevice;
 
    std::vector<UIChannel> m_channels;
+   std::unordered_map<int, bool> m_loadedBanks;
 };

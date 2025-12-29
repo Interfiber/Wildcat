@@ -29,7 +29,6 @@ void BankLoaderThread::run()
         channelResults.push_back(m_device->getChannelAsync(i + 1, m_bank));
     }
 
-
     for (auto &channel : channelResults)
     {
         WildcatChannel c = channel.wait().unwrap();
@@ -37,7 +36,13 @@ void BankLoaderThread::run()
         // Skip empty channels
         if (c.name.empty()) break;
 
-        requestNewChannel(std::make_shared<WildcatChannel>(c));
+        auto c2 = std::make_shared<WildcatChannel>(c);
+        c2->index /= m_bank;
+        c2->bank= m_bank;
+
+        m_device->addChannel(c2);
+
+        requestNewChannel(c2);
     }
 }
 
@@ -61,6 +66,13 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 
         m_tabWidget->addTab(table, ("Bank #" + std::to_string(i + 1)).data());
     }
+
+    connect(m_tabWidget, &QTabWidget::currentChanged, this, [this] (int index)
+    {
+        if (!WildcatMainWindow::get()->hotload) return;
+
+        loadCurrentBank();
+    });
 
     QSizePolicy spLeft(QSizePolicy::Preferred, QSizePolicy::Preferred);
     spLeft.setHorizontalStretch(7);
@@ -94,7 +106,7 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
     m_writeToDevice->setSizePolicy(spRight);
 
     // Parent should always be the main window
-    auto mainWindow = static_cast<WildcatMainWindow*>(parent);
+    const auto mainWindow = static_cast<WildcatMainWindow*>(parent);
 
     connect(m_writeToDevice, &QPushButton::clicked, mainWindow->ma_writeChannels, &QAction::trigger);
 
@@ -141,8 +153,6 @@ void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheC
 
     if (table->rowCount() + 1 > WildcatDevice::MAX_CHANNELS_PER_BANK)
     {
-       QMessageBox::warning(this, "Wildcat", ("This bank is full (" + std::to_string(WildcatDevice::MAX_CHANNELS_PER_BANK) + " channels per bank), please either clear out frequencies or switch to another bank.").data());
-
         return;
     }
 
@@ -286,7 +296,18 @@ void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheC
 
 void ChannelsWidget::loadCurrentBank()
 {
+    if (!WildcatMainWindow::get()->m_device->isConnected())
+    {
+        QMessageBox::warning(this, "Wildcat", "Device has disconnected!");
+        return;
+    }
+
     const int bank = m_tabWidget->currentIndex() + 1;
+
+    if (m_loadedBanks.find(bank) != m_loadedBanks.end() && m_loadedBanks[bank])
+        return;
+
+    m_loadedBanks.insert({ bank, true });
 
     auto display = new WildcatIOStatusDisplay(this);
     display->show();

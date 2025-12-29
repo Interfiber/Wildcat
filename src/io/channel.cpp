@@ -14,7 +14,7 @@ WildcatChannel::WildcatChannel(const WildcatMessage& msg)
     throw std::runtime_error("WildcatChannel can only be constructed from a SetChannelInfo message");
   }
 
-  // Index isn't read in, it must be manually set
+  index = std::stoi(msg.getParameters()[0]); // NOTE: Index must be divided by bank later
   name = msg.getParameters()[1];
   frequency = std::stof(msg.getParameters()[2]) / 10000;
 
@@ -114,5 +114,6 @@ void WildcatChannel::writeToDevice(WildcatDevice* device)
     priority == PriorityMode::Off ? "0" : "1"
   });
 
-  device->issue(setChInfo).unwrap();
+  // Unusued, fire into the void
+  auto _ = device->issue(setChInfo);
 }
