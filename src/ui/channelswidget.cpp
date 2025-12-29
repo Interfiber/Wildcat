@@ -14,6 +14,33 @@
 #include "Wildcat/io/iothread.h"
 #include "Wildcat/ui/mainwindow.h"
 
+BankLoaderThread::BankLoaderThread(const std::shared_ptr<WildcatDevice>& device, const int bank) : QThread(nullptr)
+{
+    m_device = device;
+    m_bank = bank;
+}
+
+void BankLoaderThread::run()
+{
+    std::vector<WildcatDevice::DeviceResult<WildcatChannel>> channelResults;
+
+    for (int i = 0; i < WildcatDevice::MAX_CHANNELS_PER_BANK; i++)
+    {
+        channelResults.push_back(m_device->getChannelAsync(i + 1, m_bank));
+    }
+
+
+    for (auto &channel : channelResults)
+    {
+        WildcatChannel c = channel.wait().unwrap();
+
+        // Skip empty channels
+        if (c.name.empty()) break;
+
+        requestNewChannel(std::make_shared<WildcatChannel>(c));
+    }
+}
+
 ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 {
     // Init UI
@@ -261,26 +288,20 @@ void ChannelsWidget::loadCurrentBank()
 {
     const int bank = m_tabWidget->currentIndex() + 1;
 
+    auto display = new WildcatIOStatusDisplay(this);
+    display->show();
 
-    WildcatIOStatusDisplay display;
-    display.show();
+    // Shut up CLion this object is deleted by Qt when the thread exits
+    const auto loader = new BankLoaderThread(WildcatMainWindow::get()->m_device, bank);
 
-    std::vector<WildcatDevice::DeviceResult<WildcatChannel>> channelResults;
-
-    for (int i = 0; i < WildcatDevice::MAX_CHANNELS_PER_BANK; i++)
+    connect(loader, &BankLoaderThread::requestNewChannel, this, &ChannelsWidget::addChannel);
+    connect(loader, &QThread::finished, loader, &QObject::deleteLater);
+    connect(loader, &QThread::finished, this, [display]
     {
-        channelResults.push_back(WildcatMainWindow::get()->m_device->getChannelAsync(i + 1, bank));
-    }
+        display->close();
 
-    for (auto &channel : channelResults)
-    {
-        WildcatChannel c = channel.wait().unwrap();
+        delete display;
+    });
 
-        // Skip empty channels
-        if (c.name.empty()) break;
-
-        addChannel(std::make_shared<WildcatChannel>(c));
-    }
-
-    display.close();
+    loader->start();
 }

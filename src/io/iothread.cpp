@@ -73,7 +73,7 @@ WildcatDevice::DeviceResult<std::string> WildcatIOThread::issueAsyncWrite(const 
     }
 }
 
-WildcatIOStatusDisplay::WildcatIOStatusDisplay()
+WildcatIOStatusDisplay::WildcatIOStatusDisplay(QWidget *parent) : QDialog(parent)
 {
     m_title = new QLabel("Communicating with serial device...");
 
@@ -87,4 +87,16 @@ WildcatIOStatusDisplay::WildcatIOStatusDisplay()
     m_layout->addWidget(m_progress);
 
     setLayout(m_layout);
+
+    setWindowFlags(Qt::Dialog | Qt::Desktop);
+    setWindowTitle("Wildcat IO Status");
+    setModal(true);
+}
+
+WildcatIOStatusDisplay::~WildcatIOStatusDisplay()
+{
+    delete m_title;
+    delete m_progress;
+
+    delete m_layout;
 }

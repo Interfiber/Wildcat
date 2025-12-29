@@ -60,7 +60,8 @@ private:
 class WildcatIOStatusDisplay : public QDialog
 {
 public:
-    WildcatIOStatusDisplay();
+    explicit WildcatIOStatusDisplay(QWidget *parent = nullptr);
+    ~WildcatIOStatusDisplay() override;
 
 private:
     QVBoxLayout *m_layout;

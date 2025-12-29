@@ -29,21 +29,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: optional blocking IO functions for quick operations">
-      <change afterPath="$PROJECT_DIR$/include/Wildcat/io/basicfuture.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/io/basicfuture.cpp" afterDir="false" />
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: use async io (basic) to load channels on device connect + io thread speed up">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/iodrivers/linux64.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/iodrivers/unixtty.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FEATURES2.md" beforeDir="false" afterPath="$PROJECT_DIR$/FEATURES2.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Wildcat/io/iothread.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/iothread.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/iodrivers/linux64.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/iodrivers/unixtty.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/io/iothread.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/iothread.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +137,7 @@
       <option name="presentableId" value="Default" />
       <updated>1766774039716</updated>
       <workItem from="1766774040796" duration="24791000" />
-      <workItem from="1766837068862" duration="18446000" />
+      <workItem from="1766837068862" duration="20656000" />
     </task>
     <task id="LOCAL-00001" summary="feat/fix: link up quick actions">
       <option name="closed" value="true" />
@@ -227,7 +219,15 @@
       <option name="project" value="LOCAL" />
       <updated>1766960662913</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat: use async io (basic) to load channels on device connect + io thread speed up">
+      <option name="closed" value="true" />
+      <created>1766967497873</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1766967497873</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -244,7 +244,8 @@
     <MESSAGE value="fix: frequency loading" />
     <MESSAGE value="work: async io work" />
     <MESSAGE value="feat: optional blocking IO functions for quick operations" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: optional blocking IO functions for quick operations" />
+    <MESSAGE value="feat: use async io (basic) to load channels on device connect + io thread speed up" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: use async io (basic) to load channels on device connect + io thread speed up" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
