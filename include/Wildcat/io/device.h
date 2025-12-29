@@ -197,6 +197,11 @@ public:
     DeviceResult<WildcatMessage> setProgramMode(bool enabled);
 
     /**
+     * Clear the device memory
+     */
+    void clearMemory();
+
+    /**
      * Query device information
      * @return Device information
      */
@@ -207,7 +212,7 @@ public:
      * @param command Command to issue to the device
      * @return Next response from the device
      */
-    DeviceResult<std::string> issue(const std::string& command) const;
+    [[nodiscard]] DeviceResult<std::string> issue(const std::string& command) const;
 
     /**
      * Issue a prepared command to the device

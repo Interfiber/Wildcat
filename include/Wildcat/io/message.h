@@ -67,6 +67,9 @@ public:
     /// @brief  Set program mode
     static WildcatMessage setProgramMode(bool enabled);
 
+    /// @brief  Clear memory
+    static WildcatMessage clearMemory();
+
     /**
      * Convert `type` into a device-readable string
      */

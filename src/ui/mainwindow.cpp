@@ -40,6 +40,14 @@ WildcatMainWindow::WildcatMainWindow()
         m_channelsWidget->addChannel(nullptr);
     });
 
+    connect(ma_resetMemory, &QAction::triggered, this, [this]
+    {
+        if (const QMessageBox::StandardButton button = QMessageBox::question(this, "Wildcat", "Do you really wish to erase the memory from this device?\nNOTE: All channels and settings will be lost!", QMessageBox::Yes | QMessageBox::Abort, QMessageBox::Abort); button == QMessageBox::StandardButton::Yes)
+        {
+            m_device->clearMemory();
+        }
+    });
+
     setCentralWidget(m_channelsWidget);
     setWindowIcon(QIcon(":/resources/wcat2.png"));
 }

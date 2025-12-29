@@ -58,6 +58,26 @@ WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::setProgramMode(const 
     return issueBlock(WildcatMessage::setProgramMode(enabled));
 }
 
+void WildcatDevice::clearMemory()
+{
+    auto display = new WildcatIOStatusDisplay();
+    display->show();
+
+    // Don't need to use non-blocking IO for this
+    std::thread([this, display]
+    {
+        setProgramMode(true).unwrap();
+
+        // Unusued
+        auto _ = issue(WildcatMessage::clearMemory()).wait();
+
+        setProgramMode(false).unwrap();
+
+        display->close();
+        delete display;
+    }).detach();
+}
+
 WildcatDevice::Info WildcatDevice::getInfo()
 {
     const WildcatMessage model = issueBlock(WildcatMessage::model()).unwrap();

@@ -30,10 +30,12 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: better channel loader on a QThread">
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="fix: add raw logo file from @antilimited">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/message.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/message.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/message.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -240,7 +242,23 @@
       <option name="project" value="LOCAL" />
       <updated>1766969344393</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="feat(ui): add icon / don't scroll to bottom on new channel">
+      <option name="closed" value="true" />
+      <created>1767013729239</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1767013729239</updated>
+    </task>
+    <task id="LOCAL-00014" summary="fix: add raw logo file from @antilimited">
+      <option name="closed" value="true" />
+      <created>1767014085844</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1767014085844</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -259,7 +277,9 @@
     <MESSAGE value="feat: optional blocking IO functions for quick operations" />
     <MESSAGE value="feat: use async io (basic) to load channels on device connect + io thread speed up" />
     <MESSAGE value="feat: better channel loader on a QThread" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: better channel loader on a QThread" />
+    <MESSAGE value="feat(ui): add icon / don't scroll to bottom on new channel" />
+    <MESSAGE value="fix: add raw logo file from @antilimited" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: add raw logo file from @antilimited" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

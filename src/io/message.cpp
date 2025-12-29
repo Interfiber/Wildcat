@@ -68,6 +68,11 @@ WildcatMessage WildcatMessage::setProgramMode(const bool enabled)
     return { MessageType::ExitProgramMode, {} };
 }
 
+WildcatMessage WildcatMessage::clearMemory()
+{
+    return { MessageType::ClearMemory, {} };
+}
+
 std::string WildcatMessage::messageToString(const MessageType type)
 {
     switch (type) {
@@ -229,7 +234,10 @@ MessageType WildcatMessage::messageTypeFromString(const std::string& message)
 
 std::string WildcatMessage::toString() const
 {
-    std::string msg = messageToString(m_type) + ",";
+    std::string msg = messageToString(m_type);
+
+    if (!m_parameters.empty())
+        msg += ",";
 
     // Add comma separated parameters
     for (int i = 0; i < m_parameters.size(); i++)
