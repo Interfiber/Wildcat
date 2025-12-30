@@ -168,6 +168,7 @@ void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheC
     // Determine which channel to use
     channel.channel = precacheChannel == nullptr ? WildcatMainWindow::get()->m_device->newChannel() : precacheChannel;
 
+    channel.channel->index = rowCount + 1;
     channel.channel->bank = m_tabWidget->currentIndex() + 1;
 
     constexpr float floatMax = std::numeric_limits<float>::max();

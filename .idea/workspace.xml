@@ -30,8 +30,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: add clear memory functionality">
-      <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="fix: io display destruction in WildcatDevice::clearMemory()">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/io/channel.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/channel.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -261,7 +263,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767014759762</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="fix: io display destruction in WildcatDevice::clearMemory()">
+      <option name="closed" value="true" />
+      <created>1767015038827</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1767015038827</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -283,7 +293,8 @@
     <MESSAGE value="feat(ui): add icon / don't scroll to bottom on new channel" />
     <MESSAGE value="fix: add raw logo file from @antilimited" />
     <MESSAGE value="feat: add clear memory functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add clear memory functionality" />
+    <MESSAGE value="fix: io display destruction in WildcatDevice::clearMemory()" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: io display destruction in WildcatDevice::clearMemory()" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
