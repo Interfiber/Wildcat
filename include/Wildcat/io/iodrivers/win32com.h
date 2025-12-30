@@ -25,4 +25,7 @@ public:
     IOResult readFromDevice() override;
     void releaseDevice() override;
     [[nodiscard]] bool isConnected() override;
+
+private:
+    HANDLE m_device;
 };
