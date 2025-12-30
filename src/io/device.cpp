@@ -14,10 +14,18 @@
 #include "Wildcat/io/iodrivers/unixtty.h"
 #endif
 
+#ifdef _WIN32
+#include "Wildcat/io/iodrivers/win32com.h"
+#endif
+
 WildcatDevice::WildcatDevice(const std::string& deviceName)
 {
 #ifdef __unix__
     m_driver = std::make_shared<WildcatUnixTTYDriver>();
+#endif
+
+#ifdef _WIN32
+    m_driver = std::make_shared<WildcatWin32ComDriver>();
 #endif
 
     m_name = deviceName;
@@ -37,7 +45,13 @@ std::vector<std::string> WildcatDevice::getConnectableDevices()
     return driver.getConnectedDevices();
 #endif
 
-    return {""}; // FIXME: Platform
+#ifdef _WIN32
+    WildcatWin32ComDriver driver;
+    return driver.getConnectedDevices();
+#endif
+
+
+    return {"Missing IO driver."}; // FIXME: Platform
 }
 
 void WildcatDevice::reconnect()
