@@ -41,10 +41,6 @@ private:
     QAction *ma_saveToFile = nullptr;
     QAction *ma_saveAsToFile = nullptr;
 
-    // Edit
-    QAction *ma_undo = nullptr;
-    QAction *ma_redo = nullptr;
-
     QAction* ma_newChannel = nullptr;
     QAction* ma_deleteChannel = nullptr;
 

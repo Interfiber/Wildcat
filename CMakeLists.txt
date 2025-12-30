@@ -1,4 +1,6 @@
 cmake_minimum_required(VERSION 3.31)
+
+
 project(wildcat2)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -22,7 +24,7 @@ execute_process(
         OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-find_package(Qt6 COMPONENTS
+find_package(Qt6 6.10.1 COMPONENTS
         Core
         Gui
         Widgets
@@ -48,7 +50,9 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         include/Wildcat/io/iothread.h
         src/io/iothread.cpp
         include/Wildcat/io/basicfuture.h
-        src/io/basicfuture.cpp)
+        src/io/basicfuture.cpp
+        include/Wildcat/ui/textinput.h
+        src/ui/textedit.cpp)
 
 qt_add_resources(wildcat2 "resources"
     PREFIX "/resources"
@@ -58,8 +62,9 @@ qt_add_resources(wildcat2 "resources"
 # On linux we have our own user space "driver" that couples with the linux-specific serial IO "driver" used inside wildcat for communications
 # Windows impl is TBD
 
-if (WIN32)
-    # TODO: Windows platform code
+if (MINGW)
+    add_library(wildcatplatform2 STATIC src/io/iodrivers/win32com.cpp
+        src/io/iodrivers/win32com.cpp)
 else()
     # Linux platform code
     add_library(wildcatplatform2 STATIC src/io/iodrivers/unixtty.cpp)

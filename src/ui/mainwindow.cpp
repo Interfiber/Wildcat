@@ -40,14 +40,6 @@ WildcatMainWindow::WildcatMainWindow()
         m_channelsWidget->addChannel(nullptr);
     });
 
-    connect(ma_resetMemory, &QAction::triggered, this, [this]
-    {
-        if (const QMessageBox::StandardButton button = QMessageBox::question(this, "Wildcat", "Do you really wish to erase the memory from this device?\nNOTE: All channels and settings will be lost!", QMessageBox::Yes | QMessageBox::Abort, QMessageBox::Abort); button == QMessageBox::StandardButton::Yes)
-        {
-            m_device->clearMemory();
-        }
-    });
-
     setCentralWidget(m_channelsWidget);
     setWindowIcon(QIcon(":/resources/wcat2.png"));
 }
@@ -98,6 +90,18 @@ void WildcatMainWindow::connectToDevice()
         statusBar()->showMessage("Wrote channels to device!");
     });
 
+
+    connect(ma_resetMemory, &QAction::triggered, this, [this]
+    {
+        if (const QMessageBox::StandardButton button = QMessageBox::question(this, "Wildcat", "Do you really wish to erase the memory from this device?\nNOTE: All channels and settings will be lost!", QMessageBox::Yes | QMessageBox::Abort, QMessageBox::Abort); button == QMessageBox::StandardButton::Yes)
+        {
+            if (m_device->isConnected()) return;
+
+            m_device->clearMemory();
+        }
+    });
+
+
     QMessageBox::information(nullptr, "Wildcat", ("Connected to device " + info.model + " running firmware " + info.firmware).data());
 
     statusBar()->showMessage(("Connected to " + info.model).data());
@@ -115,8 +119,6 @@ void WildcatMainWindow::initMenuBar()
     ma_connectToDevice = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::CallStart), "Connect to serial device");
     ma_loadFromFile = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen), "Load channels from file");
 
-    ma_undo = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::EditUndo), "Undo action");
-    ma_redo = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::EditRedo), "Redo action");
     ma_newChannel = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentNew), "New channel");
     ma_deleteChannel = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::EditDelete), "Delete channel");
 
@@ -133,9 +135,6 @@ void WildcatMainWindow::initMenuBar()
     ma_newChannel->setShortcut(tr("Ctrl+Shift+N"));
     ma_deleteChannel->setShortcut(QKeySequence::Delete);
 
-    ma_undo->setShortcut(QKeySequence::Undo);
-    ma_redo->setShortcut(QKeySequence::Redo);
-
     ma_loadFromFile->setShortcut(QKeySequence::Open);
 
     QMenu* file = menuBar()->addMenu("File");
@@ -145,8 +144,6 @@ void WildcatMainWindow::initMenuBar()
 
     QMenu* edit = menuBar()->addMenu("Edit");
 
-    edit->addAction(ma_undo);
-    edit->addAction(ma_redo);
     edit->addAction(ma_newChannel);
     edit->addAction(ma_deleteChannel);
 

@@ -8,6 +8,7 @@
 #include <QLabel>
 #include <QComboBox>
 #include <QThread>
+#include <QSettings>
 
 class WildcatDevice;
 class QCheckBox;
@@ -64,6 +65,10 @@ private:
    QHBoxLayout *m_layout;
    QVBoxLayout *m_quickActionsLayout;
 
+   QMenu* m_contextMenu;
+
+   QAction* m_setBankNickname;
+
    QWidget* m_quickActions;
 
    QLabel* m_quickActionsLabel;
@@ -73,9 +78,9 @@ private:
 
    std::vector<QTableWidget*> m_banks;
 
-   QTabWidget *m_tabWidget;
+   QSettings m_settings;
 
-   QLabel *m_noDevice;
+   QTabWidget *m_tabWidget;
 
    std::vector<UIChannel> m_channels;
    std::unordered_map<int, bool> m_loadedBanks;

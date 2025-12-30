@@ -61,7 +61,7 @@ WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::setProgramMode(const 
 void WildcatDevice::clearMemory()
 {
     auto display = new WildcatIOStatusDisplay();
-    display->show();
+    display->exec();
 
     // Don't need to use non-blocking IO for this
     std::thread([this, display]

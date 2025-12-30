@@ -7,12 +7,14 @@
 #include "Wildcat/io/channel.h"
 #include <QCheckBox>
 #include <QLineEdit>
+#include <qmenu.h>
 #include <QMessageBox>
 #include <QPushButton>
 
 #include "Wildcat/io/ctcss.h"
 #include "Wildcat/io/iothread.h"
 #include "Wildcat/ui/mainwindow.h"
+#include "Wildcat/ui/textinput.h"
 
 BankLoaderThread::BankLoaderThread(const std::shared_ptr<WildcatDevice>& device, const int bank) : QThread(nullptr)
 {
@@ -51,6 +53,32 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
     // Init UI
     m_layout = new QHBoxLayout(this);
 
+    // Context menu
+    m_setBankNickname = new QAction("Set nickname");
+
+    connect(m_setBankNickname, &QAction::triggered, this, [this]
+    {
+        if (TextInputDialog dialog("Enter nickname for bank", this); dialog.exec() == QDialog::Accepted)
+        {
+            const int cTab = m_tabWidget->currentIndex();
+
+            m_settings.beginGroup("Banks");
+
+            m_settings.setValue(("bank" + std::to_string(cTab)).data(), QString(dialog.getResult().data()));
+
+            m_settings.endGroup();
+
+            m_tabWidget->setTabText(cTab, dialog.getResult().data());
+        }
+    });
+
+    m_contextMenu = new QMenu(nullptr);
+
+    m_contextMenu->addAction(m_setBankNickname);
+    m_contextMenu->addAction("Delete bank");
+
+    // Tab bar / table
+
     m_tabWidget = new QTabWidget(this);
 
     m_banks.reserve(WildcatDevice::MAX_BANKS);
@@ -64,14 +92,35 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 
         m_banks.push_back(table);
 
-        m_tabWidget->addTab(table, ("Bank #" + std::to_string(i + 1)).data());
+        // Check for custom nicknames, if one exists then we can use it!
+
+        QString bankName = ("Bank #" + std::to_string(i + 1)).data();
+
+        m_settings.beginGroup("Banks");
+
+        if (m_settings.contains("bank" + std::to_string(i)))
+        {
+            bankName = m_settings.value("bank" + std::to_string(i)).toString();
+        }
+
+        m_settings.endGroup();
+
+        // Add new tab for the bank
+        m_tabWidget->addTab(table, bankName);
     }
 
     connect(m_tabWidget, &QTabWidget::currentChanged, this, [this] (int index)
     {
         if (!WildcatMainWindow::get()->hotload) return;
 
-        loadCurrentBank();
+        // Only load empty banks
+        if (static_cast<QTableWidget*>(m_tabWidget->currentWidget())->rowCount() == 0)
+            loadCurrentBank();
+    });
+
+    connect(m_tabWidget, &QTabWidget::tabBarDoubleClicked, this, [this] (int index)
+    {
+        m_contextMenu->popup(QCursor::pos());
     });
 
     QSizePolicy spLeft(QSizePolicy::Preferred, QSizePolicy::Preferred);
@@ -121,7 +170,7 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 
         if (m_enableHotload->isChecked())
         {
-            QMessageBox::information(this, "Wildcat", "Enabled hot loading of channels!\n\nWhen a bank is viewed for the first time Wildcat will attempt to load it from the scanner, however if the first five channels are empty, Wildcat will cancel the operation for performance");
+            QMessageBox::information(this, "Wildcat", "Enabled hot loading of channels!\n\nWhen an empty bank is viewed for the first time Wildcat will attempt to load it from the scanner");
         }
     });
 
