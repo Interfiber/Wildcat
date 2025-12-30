@@ -91,3 +91,23 @@ target_link_libraries(wildcat2
         Qt::Widgets
         wildcatplatform2
 )
+
+qt_standard_project_setup()
+
+install(TARGETS wildcat2
+        BUNDLE DESTINATION .
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+
+if(LINUX)
+        install(TARGETS wildcatdriver2
+                BUNDLE DESTINATION .
+                RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+endif()
+
+
+qt_generate_deploy_app_script(
+        TARGET wildcat2 
+        OUTPUT_SCRIPT deploy_script 
+        NO_UNSUPPORTED_PLATFORM_ERROR)
+
+install(SCRIPT ${deploy_script})

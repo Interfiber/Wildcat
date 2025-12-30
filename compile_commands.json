@@ -1,0 +1,266 @@
+[
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": ".qt/rcc/qrc_resources.cpp",
+    "output": "cmake_object_order_depends_target_wildcat2"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o -MF CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o -c /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/mocs_compilation.cpp",
+    "file": "/home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/mocs_compilation.cpp",
+    "output": "CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/main.cpp.o -MF CMakeFiles/wildcat2.dir/src/main.cpp.o.d -o CMakeFiles/wildcat2.dir/src/main.cpp.o -c /home/hstasonis/git/wildcat2/src/main.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/main.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/main.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o -MF CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o.d -o CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o -c /home/hstasonis/git/wildcat2/src/driver/wrapper.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/driver/wrapper.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o -c /home/hstasonis/git/wildcat2/src/ui/mainwindow.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/ui/mainwindow.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o -c /home/hstasonis/git/wildcat2/src/ui/channelswidget.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/ui/channelswidget.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/io/device.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/device.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/device.cpp.o -c /home/hstasonis/git/wildcat2/src/io/device.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/io/device.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/device.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/io/channel.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/channel.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/channel.cpp.o -c /home/hstasonis/git/wildcat2/src/io/channel.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/io/channel.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/channel.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/io/message.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/message.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/message.cpp.o -c /home/hstasonis/git/wildcat2/src/io/message.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/io/message.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/message.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o -c /home/hstasonis/git/wildcat2/src/io/ctcss.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/io/ctcss.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o -c /home/hstasonis/git/wildcat2/src/ui/connectionwidget.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/ui/connectionwidget.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o -c /home/hstasonis/git/wildcat2/src/ui/devicepicker.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/ui/devicepicker.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o -c /home/hstasonis/git/wildcat2/src/io/iothread.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/io/iothread.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o -c /home/hstasonis/git/wildcat2/src/io/basicfuture.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/io/basicfuture.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o -c /home/hstasonis/git/wildcat2/src/ui/textedit.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/ui/textedit.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"15505c0\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcat2.dir/cmake-build-debug/.qt/rcc/qrc_resources.cpp.o -MF CMakeFiles/wildcat2.dir/cmake-build-debug/.qt/rcc/qrc_resources.cpp.o.d -o CMakeFiles/wildcat2.dir/cmake-build-debug/.qt/rcc/qrc_resources.cpp.o -c /home/hstasonis/git/wildcat2/cmake-build-debug/.qt/rcc/qrc_resources.cpp",
+    "file": "/home/hstasonis/git/wildcat2/cmake-build-debug/.qt/rcc/qrc_resources.cpp",
+    "output": "CMakeFiles/wildcat2.dir/cmake-build-debug/.qt/rcc/qrc_resources.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": ": && /usr/bin/c++ -g -Wl,--dependency-file=CMakeFiles/wildcat2.dir/link.d CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o CMakeFiles/wildcat2.dir/src/main.cpp.o CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o CMakeFiles/wildcat2.dir/src/io/device.cpp.o CMakeFiles/wildcat2.dir/src/io/channel.cpp.o CMakeFiles/wildcat2.dir/src/io/message.cpp.o CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o CMakeFiles/wildcat2.dir/cmake-build-debug/.qt/rcc/qrc_resources.cpp.o -o wildcat2  libwildcatplatform2.a  /usr/lib64/libQt6Widgets.so.6.10.1  /usr/lib64/libQt6Gui.so.6.10.1  /usr/lib64/libGLX.so  /usr/lib64/libOpenGL.so  /usr/lib64/libQt6Core.so.6.10.1 && :",
+    "file": "CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o",
+    "output": "wildcat2"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "wildcatplatform2_autogen",
+    "output": "cmake_object_order_depends_target_wildcatplatform2"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatplatform2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o -MF CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o -c /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatplatform2_autogen/mocs_compilation.cpp",
+    "file": "/home/hstasonis/git/wildcat2/cmake-build-debug/wildcatplatform2_autogen/mocs_compilation.cpp",
+    "output": "CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatplatform2_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib64/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o -MF CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o.d -o CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o -c /home/hstasonis/git/wildcat2/src/io/iodrivers/unixtty.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/io/iodrivers/unixtty.cpp",
+    "output": "CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": ": && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E rm -f libwildcatplatform2.a && /usr/bin/ar qc libwildcatplatform2.a  CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o && /usr/bin/ranlib libwildcatplatform2.a && :",
+    "file": "CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o",
+    "output": "libwildcatplatform2.a"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "wildcatdriver2_autogen",
+    "output": "cmake_object_order_depends_target_wildcatdriver2"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++  -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatdriver2_autogen/include -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o -MF CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o -c /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatdriver2_autogen/mocs_compilation.cpp",
+    "file": "/home/hstasonis/git/wildcat2/cmake-build-debug/wildcatdriver2_autogen/mocs_compilation.cpp",
+    "output": "CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++  -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatdriver2_autogen/include -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o -MF CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o.d -o CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o -c /home/hstasonis/git/wildcat2/src/driver/environ.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/driver/environ.cpp",
+    "output": "CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++  -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatdriver2_autogen/include -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o -MF CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o.d -o CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o -c /home/hstasonis/git/wildcat2/src/driver/main.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/driver/main.cpp",
+    "output": "CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/usr/bin/c++  -I/home/hstasonis/git/wildcat2/include -isystem /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatdriver2_autogen/include -g -fdiagnostics-color=always -MD -MT CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o -MF CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o.d -o CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o -c /home/hstasonis/git/wildcat2/src/driver/driver.cpp",
+    "file": "/home/hstasonis/git/wildcat2/src/driver/driver.cpp",
+    "output": "CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": ": && /usr/bin/c++ -g -Wl,--dependency-file=CMakeFiles/wildcatdriver2.dir/link.d CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o -o wildcatdriver2   && :",
+    "file": "CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o",
+    "output": "wildcatdriver2"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "CMakeFiles/edit_cache.util",
+    "output": "edit_cache"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "CMakeFiles/rebuild_cache.util",
+    "output": "rebuild_cache"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "libwildcatplatform2.a",
+    "output": "wildcat2_autogen_timestamp_deps"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "CMakeFiles/wildcat2_autogen",
+    "output": "wildcat2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "CMakeFiles/wildcatplatform2_autogen",
+    "output": "wildcatplatform2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "CMakeFiles/wildcatdriver2_autogen",
+    "output": "wildcatdriver2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "cd /home/hstasonis/git/wildcat2/cmake-build-debug && /usr/lib64/qt6/libexec/rcc --output /home/hstasonis/git/wildcat2/cmake-build-debug/.qt/rcc/qrc_resources.cpp --name resources /home/hstasonis/git/wildcat2/cmake-build-debug/.qt/rcc/resources.qrc",
+    "file": "/home/hstasonis/git/wildcat2/wcat2.png",
+    "output": ".qt/rcc/qrc_resources.cpp"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "cd /home/hstasonis/git/wildcat2/cmake-build-debug && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E cmake_autogen /home/hstasonis/git/wildcat2/cmake-build-debug/CMakeFiles/wildcat2_autogen.dir/AutogenInfo.json Debug && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E touch /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/timestamp && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /home/hstasonis/git/wildcat2 /home/hstasonis/git/wildcat2 /home/hstasonis/git/wildcat2/cmake-build-debug /home/hstasonis/git/wildcat2/cmake-build-debug /home/hstasonis/git/wildcat2/cmake-build-debug/wildcat2_autogen/deps /home/hstasonis/git/wildcat2/cmake-build-debug/CMakeFiles/d/265cc88ef8f9ee9d2f74a1b4d4de57651b599666014e52a1c6796bbcf9f7a79f.d",
+    "file": "/usr/lib64/qt6/libexec/moc",
+    "output": "wildcat2_autogen/timestamp"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "cd /home/hstasonis/git/wildcat2/cmake-build-debug && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E cmake_autogen /home/hstasonis/git/wildcat2/cmake-build-debug/CMakeFiles/wildcatplatform2_autogen.dir/AutogenInfo.json Debug && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E touch /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatplatform2_autogen/timestamp && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /home/hstasonis/git/wildcat2 /home/hstasonis/git/wildcat2 /home/hstasonis/git/wildcat2/cmake-build-debug /home/hstasonis/git/wildcat2/cmake-build-debug /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatplatform2_autogen/deps /home/hstasonis/git/wildcat2/cmake-build-debug/CMakeFiles/d/394b59093889910063264ca895d35bd06e3441dfa95c71e44e415664699f9cb3.d",
+    "file": "/usr/lib64/qt6/libexec/moc",
+    "output": "wildcatplatform2_autogen/timestamp"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "cd /home/hstasonis/git/wildcat2/cmake-build-debug && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E cmake_autogen /home/hstasonis/git/wildcat2/cmake-build-debug/CMakeFiles/wildcatdriver2_autogen.dir/AutogenInfo.json Debug && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E touch /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatdriver2_autogen/timestamp && /home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /home/hstasonis/git/wildcat2 /home/hstasonis/git/wildcat2 /home/hstasonis/git/wildcat2/cmake-build-debug /home/hstasonis/git/wildcat2/cmake-build-debug /home/hstasonis/git/wildcat2/cmake-build-debug/wildcatdriver2_autogen/deps /home/hstasonis/git/wildcat2/cmake-build-debug/CMakeFiles/d/e642c204a6b9373ff6b97e42253d80d25afa22f3be4cd3bf8e028b662d8a2283.d",
+    "file": "/usr/lib64/qt6/libexec/moc",
+    "output": "wildcatdriver2_autogen/timestamp"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "wildcat2_autogen/timestamp",
+    "output": "CMakeFiles/wildcat2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "wildcatplatform2_autogen/timestamp",
+    "output": "CMakeFiles/wildcatplatform2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "wildcatdriver2_autogen/timestamp",
+    "output": "CMakeFiles/wildcatdriver2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "libwildcatplatform2.a",
+    "output": "wildcatplatform2"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "",
+    "file": "wildcat2",
+    "output": "all"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/bin/cmake --regenerate-during-build -S/home/hstasonis/git/wildcat2 -B/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "file": "/home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/cmake/linux/x64/share/cmake-4.1/Modules/CMakeCInformation.cmake",
+    "output": "build.ninja"
+  },
+  {
+    "directory": "/home/hstasonis/git/wildcat2/cmake-build-debug",
+    "command": "/home/hstasonis/.local/share/JetBrains/Toolbox/apps/clion/bin/ninja/linux/x64/ninja  -t clean ",
+    "file": "CMakeFiles/clean.additional",
+    "output": "clean"
+  }
+]

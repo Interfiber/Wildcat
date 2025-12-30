@@ -30,21 +30,7 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="fix: io display destruction in WildcatDevice::clearMemory()">
-      <change afterPath="$PROJECT_DIR$/include/Wildcat/io/iodrivers/win32com.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/include/Wildcat/ui/textinput.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/io/iodrivers/win32com.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ui/textedit.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FEATURES2.md" beforeDir="false" afterPath="$PROJECT_DIR$/FEATURES2.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/mainwindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
-    </list>
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: init win32com driver + bank nicknames" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -152,7 +138,7 @@
       <updated>1766774039716</updated>
       <workItem from="1766774040796" duration="24791000" />
       <workItem from="1766837068862" duration="22131000" />
-      <workItem from="1767061990940" duration="5974000" />
+      <workItem from="1767061990940" duration="6306000" />
     </task>
     <task id="LOCAL-00001" summary="feat/fix: link up quick actions">
       <option name="closed" value="true" />
@@ -282,7 +268,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767015038827</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="feat: init win32com driver + bank nicknames">
+      <option name="closed" value="true" />
+      <created>1767109957218</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1767109957218</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -305,7 +299,8 @@
     <MESSAGE value="fix: add raw logo file from @antilimited" />
     <MESSAGE value="feat: add clear memory functionality" />
     <MESSAGE value="fix: io display destruction in WildcatDevice::clearMemory()" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: io display destruction in WildcatDevice::clearMemory()" />
+    <MESSAGE value="feat: init win32com driver + bank nicknames" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: init win32com driver + bank nicknames" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
