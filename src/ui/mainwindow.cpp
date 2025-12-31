@@ -17,6 +17,7 @@
 #include "Wildcat/ui/devicepicker.h"
 #include <QClipboard>
 
+#include "Wildcat/fs/archive.h"
 #include "Wildcat/ui/importwindow.h"
 
 WildcatMainWindow::WildcatMainWindow()
@@ -26,6 +27,12 @@ WildcatMainWindow::WildcatMainWindow()
     statusBar()->showMessage("Welcome to Wildcat v2!");
 
     resize(800, 600);
+
+    // Register archive formats for importing/exporting
+
+    WildcatArchiveImporter::get()->addArchivePair(WildcatPastedSheetArchive::isValid, new WildcatPastedSheetArchive());
+
+    WildcatArchiveImporter::get()->addArchivePair(WildcatCSVArchive::isValid, new WildcatCSVArchive());
 
     // Import window (early init)
 
@@ -182,7 +189,7 @@ void WildcatMainWindow::initMenuBar()
         QMessageBox::information(this, "About Wildcat", ("Wildcat v2\nGit branch: " + std::string(GIT_BRANCH_BUILD) + "\nGit hash: " + std::string(GIT_HASH_BUILD) + "\nGitHub: https://github.com/Interfiber/Wildcat.git").data());
     });
 
-    connect(ma_paste, &QAction::triggered, m_importWindow, &ImportWindow::show);
+    connect(ma_paste, &QAction::triggered, m_importWindow, &ImportWindow::openFromPaste);
 
     // Device specific connects in connectToDevice()
 }

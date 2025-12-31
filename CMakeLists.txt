@@ -54,9 +54,11 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         include/Wildcat/ui/textinput.h
         src/ui/textedit.cpp
         include/Wildcat/fs/archive.h
-        include/Wildcat/fs/csv.h
         include/Wildcat/ui/importwindow.h
-        src/ui/importwindow.cpp)
+        src/ui/importwindow.cpp
+        src/fs/archive.cpp
+        src/fs/pastedsheet.cpp
+        src/fs/csv.cpp)
 
 qt_add_resources(wildcat2 "resources"
     PREFIX "/resources"

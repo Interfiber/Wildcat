@@ -24,11 +24,19 @@ public:
         CSV
     };
 
+public slots:
+    /**
+     * Open the ImportWindow dialog if the pasted text is in a supported import format
+     */
+    void openFromPaste();
+
 private:
     QVBoxLayout* m_layout;
 
     /// @brief How-to info at the top of the screen
     QLabel* m_information;
+
+    QLabel* m_noFormatsError;
 
     // @brief  Seperator between the information and mode buttons
     QFrame* m_seperatorLine;
@@ -39,8 +47,8 @@ private:
     // Import modes
 
     QHBoxLayout* m_modeButtonLayout;
-    QRadioButton* m_tableImport;
-    QRadioButton* m_csvImport;
+
+    std::vector<QRadioButton*> m_radioButtons;
 
     // Import and cancel buttons
 
