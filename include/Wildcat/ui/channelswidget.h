@@ -44,6 +44,8 @@ public:
    /// @brief  All components of a single channel displayed in the UI
    struct UIChannel
    {
+      void destroy() const;
+
       std::shared_ptr<WildcatChannel> channel;
 
       QLineEdit* name;
@@ -60,6 +62,7 @@ public:
 public slots:
    void addChannel(const std::shared_ptr<WildcatChannel> &channel = nullptr);
    void loadCurrentBank();
+   void clearChannels();
 
 private:
    QHBoxLayout *m_layout;

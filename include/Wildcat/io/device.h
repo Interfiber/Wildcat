@@ -272,6 +272,7 @@ public slots:
 signals:
     void showWarning(const std::string &message);
     void deviceStatusChanged(bool connected);
+    void deviceErased();
 
 private:
 

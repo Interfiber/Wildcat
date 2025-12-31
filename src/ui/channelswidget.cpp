@@ -193,6 +193,17 @@ ChannelsWidget::~ChannelsWidget()
     delete m_layout;
 }
 
+void ChannelsWidget::UIChannel::destroy() const
+{
+    delete name;
+    delete freq;
+    delete modulation;
+    delete ctcss;
+    delete delay;
+    delete lockout;
+    delete priority;
+}
+
 void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheChannel)
 {
     if (WildcatMainWindow::get()->m_device == nullptr)
@@ -373,4 +384,24 @@ void ChannelsWidget::loadCurrentBank()
     });
 
     loader->start();
+}
+
+void ChannelsWidget::clearChannels()
+{
+    for (int i = 0; i < m_tabWidget->count(); i++)
+    {
+        const auto table = dynamic_cast<QTableWidget*>(m_tabWidget->widget(i));
+        table->clearContents();
+        table->setRowCount(0);
+
+        table->resizeColumnsToContents();
+        table->resizeRowsToContents();
+    }
+
+    for (auto &c : m_channels)
+    {
+        c.destroy();
+    }
+
+    m_channels.clear();
 }

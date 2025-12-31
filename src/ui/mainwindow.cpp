@@ -75,6 +75,7 @@ void WildcatMainWindow::connectToDevice()
     }
 
     connect(m_device.get(), &WildcatDevice::deviceStatusChanged, m_connectionWidget, &DeviceConnectionWidget::deviceStatusChanged);
+    connect(m_device.get(), &WildcatDevice::deviceErased, m_channelsWidget, &ChannelsWidget::clearChannels);
 
     m_connectionWidget->deviceConnected();
     m_channelsWidget->loadCurrentBank();
@@ -95,7 +96,7 @@ void WildcatMainWindow::connectToDevice()
     {
         if (const QMessageBox::StandardButton button = QMessageBox::question(this, "Wildcat", "Do you really wish to erase the memory from this device?\nNOTE: All channels and settings will be lost!", QMessageBox::Yes | QMessageBox::Abort, QMessageBox::Abort); button == QMessageBox::StandardButton::Yes)
         {
-            if (m_device->isConnected()) return;
+            if (!m_device->isConnected()) return;
 
             m_device->clearMemory();
         }
