@@ -1,7 +1,15 @@
 <img align="left" src="./wcat2.png" width="180">
 
-# Wildcat
+<div id="user-content-toc">
+  <ul align="center" style="list-style: none;">
+    <summary>
+      <h1>Wildcat</h1>
+    </summary>
+  </ul>
+</div>
+
 Open-source Uniden BC125AT programmer for Windows, Linux, and FreeBSD.
+<br>
 
 ![Windows 11](https://img.shields.io/badge/Windows%2011-%230079d5.svg?style=for-the-badge&logo=Windows%2011&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black) ![FreeBSD](https://img.shields.io/badge/-FreeBSD-%23870000?style=for-the-badge&logo=freebsd&logoColor=white)
 
