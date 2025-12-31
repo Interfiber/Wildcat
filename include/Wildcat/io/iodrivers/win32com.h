@@ -26,7 +26,7 @@ public:
     void releaseDevice() override;
     [[nodiscard]] bool isConnected() override;
 
-    static const std::string COM_PREFIX = "COM";
+    static inline const std::string COM_PREFIX = "COM";
     static constexpr int MAX_PORTS = 256;
 
 private:
