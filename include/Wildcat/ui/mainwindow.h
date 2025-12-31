@@ -5,6 +5,7 @@
 #pragma once
 #include <QMainWindow>
 
+class ImportWindow;
 class DeviceConnectionWidget;
 class WildcatDevice;
 class ChannelsWidget;
@@ -41,8 +42,10 @@ private:
     QAction *ma_saveToFile = nullptr;
     QAction *ma_saveAsToFile = nullptr;
 
+    // Edit
     QAction* ma_newChannel = nullptr;
     QAction* ma_deleteChannel = nullptr;
+    QAction* ma_paste = nullptr;
 
     // Device
     QAction* ma_setSquelch = nullptr;
@@ -57,6 +60,7 @@ private:
 
     ChannelsWidget *m_channelsWidget;
     DeviceConnectionWidget* m_connectionWidget;
+    ImportWindow* m_importWindow;
 
     std::shared_ptr<WildcatDevice> m_device;
 

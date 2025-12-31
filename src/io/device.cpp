@@ -81,7 +81,7 @@ void WildcatDevice::clearMemory()
     {
         setProgramMode(true).unwrap();
 
-        // Unusued
+        // Unused
         auto _ = issue(WildcatMessage::clearMemory()).wait();
 
         setProgramMode(false).unwrap();

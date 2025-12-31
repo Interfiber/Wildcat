@@ -30,14 +30,13 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="fix: win32com inline constant">
-      <change afterPath="$PROJECT_DIR$/include/Wildcat/fs/csv.h" afterDir="false" />
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat/fix: fix incorrect if statement in device erase + remove UI channels on device memory erase">
+      <change afterPath="$PROJECT_DIR$/include/Wildcat/ui/importwindow.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ui/importwindow.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/io/device.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/io/device.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/channelswidget.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/mainwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/mainwindow.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/io/device.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/io/device.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/channelswidget.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/channelswidget.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,7 +148,7 @@
       <workItem from="1766837068862" duration="22131000" />
       <workItem from="1767061990940" duration="6306000" />
       <workItem from="1767193602100" duration="2341000" />
-      <workItem from="1767204695152" duration="2480000" />
+      <workItem from="1767204695152" duration="5072000" />
     </task>
     <task id="LOCAL-00001" summary="feat/fix: link up quick actions">
       <option name="closed" value="true" />
@@ -295,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767196616139</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="feat/fix: fix incorrect if statement in device erase + remove UI channels on device memory erase">
+      <option name="closed" value="true" />
+      <created>1767207841287</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1767207841287</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -320,7 +327,8 @@
     <MESSAGE value="fix: io display destruction in WildcatDevice::clearMemory()" />
     <MESSAGE value="feat: init win32com driver + bank nicknames" />
     <MESSAGE value="fix: win32com inline constant" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: win32com inline constant" />
+    <MESSAGE value="feat/fix: fix incorrect if statement in device erase + remove UI channels on device memory erase" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat/fix: fix incorrect if statement in device erase + remove UI channels on device memory erase" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

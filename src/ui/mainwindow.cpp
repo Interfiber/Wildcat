@@ -9,10 +9,15 @@
 #include <QApplication>
 #include <QMessageBox>
 
+#include "Wildcat/io/channel.h"
+#include "Wildcat/io/channel.h"
 #include "Wildcat/io/device.h"
 #include "Wildcat/ui/channelswidget.h"
 #include "Wildcat/ui/connectionwidget.h"
 #include "Wildcat/ui/devicepicker.h"
+#include <QClipboard>
+
+#include "Wildcat/ui/importwindow.h"
 
 WildcatMainWindow::WildcatMainWindow()
 {
@@ -21,6 +26,10 @@ WildcatMainWindow::WildcatMainWindow()
     statusBar()->showMessage("Welcome to Wildcat v2!");
 
     resize(800, 600);
+
+    // Import window (early init)
+
+    m_importWindow = new ImportWindow();
 
     // Init the menu bar
 
@@ -102,7 +111,6 @@ void WildcatMainWindow::connectToDevice()
         }
     });
 
-
     QMessageBox::information(nullptr, "Wildcat", ("Connected to device " + info.model + " running firmware " + info.firmware).data());
 
     statusBar()->showMessage(("Connected to " + info.model).data());
@@ -120,6 +128,7 @@ void WildcatMainWindow::initMenuBar()
     ma_connectToDevice = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::CallStart), "Connect to serial device");
     ma_loadFromFile = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen), "Load channels from file");
 
+    ma_paste = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::EditPaste), "Paste (auto-convert)");
     ma_newChannel = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::DocumentNew), "New channel");
     ma_deleteChannel = new QAction(QIcon::fromTheme(QIcon::ThemeIcon::EditDelete), "Delete channel");
 
@@ -133,6 +142,7 @@ void WildcatMainWindow::initMenuBar()
 
     // Set shortcuts
 
+    ma_paste->setShortcut(QKeySequence::Paste);
     ma_newChannel->setShortcut(tr("Ctrl+Shift+N"));
     ma_deleteChannel->setShortcut(QKeySequence::Delete);
 
@@ -145,6 +155,8 @@ void WildcatMainWindow::initMenuBar()
 
     QMenu* edit = menuBar()->addMenu("Edit");
 
+    edit->addAction(ma_paste);
+    edit->addSeparator();
     edit->addAction(ma_newChannel);
     edit->addAction(ma_deleteChannel);
 
@@ -169,6 +181,8 @@ void WildcatMainWindow::initMenuBar()
     {
         QMessageBox::information(this, "About Wildcat", ("Wildcat v2\nGit branch: " + std::string(GIT_BRANCH_BUILD) + "\nGit hash: " + std::string(GIT_HASH_BUILD) + "\nGitHub: https://github.com/Interfiber/Wildcat.git").data());
     });
+
+    connect(ma_paste, &QAction::triggered, m_importWindow, &ImportWindow::show);
 
     // Device specific connects in connectToDevice()
 }
