@@ -30,17 +30,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="feat: work on basic import gui">
-      <change afterPath="$PROJECT_DIR$/src/fs/archive.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/fs/csv.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/fs/pastedsheet.cpp" afterDir="false" />
+    <list default="true" id="fb917b5c-c180-42bf-8565-77f592507d93" name="Changes" comment="work: init external archive code">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/fs/archive.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/fs/archive.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/fs/csv.h" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/Wildcat/ui/importwindow.h" beforeDir="false" afterPath="$PROJECT_DIR$/include/Wildcat/ui/importwindow.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/importwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/importwindow.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ui/mainwindow.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/ui/mainwindow.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/fs/archive.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/fs/archive.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +50,12 @@
     <setting file="file:///usr/include/c++/15/bits/basic_string.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/include/c++/15/bits/invoke.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/include/c++/15/bits/shared_ptr_base.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/include/c++/15/bits/std_function.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/include/c++/15/bits/stl_vector.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/include/c++/15/bits/this_thread_sleep.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/include/c++/15/future" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/include/c++/15/optional" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file:///usr/include/c++/15/x86_64-redhat-linux/bits/gthr-default.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file:///usr/include/qt6/QtCore/qobjectdefs_impl.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MacroExpansionManager">
@@ -151,7 +147,7 @@
       <workItem from="1766837068862" duration="22131000" />
       <workItem from="1767061990940" duration="6306000" />
       <workItem from="1767193602100" duration="2341000" />
-      <workItem from="1767204695152" duration="8126000" />
+      <workItem from="1767204695152" duration="13222000" />
     </task>
     <task id="LOCAL-00001" summary="feat/fix: link up quick actions">
       <option name="closed" value="true" />
@@ -313,7 +309,15 @@
       <option name="project" value="LOCAL" />
       <updated>1767210502208</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="work: init external archive code">
+      <option name="closed" value="true" />
+      <created>1767213438314</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1767213438314</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,7 +344,8 @@
     <MESSAGE value="fix: win32com inline constant" />
     <MESSAGE value="feat/fix: fix incorrect if statement in device erase + remove UI channels on device memory erase" />
     <MESSAGE value="feat: work on basic import gui" />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: work on basic import gui" />
+    <MESSAGE value="work: init external archive code" />
+    <option name="LAST_COMMIT_MESSAGE" value="work: init external archive code" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

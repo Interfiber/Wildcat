@@ -14,7 +14,7 @@ bool WildcatArchiveImporter::importBuffer(const std::string& buffer) const
 {
     for (const auto &pair : m_archives)
     {
-        if (pair.isValidArchive(buffer)) // Valid archive found, importArchive can be called
+        if (pair.check(buffer)) // Valid archive found, importArchive can be called
         {
             pair.archive->importArchive(buffer);
 
