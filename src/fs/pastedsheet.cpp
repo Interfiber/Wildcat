@@ -2,10 +2,67 @@
 // Created by hstasonis on 12/31/25.
 //
 
+#include "Wildcat/io/channel.h"
 #include <Wildcat/fs/archive.h>
+#include <Wildcat/ui/channelswidget.h>
 
 void WildcatPastedSheetArchive::importArchive(const std::string& buffer)
 {
+    const std::vector<std::string> lines = Helper_Split(buffer, '\n');
+
+    if (lines.size() < 1)
+    {
+        throw std::runtime_error("Atleast one line required for archive input\n");
+    }
+
+    int headerIndex = getHeaderStartIndex(lines);
+
+    // Loop over all the lines (channels)
+    
+    for (int i = headerIndex; i < lines.size(); i++)
+    {
+      const int channel = i - headerIndex;
+      const std::vector<std::string> split = Helper_Split(lines[i], '\t');
+    
+      if (split.size() != 7)
+      {
+        printf("WildcatPastedSheetArchive::importArchive(...): Skipping line %i, size of %i is not the expected value of 7\n", i, (int) split.size());
+
+        continue;
+      }
+
+      // Extract values
+      
+      const std::string name = split[0];
+      const double freq = std::stod(split[1]);
+      const WildcatChannel::ModulationMode modulation = WildcatChannel::stringToModulationMode(split[2]);
+
+      // FIXME: Impl CTCSS/DCS
+
+      const WildcatChannel::LockoutMode lockout = split[4] == "Off" ? WildcatChannel::LockoutMode::Off : WildcatChannel::LockoutMode::Lockout;
+
+      qsizetype delayIndex = WildcatChannel::DELAY_VALUES.indexOf(split[5]);
+  
+      if (delayIndex == -1) // No valid delay value found in DELAY_VALUES
+      {
+        throw std::runtime_error("Invalid delay value: " + split[5]);
+      }
+
+      const int delay = WildcatChannel::DELAY_VALUES.at(delayIndex).toInt();
+
+      const WildcatChannel::PriorityMode priority = split[6] == "Off" ? WildcatChannel::PriorityMode::Off : WildcatChannel::PriorityMode::PCH;
+
+      std::shared_ptr<WildcatChannel> newChannel = WildcatMainWindow::get()->m_device->newChannel();
+      newChannel->name = name;
+      newChannel->frequency = freq;
+      newChannel->modulation = modulation;
+      newChannel->lockoutMode = lockout;
+      newChannel->delay = delay;
+      newChannel->priority = priority;
+
+      // Add the new channel to the UI
+      WildcatMainWindow::get()->m_channelsWidget->addChannel(newChannel);
+    }
 }
 
 std::string WildcatPastedSheetArchive::getArchiveName()
@@ -27,6 +84,30 @@ bool WildcatPastedSheetArchive::isValid(const std::string& buffer)
         return false;
     }
 
+    int lineStart = getHeaderStartIndex(lines);
+
+    for (; lineStart < lines.size(); lineStart++)
+    {
+        const std::string line = lines[lineStart];
+        const std::vector<std::string> lineSplit = Helper_Split(line, '\t');
+
+        if (lineSplit.size() != 7)
+        {
+            printf("WildcatPastedSheetArchive::isValid(...): Line %i only contains %i items, expected 7!\n", lineStart, (int) lineSplit.size());
+
+            return false;
+        }
+
+        printf("WildcatPastedSheetArchive::isValid(...): %s\n", line.c_str());
+    }
+
+    // All data-related errors can be handled by the import step
+
+    return true;
+}
+
+int WildcatPastedSheetArchive::getHeaderStartIndex(const std::vector<std::string> &lines)
+{
     int lineStart = 0;
 
     // Check if the header exists, if so skip it during reading
@@ -38,9 +119,7 @@ bool WildcatPastedSheetArchive::isValid(const std::string& buffer)
 
         if (headerSplit.size() != 7)
         {
-            printf("WildcatPastedSheetArchive::isValid(...): During header pre-check the first line was determined to be invalid (size != 7), this document is not a parsable.\n");
-
-            return false;
+            throw std::runtime_error("The first line was determined to be invalid (size != 7), this document is not a parsable.\n");
         }
         else
         {
@@ -55,7 +134,7 @@ bool WildcatPastedSheetArchive::isValid(const std::string& buffer)
 
                 if (assumed != found)
                 {
-                    printf("WildcatPastedSheetArchive::isValid(...): Header part %i '%s' is not the expected value of '%s'\n", i, found.c_str(), assumed.c_str());
+                    printf("WildcatPastedSheetArchive::getHeaderStartIndex(...): Header part %i '%s' is not the expected value of '%s'\n", i, found.c_str(), assumed.c_str());
 
                     isHeaderValid = false;
                 }
@@ -63,27 +142,12 @@ bool WildcatPastedSheetArchive::isValid(const std::string& buffer)
 
             if (isHeaderValid)
             {
-                printf("WildcatPastedSheetArchive::isValid(...): Valid header found in pasted sheet!\n");
+                printf("WildcatPastedSheetArchive::getHeaderStartIndex(...): Valid header found in pasted sheet!\n");
 
                 lineStart = 1; // Skip header during parsing
             }
         }
     }
 
-    for (; lineStart < lines.size(); lineStart++)
-    {
-        const std::string line = lines[lineStart];
-        const std::vector<std::string> lineSplit = Helper_Split(line, '\t');
-
-        if (lineSplit.size() != 7)
-        {
-            printf("WildcatPastedSheetArchive::isValid(...): Line %i only contains %i items, expected 7!\n", lineStart, (int) lineSplit.size());
-
-            return false;
-        }
-    }
-
-    // All data-related errors can be handled by the import step
-
-    return true;
+    return lineStart;
 }

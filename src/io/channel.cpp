@@ -18,22 +18,7 @@ WildcatChannel::WildcatChannel(const WildcatMessage& msg)
   name = msg.getParameters()[1];
   frequency = std::stof(msg.getParameters()[2]) / 10000;
 
-  if (const std::string modulationStr = msg.getParameters()[3]; modulationStr == "AUTO")
-  {
-    modulation = ModulationMode::Automatic;
-  }
-  else if (modulationStr == "AM")
-  {
-    modulation = ModulationMode::AM;
-  }
-  else if (modulationStr == "FM")
-  {
-    modulation = ModulationMode::FM;
-  }
-  else if (modulationStr == "NFM")
-  {
-    modulation = ModulationMode::NFM;
-  }
+  modulation = stringToModulationMode(msg.getParameters()[3]);
 
   // FIXME: Impl CTCSS/DCS
 
@@ -61,7 +46,7 @@ std::string WildcatChannel::modulationModeToString(const ModulationMode mode)
 
 WildcatChannel::ModulationMode WildcatChannel::stringToModulationMode(const std::string& modulationMode)
 {
-  if (modulationMode == "AUTO")
+  if (modulationMode == "AUTO" || modulationMode == "Automatic")
   {
     return ModulationMode::Automatic;
   }

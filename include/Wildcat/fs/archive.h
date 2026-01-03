@@ -97,6 +97,12 @@ public:
     [[nodiscard]] std::string getArchiveName() override;
 
     static bool isValid(const std::string &buffer);
+
+private:
+    /**
+     * Determine the start index (line number) of the header
+     */
+    static int getHeaderStartIndex(const std::vector<std::string> &lines);
 };
 
 class WildcatCSVArchive : public WildcatExternalArchive

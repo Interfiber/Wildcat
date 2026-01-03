@@ -74,6 +74,8 @@ WildcatIODriver::IOResult WildcatUnixTTYDriver::connectToDevice(const std::strin
         }
     }
 
+    delete[] groups;
+
     if (!isInCorrectGroups)
         return IOResult("User must be within the 'dialout' or 'uucp' groups in order to write to serial devices!", true);
 

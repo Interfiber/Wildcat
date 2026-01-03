@@ -66,4 +66,5 @@ private:
 
     friend class ChannelsWidget;
     friend class ImportWindow;
+    friend class WildcatPastedSheetArchive;
 };
