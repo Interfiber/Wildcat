@@ -6,7 +6,6 @@
 #include <cstdlib>
 #include <filesystem>
 #include <QMessageBox>
-
 #include "Wildcat/driver/driver.h"
 
 std::filesystem::path Wildcat_FindDriver()
@@ -26,7 +25,13 @@ std::filesystem::path Wildcat_FindDriver()
         }
     }
 
-    QMessageBox::warning(nullptr, "Wildcat driver (wrapper)", "Could not find the wildcat driver executable anywhere, please make sure you installed wildcat2 properly!");
+    std::string driverPathList;
+    for (const auto &p : driverPaths)
+    {
+        driverPathList += p.generic_string() + "\n";
+    }
+
+    QMessageBox::warning(nullptr, "Wildcat driver (wrapper)", ("Could not find the wildcat driver executable anywhere, please make sure you installed wildcat2 properly! \n\nSearching: " + driverPathList).data());
 
     std::exit(EXIT_FAILURE);
 }
@@ -39,17 +44,34 @@ void Wildcat_RunDriverWrapper()
 
     if (std::filesystem::exists(WildcatDriver::COOKIE_PATH))
     {
-        printf("Not executing driver: cookie file '%s' already exists!\n", WildcatDriver::COOKIE_PATH.c_str());
-        return;
+        /*
+         * We check if the boot ID that was detected when the driver was executed
+         * and the current one are the same to prevent the driver from not-executing on
+         * systems where /tmp is not cleared on reboot (ex: Debian)
+         */
+
+        const std::string cBootID = Wildcat_GetBootIDCookie();
+        const std::string cookieBootID = Wildcat_GetBootIDCookie(WildcatDriver::COOKIE_PATH);
+
+        if (cBootID == cookieBootID)
+        {
+            return;
+        }
+
+        printf("Boot ID from cookie: '%s' does not match current boot ID '%s', rerunning driver\n", cookieBootID.c_str(), cBootID.c_str());
     }
+
+    printf("Requesting process elevation for user driver\n");
 
     if (std::system("which kdesu") == 0)
     {
-        std::system(("kdesu -n -t --noignorebutton -c " + driver.generic_string()).c_str());
+        int result = std::system(("kdesu -n -t --noignorebutton -c " + driver.generic_string()).c_str());
+        if (result == EXIT_SUCCESS) return;
     }
     else if (std::system("which pkexec") == 0)
     {
-        std::system(("pkexec " + driver.generic_string()).c_str());
+        int result = std::system(("pkexec " + driver.generic_string()).c_str());
+        if (result == EXIT_SUCCESS) return;
     }
     else
     {
@@ -57,4 +79,10 @@ void Wildcat_RunDriverWrapper()
 
         std::exit(EXIT_FAILURE);
     }
+
+    printf("User driver failed execution with a non-zero exit code!\n");
+
+    QMessageBox::warning(nullptr, "Wildcat driver (wrapper)", "The user driver exited with a non-zero exit code, check stdout/stderr for more information.");
+
+    std::exit(EXIT_FAILURE);
 }

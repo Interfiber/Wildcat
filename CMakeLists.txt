@@ -24,13 +24,14 @@ execute_process(
         OUTPUT_STRIP_TRAILING_WHITESPACE
 )
 
-find_package(Qt6 6.10.1 COMPONENTS
+find_package(Qt6 COMPONENTS
         Core
         Gui
         Widgets
         REQUIRED)
 
 add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
+        include/Wildcat/driver/wrapper.h
         include/Wildcat/ui/mainwindow.h
         src/ui/mainwindow.cpp
         include/Wildcat/ui/channelswidget.h
@@ -58,7 +59,8 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         src/ui/importwindow.cpp
         src/fs/archive.cpp
         src/fs/pastedsheet.cpp
-        src/fs/csv.cpp)
+        src/fs/csv.cpp
+        src/driver/utils.cpp)
 
 qt_add_resources(wildcat2 "resources"
     PREFIX "/resources"
@@ -75,7 +77,7 @@ else()
     # Linux platform code
     add_library(wildcatplatform2 STATIC src/io/iodrivers/unixtty.cpp)
 
-    add_executable(wildcatdriver2 src/driver/environ.cpp src/driver/main.cpp src/driver/driver.cpp)
+    add_executable(wildcatdriver2 src/driver/environ.cpp src/driver/main.cpp src/driver/driver.cpp src/driver/utils.cpp)
     target_include_directories(wildcatdriver2 PUBLIC include)
 endif()
 

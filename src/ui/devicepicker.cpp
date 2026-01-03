@@ -27,8 +27,21 @@ DevicePickerDialog::DevicePickerDialog(QWidget *parent) : QDialog(parent)
     m_deviceSelector->addItem(device.data());
   }
 
+  if (m_deviceSelector->count() == 0)
+  {
+      m_deviceSelector->addItem("No connected serial devices!");
+  }
+
   connect(m_deviceSelector, &QComboBox::currentIndexChanged, this, [this]
   {
+    const std::filesystem::path path = m_deviceSelector->currentText().toStdString();
+
+    if (!std::filesystem::exists(path))
+    {
+        printf("Device selector: Device path '%s' does not exist\n", path.c_str());
+        return;
+    }
+
     m_selectedDevice = m_deviceSelector->currentText().toStdString();
   });
 
