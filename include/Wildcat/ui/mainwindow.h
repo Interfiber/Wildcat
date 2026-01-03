@@ -65,4 +65,5 @@ private:
     std::shared_ptr<WildcatDevice> m_device;
 
     friend class ChannelsWidget;
+    friend class ImportWindow;
 };

@@ -3,10 +3,22 @@
 // 
 
 #pragma once
-#include <functional>
 #include <string>
+#include <sstream>
+#include <vector>
 
 typedef bool (*WildcatExternalArchive_Check)(const std::string&);
+
+inline std::vector<std::string> Helper_Split(const std::string &s, const char delim) {
+    std::stringstream ss(s);
+    std::string item;
+    std::vector<std::string> elems;
+    while (std::getline(ss, item, delim)) {
+        elems.push_back(item);
+    }
+    return elems;
+}
+
 
 /**
  * External archive format which can be imported into wildcat

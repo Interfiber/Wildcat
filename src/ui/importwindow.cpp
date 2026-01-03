@@ -4,9 +4,11 @@
 
 #include <QClipboard>
 #include <qguiapplication.h>
+#include <QMessageBox>
 #include <QLineEdit>
 #include <QPushButton>
 #include <Wildcat/ui/importwindow.h>
+#include <Wildcat/ui/mainwindow.h>
 
 #include "Wildcat/fs/archive.h"
 
@@ -16,7 +18,14 @@ ImportWindow::ImportWindow()
 
     for (const auto &pair : WildcatArchiveImporter::get()->getArchivePairs())
     {
-        m_radioButtons.push_back(new QRadioButton(pair.archive->getArchiveName().data()));
+        QRadioButton* button = new QRadioButton(pair.archive->getArchiveName().data());
+
+        connect(button, &QRadioButton::clicked, this, [pair, this] (bool checked)
+        {
+            m_importButton->setDisabled(false);
+        });
+
+        m_radioButtons.push_back(button);
     }
 
     if (m_radioButtons.empty())
@@ -40,7 +49,38 @@ ImportWindow::ImportWindow()
     m_importButton->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::FolderOpen));
     m_importButton->setDisabled(true);
 
+    connect(m_importButton, &QPushButton::clicked, this, [this] ()
+    {
+        if (WildcatMainWindow::get()->m_device == nullptr)
+        {
+            QMessageBox::warning(this, "Wildcat importer", "A device must be connected in order to import data!");
+
+            return;
+        }
+
+        // Find correct archive to invoke based off the checked radio button
+        for (int i = 0; i < WildcatArchiveImporter::get()->getArchivePairs().size(); i++)
+        {
+            auto pair = WildcatArchiveImporter::get()->getArchivePairs()[i];
+
+            // Radio button is checked, import the archive
+            if (m_radioButtons[i]->isChecked())
+            {
+                pair.archive->importArchive(m_importDataEdit->toPlainText().toStdString());
+
+                // Close the window now
+
+                QMessageBox::information(this, "Wildcat importer", "The import operation has completed!");
+
+                accept();
+                break;
+            }
+        }
+    });
+
     m_cancelButton = new QPushButton("Cancel");
+
+    connect(m_cancelButton, &QPushButton::clicked, this, &ImportWindow::reject);
 
     m_bottomButtonLayout = new QHBoxLayout;
     m_bottomButtonLayout->addWidget(m_importButton);
@@ -61,7 +101,30 @@ ImportWindow::ImportWindow()
 
 void ImportWindow::openFromPaste()
 {
-    m_importDataEdit->setText(QGuiApplication::clipboard()->text());
+    const QString clipboard = QGuiApplication::clipboard()->text();
+
+    m_importDataEdit->setText(clipboard);
+
+    // Determine the correct archive type radio button to select
+
+    for (int i = 0; i < WildcatArchiveImporter::get()->getArchivePairs().size(); i++)
+    {
+        auto pair = WildcatArchiveImporter::get()->getArchivePairs()[i];
+
+        try {
+                // Check if the pasted text is this archive type
+                if (pair.check(clipboard.toStdString()))
+                {
+                    m_radioButtons[i]->setChecked(true);
+                    m_importButton->setDisabled(false); // Importing is now possible!
+                    break;
+                }
+        } catch (std::exception &e)
+        {
+            // Somebody inserted some really fucked up input data
+            QMessageBox::warning(this, "Wildcat Importer", ("Error during archive validation: " + std::string(e.what())).data());
+        }
+    }
 
     show();
 }

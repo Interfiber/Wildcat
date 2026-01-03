@@ -17,4 +17,5 @@ std::string WildcatCSVArchive::getArchiveName()
 
 bool WildcatCSVArchive::isValid(const std::string& buffer)
 {
+    return false;
 }
