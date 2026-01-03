@@ -1,0 +1,12 @@
+Wildcat v2
+---
+Licensed under the GPL v3 license
+
+-----
+Developer by Hunter Stasonis (https://github.com/Interfiber)
+Logo by antiLimit (https://github.com/antiLimited)
+-----
+
+----
+UI powered by Qt (https://qt.io)
+----
