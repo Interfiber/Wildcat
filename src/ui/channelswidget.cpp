@@ -3,6 +3,7 @@
 //
 
 #include <Wildcat/ui/channelswidget.h>
+#include "Wildcat/global.h"
 #include "Wildcat/io/device.h"
 #include "Wildcat/io/channel.h"
 #include <QCheckBox>
@@ -111,7 +112,7 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 
     connect(m_tabWidget, &QTabWidget::currentChanged, this, [this] (int index)
     {
-        if (!WildcatMainWindow::get()->hotload) return;
+        if (!HOTLOAD) return;
 
         // Only load empty banks
         if (static_cast<QTableWidget*>(m_tabWidget->currentWidget())->rowCount() == 0)
@@ -166,7 +167,7 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 
     connect(m_enableHotload, &QCheckBox::clicked, this, [this, parent]
     {
-        static_cast<WildcatMainWindow*>(parent)->hotload = m_enableHotload->isChecked();
+        HOTLOAD = m_enableHotload->isChecked();
 
         if (m_enableHotload->isChecked())
         {
@@ -206,7 +207,7 @@ void ChannelsWidget::UIChannel::destroy() const
 
 void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheChannel)
 {
-    if (WildcatMainWindow::get()->m_device == nullptr)
+    if (DEVICE == nullptr)
         return;
 
     auto table = static_cast<QTableWidget*>(m_tabWidget->currentWidget());
@@ -226,7 +227,7 @@ void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheC
     UIChannel channel{};
 
     // Determine which channel to use
-    channel.channel = precacheChannel == nullptr ? WildcatMainWindow::get()->m_device->newChannel() : precacheChannel;
+    channel.channel = precacheChannel == nullptr ? DEVICE->newChannel() : precacheChannel;
 
     channel.channel->index = rowCount + 1;
     channel.channel->bank = m_tabWidget->currentIndex() + 1;
@@ -355,7 +356,7 @@ void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheC
 
 void ChannelsWidget::loadCurrentBank()
 {
-    if (!WildcatMainWindow::get()->m_device->isConnected())
+    if (!DEVICE->isConnected())
     {
         QMessageBox::warning(this, "Wildcat", "Device has disconnected!");
         return;
@@ -372,7 +373,7 @@ void ChannelsWidget::loadCurrentBank()
     display->show();
 
     // Shut up CLion this object is deleted by Qt when the thread exits
-    const auto loader = new BankLoaderThread(WildcatMainWindow::get()->m_device, bank);
+    const auto loader = new BankLoaderThread(DEVICE, bank);
 
     connect(loader, &BankLoaderThread::requestNewChannel, this, &ChannelsWidget::addChannel);
     connect(loader, &QThread::finished, loader, &QObject::deleteLater);

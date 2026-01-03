@@ -30,8 +30,6 @@ WildcatDevice::WildcatDevice(const std::string& deviceName)
 
     m_name = deviceName;
 
-    connect(this, &WildcatDevice::showWarning, WildcatMainWindow::get(), &WildcatMainWindow::alertWarning);
-
     handleError(m_driver->connectToDevice(m_name));
 
     // Startup the IO thread
@@ -261,7 +259,7 @@ bool WildcatDevice::handleError(const WildcatIODriver::IOResult& result)
 {
     if (result.failed)
     {
-        showWarning(result.message);
+        QMessageBox::warning(nullptr, "Wildcat", result.message.data());
     }
 
     return result.failed;

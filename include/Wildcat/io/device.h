@@ -4,6 +4,11 @@
 #include <mutex>
 #include <QObject>
 #include <thread>
+#include <QMessageBox>
+#include <QThread>
+#include <QCoreApplication>
+
+#include <Wildcat/global.h>
 
 #include "iodriver.h"
 #include "basicfuture.h"
@@ -123,7 +128,7 @@ public:
                callback(error.msg);
             } else if (error.didFail && callback == nullptr)
             {
-                WildcatMainWindow::get()->alertWarning(error.msg);
+                WildcatGlobalState::get()->showWarning(error.msg);
 
                 return T();
             }
@@ -270,7 +275,6 @@ public slots:
     void updateChannels();
 
 signals:
-    void showWarning(const std::string &message);
     void deviceStatusChanged(bool connected);
     void deviceErased();
 

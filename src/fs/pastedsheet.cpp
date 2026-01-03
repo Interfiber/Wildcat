@@ -4,6 +4,7 @@
 
 #include "Wildcat/io/channel.h"
 #include <Wildcat/fs/archive.h>
+#include <Wildcat/global.h>
 #include <Wildcat/ui/channelswidget.h>
 
 void WildcatPastedSheetArchive::importArchive(const std::string& buffer)
@@ -21,7 +22,6 @@ void WildcatPastedSheetArchive::importArchive(const std::string& buffer)
     
     for (int i = headerIndex; i < lines.size(); i++)
     {
-      const int channel = i - headerIndex;
       const std::vector<std::string> split = Helper_Split(lines[i], '\t');
     
       if (split.size() != 7)
@@ -52,7 +52,7 @@ void WildcatPastedSheetArchive::importArchive(const std::string& buffer)
 
       const WildcatChannel::PriorityMode priority = split[6] == "Off" ? WildcatChannel::PriorityMode::Off : WildcatChannel::PriorityMode::PCH;
 
-      std::shared_ptr<WildcatChannel> newChannel = WildcatMainWindow::get()->m_device->newChannel();
+      std::shared_ptr<WildcatChannel> newChannel = DEVICE->newChannel();
       newChannel->name = name;
       newChannel->frequency = freq;
       newChannel->modulation = modulation;
@@ -61,7 +61,7 @@ void WildcatPastedSheetArchive::importArchive(const std::string& buffer)
       newChannel->priority = priority;
 
       // Add the new channel to the UI
-      WildcatMainWindow::get()->m_channelsWidget->addChannel(newChannel);
+      //WildcatMainWindow::get()->m_channelsWidget->addChannel(newChannel);
     }
 }
 
@@ -85,6 +85,12 @@ bool WildcatPastedSheetArchive::isValid(const std::string& buffer)
     }
 
     int lineStart = getHeaderStartIndex(lines);
+
+    if (lineStart == -1)
+    {
+        printf("WildcatPastedSheetArchive::isValid(...): getHeaderStartIndex returned -1, archive is not valid!\n");
+        return false;
+    }
 
     for (; lineStart < lines.size(); lineStart++)
     {
@@ -119,7 +125,7 @@ int WildcatPastedSheetArchive::getHeaderStartIndex(const std::vector<std::string
 
         if (headerSplit.size() != 7)
         {
-            throw std::runtime_error("The first line was determined to be invalid (size != 7), this document is not a parsable.\n");
+            return -1;
         }
         else
         {

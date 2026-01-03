@@ -11,6 +11,7 @@
 #include <Wildcat/ui/mainwindow.h>
 
 #include "Wildcat/fs/archive.h"
+#include "Wildcat/global.h"
 
 ImportWindow::ImportWindow()
 {
@@ -51,7 +52,7 @@ ImportWindow::ImportWindow()
 
     connect(m_importButton, &QPushButton::clicked, this, [this] ()
     {
-        if (WildcatMainWindow::get()->m_device == nullptr)
+        if (DEVICE == nullptr)
         {
             QMessageBox::warning(this, "Wildcat importer", "A device must be connected in order to import data!");
 

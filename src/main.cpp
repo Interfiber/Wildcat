@@ -21,6 +21,8 @@ int main(int argc, char* argv[])
 
     // Step 2. Run the app
 
-    WildcatMainWindow::get()->show();
+    WildcatMainWindow* window = new WildcatMainWindow();
+    window->show();
+
     QApplication::exec();
 }

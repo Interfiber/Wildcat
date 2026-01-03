@@ -9,8 +9,7 @@
 #include <QApplication>
 #include <QMessageBox>
 
-#include "Wildcat/io/channel.h"
-#include "Wildcat/io/channel.h"
+#include "Wildcat/global.h"
 #include "Wildcat/io/device.h"
 #include "Wildcat/ui/channelswidget.h"
 #include "Wildcat/ui/connectionwidget.h"
@@ -56,6 +55,13 @@ WildcatMainWindow::WildcatMainWindow()
         m_channelsWidget->addChannel(nullptr);
     });
 
+    // Connect showWarning threaded signal
+
+    connect(WildcatGlobalState::get().get(), &WildcatGlobalState::showWarning, this, [] (const std::string &msg)
+    {
+        QMessageBox::warning(nullptr, "Wildcat", msg.data());
+    }, Qt::BlockingQueuedConnection);
+
     setCentralWidget(m_channelsWidget);
     setWindowIcon(QIcon(":/resources/wcat2.png"));
 }
@@ -67,11 +73,11 @@ WildcatMainWindow::~WildcatMainWindow()
 
 void WildcatMainWindow::connectToDevice()
 {
-    if (m_device == nullptr)
+    if (DEVICE == nullptr)
     {
         if (DevicePickerDialog devicePicker(this); devicePicker.exec() == QDialog::Accepted)
         {
-            m_device = std::make_shared<WildcatDevice>(devicePicker.getSelectedDevice());
+            DEVICE = std::make_shared<WildcatDevice>(devicePicker.getSelectedDevice());
         }
         else
         {
@@ -80,29 +86,29 @@ void WildcatMainWindow::connectToDevice()
     }
     else
     {
-        m_device->reconnect();
+        DEVICE->reconnect();
     }
 
-    if (!m_device->isConnected())
+    if (!DEVICE->isConnected())
     {
         m_connectionWidget->deviceDisconnected();
 
         return;
     }
 
-    connect(m_device.get(), &WildcatDevice::deviceStatusChanged, m_connectionWidget, &DeviceConnectionWidget::deviceStatusChanged);
-    connect(m_device.get(), &WildcatDevice::deviceErased, m_channelsWidget, &ChannelsWidget::clearChannels);
+    connect(DEVICE.get(), &WildcatDevice::deviceStatusChanged, m_connectionWidget, &DeviceConnectionWidget::deviceStatusChanged);
+    connect(DEVICE.get(), &WildcatDevice::deviceErased, m_channelsWidget, &ChannelsWidget::clearChannels);
 
     m_connectionWidget->deviceConnected();
     m_channelsWidget->loadCurrentBank();
 
-    const WildcatDevice::Info info = m_device->getInfo();
+    const WildcatDevice::Info info = DEVICE->getInfo();
 
     connect(ma_writeChannels, &QAction::triggered, this, [this]
     {
-        if (m_device == nullptr) return;
+        if (DEVICE == nullptr) return;
 
-        m_device->updateChannels();
+        DEVICE->updateChannels();
 
         statusBar()->showMessage("Wrote channels to device!");
     });
@@ -112,9 +118,9 @@ void WildcatMainWindow::connectToDevice()
     {
         if (const QMessageBox::StandardButton button = QMessageBox::question(this, "Wildcat", "Do you really wish to erase the memory from this device?\nNOTE: All channels and settings will be lost!", QMessageBox::Yes | QMessageBox::Abort, QMessageBox::Abort); button == QMessageBox::StandardButton::Yes)
         {
-            if (!m_device->isConnected()) return;
+            if (!DEVICE->isConnected()) return;
 
-            m_device->clearMemory();
+            DEVICE->clearMemory();
         }
     });
 
