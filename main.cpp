@@ -11,6 +11,12 @@
 int main(int argc, char ** argv) {
   SDL_Log("Starting Wildcat...");
 
+#if true
+  Helper_ErrorMsg("Wildcat ImGui has been deprecated, see https://github.com/Interfiber/Wildcat for more info");
+
+  return EXIT_FAILURE;
+#endif
+
   std::unique_ptr<WildcatAuth> auth = std::make_unique<WildcatAuth>();
 
   SDL_Log("Checking for user driver...");
