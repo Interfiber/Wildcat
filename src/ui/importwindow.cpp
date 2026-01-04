@@ -16,7 +16,7 @@
 
 ImportWindow::ImportWindow()
 {
-    m_information = new QLabel("Select a format to import.\nImporting will override any data which is in conflict with the new version");
+    m_information = new QLabel("Select a format to import.\nAll the imported channels will be appended to the current bank");
 
     for (const auto &pair : WildcatArchiveImporter::get()->getArchivePairs())
     {

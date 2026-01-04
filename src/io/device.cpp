@@ -30,6 +30,8 @@ WildcatDevice::WildcatDevice(const std::string& deviceName)
 
     m_name = deviceName;
 
+    m_bankChannelCounts.resize(MAX_BANKS);
+
     handleError(m_driver->connectToDevice(m_name));
 
     // Startup the IO thread
@@ -155,11 +157,11 @@ WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::issueBlock(const Wild
     return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.result.value()));
 }
 
-std::shared_ptr<WildcatChannel> WildcatDevice::newChannel()
+std::shared_ptr<WildcatChannel> WildcatDevice::newChannel(int bank)
 {
     const auto channel = std::make_shared<WildcatChannel>();
-    channel->index = m_channels.size() + 1;
-    channel->bank = 1;
+    channel->index = m_bankChannelCounts[bank - 1]++;
+    channel->bank = bank;
 
     m_channels.push_back(channel);
 
@@ -176,6 +178,7 @@ void WildcatDevice::addChannel(const std::shared_ptr<WildcatChannel>& channel)
         }
     }
 
+    m_bankChannelCounts[channel->bank - 1]++;
     m_channels.push_back(channel);
 }
 
@@ -216,6 +219,17 @@ std::shared_ptr<WildcatChannel> WildcatDevice::getChannel(const int index, const
     setProgramMode(false).unwrap();
 
     return channel;
+}
+
+std::shared_ptr<WildcatChannel> WildcatDevice::getChannelCache(int index, int bank)
+{
+    for (auto &c : m_channels)
+    {
+        if (c->index == index && c->bank == bank)
+            return c;
+    }
+
+    return nullptr;
 }
 
 WildcatDevice::DeviceResult<WildcatChannel> WildcatDevice::getChannelAsync(const int index, const int bank) const

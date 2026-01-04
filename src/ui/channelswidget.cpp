@@ -30,7 +30,14 @@ void BankLoaderThread::run()
 
     for (int i = 0; i < WildcatDevice::MAX_CHANNELS_PER_BANK; i++)
     {
-        channelResults.push_back(m_device->getChannelAsync(i + 1, m_bank));
+        if (auto cached = m_device->getChannelCache(i + 1, m_bank); cached != nullptr)
+        {
+            channelResults.push_back(WildcatDevice::DeviceResult<WildcatChannel>::withResult(*cached));
+        }
+        else
+        {
+            channelResults.push_back(m_device->getChannelAsync(i + 1, m_bank));
+        }
     }
 
     for (auto &channel : channelResults)
@@ -113,6 +120,8 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 
     connect(m_tabWidget, &QTabWidget::currentChanged, this, [this] (int index)
     {
+        WildcatGlobalState::get()->currentBankIndex = index + 1;
+
         if (!HOTLOAD) return;
 
         // Only load empty banks
@@ -214,6 +223,15 @@ void ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel> &precacheC
 {
     if (DEVICE == nullptr)
         return;
+
+    /*
+     * The precached channel should already have the bank ID, if the bank ID is not the current one we can skip adding it to the UI
+     */
+    if (precacheChannel != nullptr && precacheChannel->bank != m_tabWidget->currentIndex() + 1)
+    {
+        printf("Precached channel does not belong to the currently selected bank! Expected: %i, got: %i\n", m_tabWidget->currentIndex() + 1, precacheChannel->bank);
+        return;
+    }
 
     auto table = static_cast<QTableWidget*>(m_tabWidget->currentWidget());
 

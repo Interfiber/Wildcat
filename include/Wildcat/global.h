@@ -31,6 +31,9 @@ public:
     /// @brief  Enable channel hotloading?
     bool hotload = false;
 
+    /// @brief  Index of the currently selected bank
+    int currentBankIndex = 1;
+
 signals:
     void showWarning(const std::string &message);
 };

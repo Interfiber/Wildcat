@@ -237,7 +237,7 @@ public:
      * Return a newly created channel
      * @note This channel will only exist locally until written
      */
-    [[nodiscard]] std::shared_ptr<WildcatChannel> newChannel();
+    [[nodiscard]] std::shared_ptr<WildcatChannel> newChannel(int bank = 1);
 
     /**
      * Add a new channel to this device
@@ -253,6 +253,14 @@ public:
      * @return Pointer to the channel, nullptr if none was found
      */
     [[nodiscard]] std::shared_ptr<WildcatChannel> getChannel(int index, int bank, bool skipCache = false);
+
+    /**
+     * Get a channel by location from the local cache
+     * @param index Index of the channel within `bank`, one indexed
+     * @param bank Bank to find the channel in, one indexed
+     * @return Pointer to the channel, nullptr if none was found
+     */
+    [[nodiscard]] std::shared_ptr<WildcatChannel> getChannelCache(int index, int bank);
 
     /**
      *
@@ -285,6 +293,8 @@ private:
     bool handleError(const WildcatIODriver::IOResult &result);
 
     std::shared_ptr<WildcatIODriver> m_driver;
+
+    std::vector<int> m_bankChannelCounts;
 
     /// @brief  Local channels which can be written to the device on demand
     std::vector<std::shared_ptr<WildcatChannel>> m_channels;

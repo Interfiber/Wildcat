@@ -53,13 +53,23 @@ void WildcatDelimiterArchive::importArchive(const std::string &buffer)
 
       const WildcatChannel::PriorityMode priority = split[6] == "Off" ? WildcatChannel::PriorityMode::Off : WildcatChannel::PriorityMode::PCH;
 
-      std::shared_ptr<WildcatChannel> newChannel = DEVICE->newChannel();
+      std::shared_ptr<WildcatChannel> newChannel = DEVICE->newChannel(WildcatGlobalState::get()->currentBankIndex);
       newChannel->name = name;
       newChannel->frequency = freq;
       newChannel->modulation = modulation;
       newChannel->lockoutMode = lockout;
       newChannel->delay = delay;
       newChannel->priority = priority;
+
+      // When importing we place all the importer channels in a single bank
+      if (newChannel->index > WildcatDevice::MAX_CHANNELS_PER_BANK)
+      {
+          printf("Skipping import for channel: %i, too many channels in this bank!\n", newChannel->index);
+
+          continue;
+      }
+
+      printf("New channel: %s in bank #%i\n", name.c_str(), newChannel->bank);
 
       WildcatArchiveImporter::get()->channelLoaded(newChannel);
     }
