@@ -4,7 +4,7 @@
 
 #include <Wildcat/fs/archive.h>
 
-void WildcatArchiveImporter::addArchivePair(WildcatExternalArchive_Check isValidArchive,
+void WildcatArchiveImporter::addArchivePair2(WildcatExternalArchive_Check isValidArchive,
     WildcatExternalArchive* archive)
 {
     m_archives.push_back({ isValidArchive, archive });
@@ -14,7 +14,7 @@ bool WildcatArchiveImporter::importBuffer(const std::string& buffer) const
 {
     for (const auto &pair : m_archives)
     {
-        if (pair.check(buffer)) // Valid archive found, importArchive can be called
+        if (std::invoke(pair.check, pair.archive,buffer)) // Valid archive found, importArchive can be called
         {
             pair.archive->importArchive(buffer);
 

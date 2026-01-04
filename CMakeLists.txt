@@ -61,7 +61,11 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         src/fs/pastedsheet.cpp
         src/fs/csv.cpp
         src/driver/utils.cpp
-        include/Wildcat/global.h)
+        include/Wildcat/global.h
+        include/Wildcat/fs/delimiter.h
+        src/fs/delimiter.cpp
+        include/Wildcat/fs/pastedsheet.h
+        include/Wildcat/fs/csv.h)
 
 qt_add_resources(wildcat2 "resources"
     PREFIX "/resources"

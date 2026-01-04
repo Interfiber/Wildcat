@@ -115,12 +115,12 @@ void ImportWindow::openFromPaste(ChannelsWidget *channelsWidget)
 
         try {
                 // Check if the pasted text is this archive type
-                if (pair.check(clipboard.toStdString()))
-                {
+            if (std::invoke(pair.check, pair.archive, clipboard.toStdString()))
+            {
                     m_radioButtons[i]->setChecked(true);
                     m_importButton->setDisabled(false); // Importing is now possible!
                     break;
-                }
+            }
         } catch (std::exception &e)
         {
             // Somebody inserted some really fucked up input data

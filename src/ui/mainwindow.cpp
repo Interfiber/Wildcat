@@ -8,6 +8,8 @@
 #include <QAction>
 #include <QApplication>
 #include <QMessageBox>
+#include <Wildcat/fs/csv.h>
+#include <Wildcat/fs/pastedsheet.h>
 
 #include "Wildcat/global.h"
 #include "Wildcat/io/device.h"
@@ -29,9 +31,8 @@ WildcatMainWindow::WildcatMainWindow()
 
     // Register archive formats for importing/exporting
 
-    WildcatArchiveImporter::get()->addArchivePair(WildcatPastedSheetArchive::isValid, new WildcatPastedSheetArchive());
-
-    WildcatArchiveImporter::get()->addArchivePair(WildcatCSVArchive::isValid, new WildcatCSVArchive());
+    WildcatArchiveImporter::get()->addArchivePair<WildcatPastedSheetArchive>();
+    WildcatArchiveImporter::get()->addArchivePair<WildcatCSVArchive>();
 
     // Import window (early init)
 

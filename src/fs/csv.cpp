@@ -2,20 +2,15 @@
 // Created by hstasonis on 12/31/25.
 //
 
-#include <Wildcat/fs/archive.h>
+#include <Wildcat/fs/csv.h>
 
 
-void WildcatCSVArchive::importArchive(const std::string& buffer)
+WildcatCSVArchive::WildcatCSVArchive() : WildcatDelimiterArchive(',')
 {
 
 }
 
 std::string WildcatCSVArchive::getArchiveName()
 {
-    return "Comma Separated Values (CSV)";
-}
-
-bool WildcatCSVArchive::isValid(const std::string& buffer)
-{
-    return false;
+    return "Comma Separated Values";
 }

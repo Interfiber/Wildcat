@@ -10,8 +10,6 @@
 
 class WildcatChannel;
 
-typedef bool (*WildcatExternalArchive_Check)(const std::string&);
-
 inline std::vector<std::string> Helper_Split(const std::string &s, const char delim) {
     std::stringstream ss(s);
     std::string item;
@@ -21,7 +19,6 @@ inline std::vector<std::string> Helper_Split(const std::string &s, const char de
     }
     return elems;
 }
-
 
 /**
  * External archive format which can be imported into wildcat
@@ -39,12 +36,18 @@ public:
      */
     virtual void importArchive(const std::string &buffer) = 0;
 
+    /**
+     * Return true when `buffer` is this archive type
+     */
+    virtual bool isValid(const std::string &buffer) = 0;
 
     /**
      * Return the archive name for use in user interfaces
      */
     [[nodiscard]] virtual std::string getArchiveName() = 0;
 };
+
+typedef bool (WildcatExternalArchive::*WildcatExternalArchive_Check)(const std::string&);
 
 class WildcatArchiveImporter : public QObject
 {
@@ -72,7 +75,19 @@ public:
      * @param isValidArchive Function to check if an input string is this type of archive
      * @param archive External archive class
      */
-    void addArchivePair(WildcatExternalArchive_Check isValidArchive, WildcatExternalArchive* archive);
+    void addArchivePair2(WildcatExternalArchive_Check isValidArchive, WildcatExternalArchive* archive);
+
+    /**
+     * Add a new archive pair to the importer
+     * @tparam T WildcatExternalArchive sub class
+     */
+    template<class T>
+    void addArchivePair()
+    {
+        T* archive = new T();
+
+        addArchivePair2(&WildcatExternalArchive::isValid, archive);
+    }
 
     /**
      * Import `buffer` into Wildcat using a valid archive pair
@@ -91,35 +106,4 @@ signals:
 
 private:
     std::vector<ArchivePair> m_archives{};
-};
-
-/**
- * Paste from google sheets, excel, etc
- */
-class WildcatPastedSheetArchive : public WildcatExternalArchive
-{
-public:
-    WildcatPastedSheetArchive() = default;
-
-    void importArchive(const std::string& buffer) override;
-    [[nodiscard]] std::string getArchiveName() override;
-
-    static bool isValid(const std::string &buffer);
-
-private:
-    /**
-     * Determine the start index (line number) of the header
-     */
-    static int getHeaderStartIndex(const std::vector<std::string> &lines);
-};
-
-class WildcatCSVArchive : public WildcatExternalArchive
-{
-public:
-    WildcatCSVArchive() = default;
-
-    void importArchive(const std::string& buffer) override;
-    [[nodiscard]] std::string getArchiveName() override;
-
-    static bool isValid(const std::string &buffer);
 };
