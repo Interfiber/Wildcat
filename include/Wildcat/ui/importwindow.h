@@ -9,6 +9,8 @@
 #include <QVBoxLayout>
 #include <QTextEdit>
 
+class ChannelsWidget;
+
 /**
  * Import data from other formats
  */
@@ -27,8 +29,9 @@ public:
 public slots:
     /**
      * Open the ImportWindow dialog if the pasted text is in a supported import format
+     * @param channelsWidget If not `nullptr` we will add all the new channels to this widget
      */
-    void openFromPaste();
+    void openFromPaste(ChannelsWidget *channelsWidget);
 
 private:
     QVBoxLayout* m_layout;

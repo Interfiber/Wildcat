@@ -12,6 +12,7 @@
 
 #include "Wildcat/fs/archive.h"
 #include "Wildcat/global.h"
+#include "Wildcat/ui/channelswidget.h"
 
 ImportWindow::ImportWindow()
 {
@@ -100,7 +101,7 @@ ImportWindow::ImportWindow()
     setModal(true);
 }
 
-void ImportWindow::openFromPaste()
+void ImportWindow::openFromPaste(ChannelsWidget *channelsWidget)
 {
     const QString clipboard = QGuiApplication::clipboard()->text();
 
@@ -127,5 +128,6 @@ void ImportWindow::openFromPaste()
         }
     }
 
-    show();
+    // Use exec() so the user can't interact with the parent window
+    exec();
 }

@@ -16,6 +16,7 @@
 #include "Wildcat/io/iothread.h"
 #include "Wildcat/ui/mainwindow.h"
 #include "Wildcat/ui/textinput.h"
+#include <Wildcat/fs/archive.h>
 
 BankLoaderThread::BankLoaderThread(const std::shared_ptr<WildcatDevice>& device, const int bank) : QThread(nullptr)
 {
@@ -185,6 +186,10 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
     m_quickActions->setLayout(m_quickActionsLayout);
 
     m_layout->addWidget(m_quickActions);
+
+    // Allow the archive importer to add channels to this widget
+
+    connect(WildcatArchiveImporter::get(), &WildcatArchiveImporter::channelLoaded, this, &ChannelsWidget::addChannel);
 }
 
 ChannelsWidget::~ChannelsWidget()

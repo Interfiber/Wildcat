@@ -6,6 +6,9 @@
 #include <string>
 #include <sstream>
 #include <vector>
+#include <QObject>
+
+class WildcatChannel;
 
 typedef bool (*WildcatExternalArchive_Check)(const std::string&);
 
@@ -32,6 +35,7 @@ public:
     /**
      * Import this archive into Wildcat
      * @param buffer Input archive buffer
+     * @param channelsWidget Widget to load all the channels into
      */
     virtual void importArchive(const std::string &buffer) = 0;
 
@@ -42,8 +46,9 @@ public:
     [[nodiscard]] virtual std::string getArchiveName() = 0;
 };
 
-class WildcatArchiveImporter
+class WildcatArchiveImporter : public QObject
 {
+    Q_OBJECT
 public:
     WildcatArchiveImporter() = default;
 
@@ -80,6 +85,9 @@ public:
      * Return the list of registered archive pairs
      */
     [[nodiscard]] std::vector<ArchivePair> getArchivePairs() const;
+
+signals:
+    void channelLoaded(const std::shared_ptr<WildcatChannel> &channel);
 
 private:
     std::vector<ArchivePair> m_archives{};

@@ -195,7 +195,10 @@ void WildcatMainWindow::initMenuBar()
         QMessageBox::information(this, "About Wildcat", ("Wildcat v2\nGit branch: " + std::string(GIT_BRANCH_BUILD) + "\nGit hash: " + std::string(GIT_HASH_BUILD) + "\nGitHub: https://github.com/Interfiber/Wildcat.git").data());
     });
 
-    connect(ma_paste, &QAction::triggered, m_importWindow, &ImportWindow::openFromPaste);
+    connect(ma_paste, &QAction::triggered, this, [this] ()
+    {
+        m_importWindow->openFromPaste(m_channelsWidget);
+    });
 
     // Device specific connects in connectToDevice()
 }

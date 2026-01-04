@@ -68,8 +68,8 @@ qt_add_resources(wildcat2 "resources"
     FILES wcat2.png credits.txt)
 
 # Wildcat platform libraries (static)
-# On linux we have our own user space "driver" that couples with the linux-specific serial IO "driver" used inside wildcat for communications
-# Windows impl is TBD
+# On Linux we have our own user space "driver" that couples with the linux-specific serial IO "driver" used inside wildcat for communications
+# On Windows we have the windows-specific serial IO "driver" which uses Windows COM ports to communicate with the scanner
 
 if (MINGW)
     add_library(wildcatplatform2 STATIC src/io/iodrivers/win32com.cpp
@@ -108,11 +108,10 @@ install(TARGETS wildcat2
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(LINUX)
-        install(TARGETS wildcatdriver2
-                BUNDLE DESTINATION .
-                RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
+    install(TARGETS wildcatdriver2
+        BUNDLE DESTINATION .
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 endif()
-
 
 qt_generate_deploy_app_script(
         TARGET wildcat2 

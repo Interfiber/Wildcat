@@ -60,8 +60,7 @@ void WildcatPastedSheetArchive::importArchive(const std::string& buffer)
       newChannel->delay = delay;
       newChannel->priority = priority;
 
-      // Add the new channel to the UI
-      //WildcatMainWindow::get()->m_channelsWidget->addChannel(newChannel);
+      WildcatArchiveImporter::get()->channelLoaded(newChannel);
     }
 }
 
