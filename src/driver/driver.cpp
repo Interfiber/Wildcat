@@ -21,7 +21,7 @@ void WildcatDriver::onElevationComplete()
     printf("ACM_PATH = '%s'\n", ACM_PATH.c_str());
     printf("ACM_DRIVER_WRITE = '%s'\n", ACM_DRIVER_WRITE.c_str());
 
-    struct sysinfo info;
+    struct sysinfo info{};
     if (sysinfo(&info) > 0)
     {
         printf("Failed to obtain system information via `sysinfo`: %s\n", strerror(errno));
@@ -33,7 +33,7 @@ void WildcatDriver::onElevationComplete()
 
     if (!std::filesystem::exists(ACM_PATH))
     {
-        printf("ACM_PATH does not exist, creating it!\n");
+        printf("ACM_PATH does not exist, creating it\n");
 
         std::filesystem::create_directories(ACM_PATH.parent_path());
     }

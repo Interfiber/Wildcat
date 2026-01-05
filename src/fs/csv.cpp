@@ -12,5 +12,5 @@ WildcatCSVArchive::WildcatCSVArchive() : WildcatDelimiterArchive(',')
 
 std::string WildcatCSVArchive::getArchiveName()
 {
-    return "Comma Separated Values";
+    return "Comma Separated Values (CSV)";
 }

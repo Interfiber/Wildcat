@@ -76,4 +76,10 @@ public:
      * @param device Device to write this channel too
      */
     void writeToDevice(WildcatDevice* device) override;
+
+    /**
+     * Delete this channel from the scanner
+     * @param device Device to delete from
+     */
+    void remove(WildcatDevice *device);
 };

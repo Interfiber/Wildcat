@@ -7,7 +7,6 @@
 #include "Wildcat/io/device.h"
 #include "Wildcat/io/channel.h"
 #include <QCheckBox>
-#include <QLineEdit>
 #include <qmenu.h>
 #include <QMessageBox>
 #include <QPushButton>
@@ -125,7 +124,7 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
         if (!HOTLOAD) return;
 
         // Only load empty banks
-        if (static_cast<QTableWidget*>(m_tabWidget->currentWidget())->rowCount() == 0)
+        if (dynamic_cast<QTableWidget*>(m_tabWidget->currentWidget())->rowCount() == 0)
             loadCurrentBank();
     });
 
@@ -175,7 +174,7 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
     m_enableHotload = new QCheckBox(nullptr);
     m_enableHotload->setText("Enable hot channel loading?");
 
-    connect(m_enableHotload, &QCheckBox::clicked, this, [this, parent]
+    connect(m_enableHotload, &QCheckBox::clicked, this, [this]
     {
         HOTLOAD = m_enableHotload->isChecked();
 
@@ -400,9 +399,10 @@ void ChannelsWidget::loadCurrentBank()
 
     connect(loader, &BankLoaderThread::requestNewChannel, this, &ChannelsWidget::addChannel);
     connect(loader, &QThread::finished, loader, &QObject::deleteLater);
-    connect(loader, &QThread::finished, this, [display]
+    connect(loader, &QThread::finished, this, [display, loader]
     {
         display->close();
+        loader->deleteLater();
 
         delete display;
     });

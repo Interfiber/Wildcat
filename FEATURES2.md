@@ -1,8 +1,9 @@
 # Features list (requested)
 
 - [ ] Preset database of frequencies
+    - [ ] Export current configuration to json file
 - [x] CSV import / paste from sheets
-    - [ ] Bank and index checks to prevent creating unaccessible channels
+    - [x] Bank and index checks to prevent creating unaccessible channels
 - [x] Not based on ImGui (better UI)
 - [x] Windows port (needs windows IO driver)
 - [x] FreeBSD port (Linux64 -> UnixTTY)

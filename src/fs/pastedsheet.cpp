@@ -10,5 +10,5 @@ WildcatPastedSheetArchive::WildcatPastedSheetArchive() : WildcatDelimiterArchive
 
 std::string WildcatPastedSheetArchive::getArchiveName()
 {
-    return "Tab seperated values";
+    return "Tab Separated Values (TSV)";
 }

@@ -70,6 +70,9 @@ public:
     /// @brief  Clear memory
     static WildcatMessage clearMemory();
 
+    /// @brief  Delete channel
+    static WildcatMessage deleteChannel(int index);
+
     /**
      * Convert `type` into a device-readable string
      */

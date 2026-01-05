@@ -102,3 +102,7 @@ void WildcatChannel::writeToDevice(WildcatDevice* device)
   // Unusued, fire into the void
   auto _ = device->issue(setChInfo);
 }
+
+void WildcatChannel::remove(WildcatDevice *device) {
+
+}

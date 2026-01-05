@@ -64,6 +64,10 @@ WildcatMessage WildcatMessage::clearMemory()
     return { MessageType::ClearMemory, {} };
 }
 
+WildcatMessage WildcatMessage::deleteChannel(const int index) {
+    return { MessageType::DeleteChannel, { std::to_string(index) } };
+}
+
 std::string WildcatMessage::messageToString(const MessageType type)
 {
     switch (type) {
