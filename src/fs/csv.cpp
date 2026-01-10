@@ -5,12 +5,10 @@
 #include <Wildcat/fs/csv.h>
 
 
-WildcatCSVArchive::WildcatCSVArchive() : WildcatDelimiterArchive(',')
-{
+WildcatCSVArchive::WildcatCSVArchive() : WildcatDelimiterArchive(',') {}
 
-}
-
-std::string WildcatCSVArchive::getArchiveName()
+std::string
+WildcatCSVArchive::getArchiveName()
 {
-    return "Comma Separated Values (CSV)";
+  return "Comma Separated Values (CSV)";
 }

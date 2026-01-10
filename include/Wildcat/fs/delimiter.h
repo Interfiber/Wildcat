@@ -11,13 +11,13 @@
 class WildcatDelimiterArchive : public WildcatExternalArchive
 {
 public:
-    WildcatDelimiterArchive(char delimeter);
+  WildcatDelimiterArchive(char delimeter);
 
-    void importArchive(const std::string &buffer) override;
-    bool isValid(const std::string &buffer) override;
+  void importArchive(const std::string& buffer) override;
+  bool isValid(const std::string& buffer) override;
 
 private:
-    int getHeaderStartIndex(const std::vector<std::string> &lines);
+  int getHeaderStartIndex(const std::vector<std::string>& lines);
 
-    char m_delimiter;
+  char m_delimiter;
 };

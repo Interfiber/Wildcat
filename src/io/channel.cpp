@@ -27,7 +27,8 @@ WildcatChannel::WildcatChannel(const WildcatMessage& msg)
   priority = msg.getParameters()[7] == "0" ? PriorityMode::Off : PriorityMode::PCH;
 }
 
-std::string WildcatChannel::modulationModeToString(const ModulationMode mode)
+std::string
+WildcatChannel::modulationModeToString(const ModulationMode mode)
 {
   switch (mode)
   {
@@ -44,7 +45,8 @@ std::string WildcatChannel::modulationModeToString(const ModulationMode mode)
   }
 }
 
-WildcatChannel::ModulationMode WildcatChannel::stringToModulationMode(const std::string& modulationMode)
+WildcatChannel::ModulationMode
+WildcatChannel::stringToModulationMode(const std::string& modulationMode)
 {
   if (modulationMode == "AUTO" || modulationMode == "Automatic")
   {
@@ -66,7 +68,8 @@ WildcatChannel::ModulationMode WildcatChannel::stringToModulationMode(const std:
   throw std::runtime_error("Invalid modulationMode '" + modulationMode + "'");
 }
 
-void WildcatChannel::writeToDevice(WildcatDevice* device)
+void
+WildcatChannel::writeToDevice(WildcatDevice* device)
 {
   WildcatMessage setChInfo = WildcatMessage::channelInfo();
 
@@ -78,31 +81,29 @@ void WildcatChannel::writeToDevice(WildcatDevice* device)
 
   if (name.size() > 16)
   {
-    QMessageBox::warning(nullptr, "WildcatChannel", ("Not updating channel '" + name + "', name cannot be over 16 characters long").data());
+    QMessageBox::warning(nullptr, "WildcatChannel",
+                         ("Not updating channel '" + name + "', name cannot be over 16 characters long").data());
     return;
   }
 
   if (frequency < 0 || frequency == 0)
   {
-    QMessageBox::warning(nullptr, "WildcatChannel", ("Not updating channel '" + name + "', invalid frequency provided!").data());
+    QMessageBox::warning(nullptr, "WildcatChannel",
+                         ("Not updating channel '" + name + "', invalid frequency provided!").data());
     return;
   }
 
-  setChInfo.setParameters({
-    std::to_string(((bank - 1) * WildcatDevice::MAX_CHANNELS_PER_BANK) + index),
-    name,
-    std::to_string(static_cast<int>(std::round(frequency * 10000))),
-    modulationModeToString(modulation),
-    "", // FIXME: CTCSS/DCS
-    std::to_string(delay),
-    lockoutMode == LockoutMode::Off ? "0" : "1",
-    priority == PriorityMode::Off ? "0" : "1"
-  });
+  setChInfo.setParameters(
+    { std::to_string(((bank - 1) * WildcatDevice::MAX_CHANNELS_PER_BANK) + index), name,
+      std::to_string(static_cast<int>(std::round(frequency * 10000))), modulationModeToString(modulation),
+      "", // FIXME: CTCSS/DCS
+      std::to_string(delay), lockoutMode == LockoutMode::Off ? "0" : "1", priority == PriorityMode::Off ? "0" : "1" });
 
   // Unusued, fire into the void
   auto _ = device->issue(setChInfo);
 }
 
-void WildcatChannel::remove(WildcatDevice *device) {
-
+void
+WildcatChannel::remove(WildcatDevice* device)
+{
 }

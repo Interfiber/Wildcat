@@ -8,7 +8,8 @@
 
 WildcatPastedSheetArchive::WildcatPastedSheetArchive() : WildcatDelimiterArchive('\t') {}
 
-std::string WildcatPastedSheetArchive::getArchiveName()
+std::string
+WildcatPastedSheetArchive::getArchiveName()
 {
-    return "Tab Separated Values (TSV)";
+  return "Tab Separated Values (TSV)";
 }

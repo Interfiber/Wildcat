@@ -14,24 +14,25 @@
 class TextInputDialog : public QDialog
 {
 public:
-    explicit TextInputDialog(const std::string &title, QWidget *parent = nullptr);
-    ~TextInputDialog() override;
+  explicit TextInputDialog(const std::string& title, QWidget* parent = nullptr);
+  ~TextInputDialog() override;
 
-    /// @brief  Get the text entered after the dialog is accepted
-    [[nodiscard]] std::string getResult() const
-    {
-        return m_result;
-    }
+  /// @brief  Get the text entered after the dialog is accepted
+  [[nodiscard]] std::string
+  getResult() const
+  {
+    return m_result;
+  }
 
 private:
-    QVBoxLayout* m_layout;
-    QHBoxLayout* m_buttonLayout;
+  QVBoxLayout* m_layout;
+  QHBoxLayout* m_buttonLayout;
 
-    QLabel* m_title;
-    QLineEdit *m_edit;
+  QLabel* m_title;
+  QLineEdit* m_edit;
 
-    QPushButton* m_ok;
-    QPushButton *m_cancel;
+  QPushButton* m_ok;
+  QPushButton* m_cancel;
 
-    std::string m_result;
+  std::string m_result;
 };

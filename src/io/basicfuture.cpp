@@ -4,23 +4,21 @@
 
 #include <Wildcat/io/basicfuture.h>
 
-SimpleFuture::SimpleFuture()
+SimpleFuture::SimpleFuture() { mb_completed = false; }
+
+bool
+SimpleFuture::isCompleted()
 {
-    mb_completed = false;
+  std::lock_guard lk(m_lock);
+
+  return mb_completed;
 }
 
-bool SimpleFuture::isCompleted()
+void
+SimpleFuture::setCompleted(const bool value, const std::string& result)
 {
-    std::lock_guard lk(m_lock);
+  std::lock_guard lk(m_lock);
 
-    return mb_completed;
+  mb_completed = value;
+  m_result = result;
 }
-
-void SimpleFuture::setCompleted(const bool value, const std::string &result)
-{
-    std::lock_guard lk(m_lock);
-
-    mb_completed = value;
-    m_result = result;
-}
-

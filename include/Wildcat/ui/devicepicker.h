@@ -15,11 +15,12 @@
 class DevicePickerDialog : public QDialog
 {
 public:
-  explicit DevicePickerDialog(QWidget *parent = nullptr);
+  explicit DevicePickerDialog(QWidget* parent = nullptr);
   ~DevicePickerDialog() override;
 
   /// @brief  Return selected device
-  [[nodiscard]] std::string getSelectedDevice() const
+  [[nodiscard]] std::string
+  getSelectedDevice() const
   {
     return m_selectedDevice;
   }
@@ -27,12 +28,12 @@ public:
 private:
   std::string m_selectedDevice;
 
-  QVBoxLayout *m_layout;
+  QVBoxLayout* m_layout;
 
-  QHBoxLayout *m_buttonLayout;
-  QPushButton *m_accept;
-  QPushButton *m_deny;
+  QHBoxLayout* m_buttonLayout;
+  QPushButton* m_accept;
+  QPushButton* m_deny;
 
-  QLabel *m_title;
-  QComboBox *m_deviceSelector;
+  QLabel* m_title;
+  QComboBox* m_deviceSelector;
 };

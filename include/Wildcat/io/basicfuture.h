@@ -9,20 +9,21 @@
 class SimpleFuture
 {
 public:
-    SimpleFuture();
+  SimpleFuture();
 
-    [[nodiscard]] bool isCompleted();
+  [[nodiscard]] bool isCompleted();
 
-    void setCompleted(bool value, const std::string &result);
+  void setCompleted(bool value, const std::string& result);
 
-    [[nodiscard]] std::string getValue() const
-    {
-        return m_result;
-    }
+  [[nodiscard]] std::string
+  getValue() const
+  {
+    return m_result;
+  }
 
 private:
-    std::mutex m_lock;
+  std::mutex m_lock;
 
-    bool mb_completed = false;
-    std::string m_result;
+  bool mb_completed = false;
+  std::string m_result;
 };

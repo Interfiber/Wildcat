@@ -3,12 +3,12 @@
 //
 
 #pragma once
-#include <QVBoxLayout>
-#include <QTableWidget>
-#include <QLabel>
 #include <QComboBox>
-#include <QThread>
+#include <QLabel>
 #include <QSettings>
+#include <QTableWidget>
+#include <QThread>
+#include <QVBoxLayout>
 
 class WildcatDevice;
 class QCheckBox;
@@ -17,18 +17,18 @@ class WildcatChannel;
 
 class BankLoaderThread : public QThread
 {
-   Q_OBJECT
+  Q_OBJECT
 public:
-   BankLoaderThread(const std::shared_ptr<WildcatDevice> &device, int bank);
+  BankLoaderThread(const std::shared_ptr<WildcatDevice>& device, int bank);
 
-   void run() override;
+  void run() override;
 
 signals:
-   void requestNewChannel(const std::shared_ptr<WildcatChannel> &channel);
+  void requestNewChannel(const std::shared_ptr<WildcatChannel>& channel);
 
 private:
-   std::shared_ptr<WildcatDevice> m_device;
-   int m_bank;
+  std::shared_ptr<WildcatDevice> m_device;
+  int m_bank;
 };
 
 /**
@@ -36,55 +36,55 @@ private:
  */
 class ChannelsWidget : public QWidget
 {
-   Q_OBJECT
+  Q_OBJECT
 public:
-   explicit ChannelsWidget(QWidget* parent = nullptr);
-   ~ChannelsWidget() override;
+  explicit ChannelsWidget(QWidget* parent = nullptr);
+  ~ChannelsWidget() override;
 
-   /// @brief  All components of a single channel displayed in the UI
-   struct UIChannel
-   {
-      void destroy() const;
+  /// @brief  All components of a single channel displayed in the UI
+  struct UIChannel
+  {
+    void destroy() const;
 
-      std::shared_ptr<WildcatChannel> channel;
+    std::shared_ptr<WildcatChannel> channel;
 
-      QLineEdit* name;
+    QLineEdit* name;
 
-      QLineEdit* freq;
-      QComboBox* modulation;
-      QComboBox* ctcss;
+    QLineEdit* freq;
+    QComboBox* modulation;
+    QComboBox* ctcss;
 
-      QComboBox* lockout;
-      QComboBox* delay;
-      QComboBox *priority;
-   };
+    QComboBox* lockout;
+    QComboBox* delay;
+    QComboBox* priority;
+  };
 
 public slots:
-   void addChannel(const std::shared_ptr<WildcatChannel> &channel = nullptr);
-   void loadCurrentBank();
-   void clearChannels();
+  void addChannel(const std::shared_ptr<WildcatChannel>& channel = nullptr);
+  void loadCurrentBank();
+  void clearChannels();
 
 private:
-   QHBoxLayout *m_layout;
-   QVBoxLayout *m_quickActionsLayout;
+  QHBoxLayout* m_layout;
+  QVBoxLayout* m_quickActionsLayout;
 
-   QMenu* m_contextMenu;
+  QMenu* m_contextMenu;
 
-   QAction* m_setBankNickname;
+  QAction* m_setBankNickname;
 
-   QWidget* m_quickActions;
+  QWidget* m_quickActions;
 
-   QLabel* m_quickActionsLabel;
+  QLabel* m_quickActionsLabel;
 
-   QPushButton *m_writeToDevice;
-   QCheckBox *m_enableHotload;
+  QPushButton* m_writeToDevice;
+  QCheckBox* m_enableHotload;
 
-   std::vector<QTableWidget*> m_banks;
+  std::vector<QTableWidget*> m_banks;
 
-   QSettings m_settings;
+  QSettings m_settings;
 
-   QTabWidget *m_tabWidget;
+  QTabWidget* m_tabWidget;
 
-   std::vector<UIChannel> m_channels;
-   std::unordered_map<int, bool> m_loadedBanks;
+  std::vector<UIChannel> m_channels;
+  std::unordered_map<int, bool> m_loadedBanks;
 };

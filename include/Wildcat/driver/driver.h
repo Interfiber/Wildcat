@@ -13,12 +13,12 @@
 class WildcatDriver : public WildcatElevatable
 {
 public:
-    WildcatDriver() = default;
+  WildcatDriver() = default;
 
-    static const inline std::filesystem::path ACM_PATH = "/sys/bus/usb/drivers/cdc_acm/new_id";
-    static const inline std::string ACM_DRIVER_WRITE = "1965 0017 2 076d 0006\n";
-    static const inline std::filesystem::path COOKIE_PATH = "/tmp/.wcat2_cookie";
+  static const inline std::filesystem::path ACM_PATH = "/sys/bus/usb/drivers/cdc_acm/new_id";
+  static const inline std::string ACM_DRIVER_WRITE = "1965 0017 2 076d 0006\n";
+  static const inline std::filesystem::path COOKIE_PATH = "/tmp/.wcat2_cookie";
 
-    void onElevationFailure() override;
-    void onElevationComplete() override;
+  void onElevationFailure() override;
+  void onElevationComplete() override;
 };

@@ -16,7 +16,8 @@ DeviceConnectionWidget::DeviceConnectionWidget(QWidget* parent)
   m_layout->addWidget(m_connectionLabel);
 }
 
-void DeviceConnectionWidget::deviceConnected() const
+void
+DeviceConnectionWidget::deviceConnected() const
 {
   m_connectionLabel->setText("Connected");
 
@@ -30,15 +31,18 @@ void DeviceConnectionWidget::deviceConnected() const
   }
 }
 
-void DeviceConnectionWidget::deviceDisconnected() const
+void
+DeviceConnectionWidget::deviceDisconnected() const
 {
   m_connectionLabel->setText("Disconnected");
   m_connectionLabel->setStyleSheet("color: #F08080;");
 }
 
-void DeviceConnectionWidget::deviceStatusChanged(const bool connected) const
+void
+DeviceConnectionWidget::deviceStatusChanged(const bool connected) const
 {
-  if (connected) return deviceConnected();
+  if (connected)
+    return deviceConnected();
 
   deviceDisconnected();
 }

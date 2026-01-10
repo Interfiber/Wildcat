@@ -16,4 +16,4 @@ void Wildcat_RunDriverWrapper();
  * @param file Path to the boot ID file to read from
  * @return Boot ID
  */
-[[nodiscard]] std::string Wildcat_GetBootIDCookie(const std::string &file = "/proc/sys/kernel/random/boot_id");
+[[nodiscard]] std::string Wildcat_GetBootIDCookie(const std::string& file = "/proc/sys/kernel/random/boot_id");

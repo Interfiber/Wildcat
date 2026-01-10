@@ -16,43 +16,43 @@ class ChannelsWidget;
 class WildcatMainWindow : public QMainWindow
 {
 public:
-    WildcatMainWindow();
-    ~WildcatMainWindow() override;
+  WildcatMainWindow();
+  ~WildcatMainWindow() override;
 
 public slots:
-    void connectToDevice();
-    void alertWarning(const std::string &content);
+  void connectToDevice();
+  void alertWarning(const std::string& content);
 
 private:
-    void initMenuBar();
+  void initMenuBar();
 
-    // File
-    QAction *ma_connectToDevice = nullptr;
-    QAction *ma_loadFromFile = nullptr;
-    QAction *ma_saveToFile = nullptr;
-    QAction *ma_saveAsToFile = nullptr;
+  // File
+  QAction* ma_connectToDevice = nullptr;
+  QAction* ma_loadFromFile = nullptr;
+  QAction* ma_saveToFile = nullptr;
+  QAction* ma_saveAsToFile = nullptr;
 
-    // Edit
-    QAction* ma_newChannel = nullptr;
-    QAction* ma_deleteChannel = nullptr;
-    QAction* ma_paste = nullptr;
+  // Edit
+  QAction* ma_newChannel = nullptr;
+  QAction* ma_deleteChannel = nullptr;
+  QAction* ma_paste = nullptr;
 
-    // Device
-    QAction* ma_setSquelch = nullptr;
-    QAction* ma_setVolume = nullptr;
-    QAction* ma_resetMemory = nullptr;
-    QAction* ma_writeChannels = nullptr;
+  // Device
+  QAction* ma_setSquelch = nullptr;
+  QAction* ma_setVolume = nullptr;
+  QAction* ma_resetMemory = nullptr;
+  QAction* ma_writeChannels = nullptr;
 
-    // Help
+  // Help
 
-    QAction* ma_aboutQt = nullptr;
-    QAction* ma_aboutWildcat = nullptr;
+  QAction* ma_aboutQt = nullptr;
+  QAction* ma_aboutWildcat = nullptr;
 
-    // UI widgets
-    ChannelsWidget *m_channelsWidget;
-    DeviceConnectionWidget* m_connectionWidget;
-    ImportWindow* m_importWindow;
+  // UI widgets
+  ChannelsWidget* m_channelsWidget;
+  DeviceConnectionWidget* m_connectionWidget;
+  ImportWindow* m_importWindow;
 
-    friend class ChannelsWidget;
-    friend class ImportWindow;
+  friend class ChannelsWidget;
+  friend class ImportWindow;
 };

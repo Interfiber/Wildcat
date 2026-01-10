@@ -4,12 +4,12 @@
 
 #include "Wildcat/ui/devicepicker.h"
 
-#include <qicon.h>
 #include <QPushButton>
+#include <qicon.h>
 
 #include "Wildcat/io/device.h"
 
-DevicePickerDialog::DevicePickerDialog(QWidget *parent) : QDialog(parent)
+DevicePickerDialog::DevicePickerDialog(QWidget* parent) : QDialog(parent)
 {
   setWindowTitle("Wildcat device picker");
 
@@ -22,28 +22,29 @@ DevicePickerDialog::DevicePickerDialog(QWidget *parent) : QDialog(parent)
 
   m_deviceSelector = new QComboBox(nullptr);
 
-  for (auto &device : WildcatDevice::getConnectableDevices())
+  for (auto& device : WildcatDevice::getConnectableDevices())
   {
     m_deviceSelector->addItem(device.data());
   }
 
   if (m_deviceSelector->count() == 0)
   {
-      m_deviceSelector->addItem("No connected serial devices!");
+    m_deviceSelector->addItem("No connected serial devices!");
   }
 
-  connect(m_deviceSelector, &QComboBox::currentIndexChanged, this, [this]
-  {
-    const std::filesystem::path path = m_deviceSelector->currentText().toStdString();
+  connect(m_deviceSelector, &QComboBox::currentIndexChanged, this,
+          [this]
+          {
+            const std::filesystem::path path = m_deviceSelector->currentText().toStdString();
 
-    if (!std::filesystem::exists(path))
-    {
-        printf("Device selector: Device path '%s' does not exist\n", path.c_str());
-        return;
-    }
+            if (!std::filesystem::exists(path))
+            {
+              printf("Device selector: Device path '%s' does not exist\n", path.c_str());
+              return;
+            }
 
-    m_selectedDevice = m_deviceSelector->currentText().toStdString();
-  });
+            m_selectedDevice = m_deviceSelector->currentText().toStdString();
+          });
 
   m_selectedDevice = m_deviceSelector->currentText().toStdString();
 

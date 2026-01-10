@@ -3,8 +3,8 @@
 //
 
 #pragma once
-#include <memory>
 #include <QObject>
+#include <memory>
 
 class WildcatDevice;
 
@@ -14,28 +14,29 @@ class WildcatDevice;
  */
 class WildcatGlobalState : public QObject
 {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    WildcatGlobalState() = default;
+  WildcatGlobalState() = default;
 
-    [[nodiscard]] static std::shared_ptr<WildcatGlobalState> get()
-    {
-        static std::shared_ptr<WildcatGlobalState> state = std::make_shared<WildcatGlobalState>();
+  [[nodiscard]] static std::shared_ptr<WildcatGlobalState>
+  get()
+  {
+    static std::shared_ptr<WildcatGlobalState> state = std::make_shared<WildcatGlobalState>();
 
-        return state;
-    }
+    return state;
+  }
 
-    /// @brief  Serial device
-    std::shared_ptr<WildcatDevice> device = nullptr;
+  /// @brief  Serial device
+  std::shared_ptr<WildcatDevice> device = nullptr;
 
-    /// @brief  Enable channel hotloading?
-    bool hotload = false;
+  /// @brief  Enable channel hotloading?
+  bool hotload = false;
 
-    /// @brief  Index of the currently selected bank
-    int currentBankIndex = 1;
+  /// @brief  Index of the currently selected bank
+  int currentBankIndex = 1;
 
 signals:
-    void showWarning(const std::string &message);
+  void showWarning(const std::string& message);
 };
 
 

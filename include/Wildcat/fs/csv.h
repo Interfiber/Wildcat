@@ -8,7 +8,7 @@
 class WildcatCSVArchive : public WildcatDelimiterArchive
 {
 public:
-    WildcatCSVArchive();
+  WildcatCSVArchive();
 
-    [[nodiscard]] std::string getArchiveName() override;
+  [[nodiscard]] std::string getArchiveName() override;
 };

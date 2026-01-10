@@ -11,10 +11,9 @@
 class WildcatPastedSheetArchive : public WildcatDelimiterArchive
 {
 public:
-    WildcatPastedSheetArchive();
+  WildcatPastedSheetArchive();
 
-    [[nodiscard]] std::string getArchiveName() override;
+  [[nodiscard]] std::string getArchiveName() override;
 
 private:
 };
-

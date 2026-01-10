@@ -3,42 +3,42 @@
 //
 
 #pragma once
-#include <vector>
 #include <string>
+#include <vector>
 
 /// @brief  Message types
 enum class MessageType
 {
-    EnterProgramMode,
-    ExitProgramMode,
+  EnterProgramMode,
+  ExitProgramMode,
 
-    GetModelInfo,
-    GetFirmwareInfo,
+  GetModelInfo,
+  GetFirmwareInfo,
 
-    SetBacklight,
-    SetBatteryInfo,
-    ClearMemory,
-    SetBandPlan,
-    SetKeyBeep,
-    SetPriorityMode,
+  SetBacklight,
+  SetBatteryInfo,
+  ClearMemory,
+  SetBandPlan,
+  SetKeyBeep,
+  SetPriorityMode,
 
-    SetSCANChannelGroup,
-    DeleteChannel,
-    SetChannelInfo,
+  SetSCANChannelGroup,
+  DeleteChannel,
+  SetChannelInfo,
 
-    SetCloseCallSearchSettings,
-    SetGlobalLockoutFreq,
-    UnlockGlobalLO,
-    LockoutFrequency,
-    SetCloseCallSettings,
+  SetCloseCallSearchSettings,
+  SetGlobalLockoutFreq,
+  UnlockGlobalLO,
+  LockoutFrequency,
+  SetCloseCallSettings,
 
-    SetServiceSettings,
-    SetCustomSearchGroup,
-    SetCustomSearchSettings,
-    SetWeatherSettings,
-    SetLCDContrastSettings,
-    SetVolumeLevel,
-    SetSquelchLevelSettings
+  SetServiceSettings,
+  SetCustomSearchGroup,
+  SetCustomSearchSettings,
+  SetWeatherSettings,
+  SetLCDContrastSettings,
+  SetVolumeLevel,
+  SetSquelchLevelSettings
 };
 
 /**
@@ -47,58 +47,66 @@ enum class MessageType
 class WildcatMessage
 {
 public:
-    WildcatMessage() = default;
-    WildcatMessage(MessageType type, const std::vector<std::string> &parameters);
+  WildcatMessage() = default;
+  WildcatMessage(MessageType type, const std::vector<std::string>& parameters);
 
-    explicit WildcatMessage(const std::string &message);
+  explicit WildcatMessage(const std::string& message);
 
-    /// @brief  Get device model message
-    static WildcatMessage model();
+  /// @brief  Get device model message
+  static WildcatMessage model();
 
-    /// @brief  Get device firmware version message
-    static WildcatMessage firmware();
+  /// @brief  Get device firmware version message
+  static WildcatMessage firmware();
 
-    /// @brief  Set channel information
-    static WildcatMessage channelInfo();
+  /// @brief  Set channel information
+  static WildcatMessage channelInfo();
 
-    /// @brief  Get channel information
-    static WildcatMessage channelInfo(int index);
+  /// @brief  Get channel information
+  static WildcatMessage channelInfo(int index);
 
-    /// @brief  Set program mode
-    static WildcatMessage setProgramMode(bool enabled);
+  /// @brief  Set program mode
+  static WildcatMessage setProgramMode(bool enabled);
 
-    /// @brief  Clear memory
-    static WildcatMessage clearMemory();
+  /// @brief  Clear memory
+  static WildcatMessage clearMemory();
 
-    /// @brief  Delete channel
-    static WildcatMessage deleteChannel(int index);
+  /// @brief  Delete channel
+  static WildcatMessage deleteChannel(int index);
 
-    /**
-     * Convert `type` into a device-readable string
-     */
-    static std::string messageToString(MessageType type);
+  /**
+   * Convert `type` into a device-readable string
+   */
+  static std::string messageToString(MessageType type);
 
-    /**
-     * Convert `message` into a MessageType
-     */
-    static MessageType messageTypeFromString(const std::string &message);
+  /**
+   * Convert `message` into a MessageType
+   */
+  static MessageType messageTypeFromString(const std::string& message);
 
-    /**
-     * Convert this message into a device-readable string
-     */
-    [[nodiscard]] std::string toString() const;
+  /**
+   * Convert this message into a device-readable string
+   */
+  [[nodiscard]] std::string toString() const;
 
-    /// @brief  Get the type of this message
-    [[nodiscard]] MessageType getMessageType() const { return m_type; }
+  /// @brief  Get the type of this message
+  [[nodiscard]] MessageType
+  getMessageType() const
+  {
+    return m_type;
+  }
 
-    /// @brief  Get the parameters of this message
-    [[nodiscard]] std::vector<std::string> getParameters() const { return m_parameters; }
+  /// @brief  Get the parameters of this message
+  [[nodiscard]] std::vector<std::string>
+  getParameters() const
+  {
+    return m_parameters;
+  }
 
-    /// @brief  Set the parameters of this message
-    void setParameters(const std::vector<std::string> &parameters);
+  /// @brief  Set the parameters of this message
+  void setParameters(const std::vector<std::string>& parameters);
 
 protected:
-    MessageType m_type;
+  MessageType m_type;
 
-    std::vector<std::string> m_parameters;
+  std::vector<std::string> m_parameters;
 };

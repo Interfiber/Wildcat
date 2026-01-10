@@ -17,18 +17,18 @@
 class WildcatWin32ComDriver : public WildcatIODriver
 {
 public:
-    WildcatWin32ComDriver() = default;
+  WildcatWin32ComDriver() = default;
 
-    std::vector<std::string> getConnectedDevices() override;
-    IOResult connectToDevice(const std::string& name) override;
-    IOResult writeToDevice(const std::string& buffer) override;
-    IOResult readFromDevice() override;
-    void releaseDevice() override;
-    [[nodiscard]] bool isConnected() override;
+  std::vector<std::string> getConnectedDevices() override;
+  IOResult connectToDevice(const std::string& name) override;
+  IOResult writeToDevice(const std::string& buffer) override;
+  IOResult readFromDevice() override;
+  void releaseDevice() override;
+  [[nodiscard]] bool isConnected() override;
 
-    static inline const std::string COM_PREFIX = "COM";
-    static constexpr int MAX_PORTS = 256;
+  static inline const std::string COM_PREFIX = "COM";
+  static constexpr int MAX_PORTS = 256;
 
 private:
-    HANDLE m_device;
+  HANDLE m_device;
 };

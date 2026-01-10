@@ -3,11 +3,11 @@
 //
 
 #pragma once
-#include <qboxlayout.h>
 #include <QDialog>
-#include <QProgressBar>
-#include <thread>
 #include <QLabel>
+#include <QProgressBar>
+#include <qboxlayout.h>
+#include <thread>
 #include "Wildcat/io/device.h"
 #include "Wildcat/io/message.h"
 
@@ -17,41 +17,41 @@
 class WildcatIOThread
 {
 public:
-    explicit WildcatIOThread(WildcatDevice* device);
+  explicit WildcatIOThread(WildcatDevice* device);
 
-     /**
-     * Write a buffer to the device async
-     * @param buffer Buffer to write
-     * @return Future result of the write operation
-     */
-    WildcatDevice::DeviceResult<std::string> issueAsyncWrite(const std::string &buffer);
+  /**
+   * Write a buffer to the device async
+   * @param buffer Buffer to write
+   * @return Future result of the write operation
+   */
+  WildcatDevice::DeviceResult<std::string> issueAsyncWrite(const std::string& buffer);
 
 signals:
-    /// @brief  Called at the start of an IO operation
-    void ioOperationBegin();
+  /// @brief  Called at the start of an IO operation
+  void ioOperationBegin();
 
-    /// @brief  Called at the end of an IO operation
-    void ioOperationEnd();
+  /// @brief  Called at the end of an IO operation
+  void ioOperationEnd();
 
 private:
-    [[noreturn]] void run();
+  [[noreturn]] void run();
 
-    std::mutex m_queueLock;
+  std::mutex m_queueLock;
 
-    struct WriteOperation
-    {
-        WildcatDevice::DeviceResult<std::string> result;
+  struct WriteOperation
+  {
+    WildcatDevice::DeviceResult<std::string> result;
 
-        std::string writeBuffer;
-    };
+    std::string writeBuffer;
+  };
 
-    /// @brief  List of write operations to perform
-    std::vector<WriteOperation> m_writes;
+  /// @brief  List of write operations to perform
+  std::vector<WriteOperation> m_writes;
 
-    WildcatDevice* m_device;
-    std::thread m_thread;
+  WildcatDevice* m_device;
+  std::thread m_thread;
 
-    friend class WildcatIOStatusDisplay;
+  friend class WildcatIOStatusDisplay;
 };
 
 /**
@@ -60,11 +60,11 @@ private:
 class WildcatIOStatusDisplay : public QDialog
 {
 public:
-    explicit WildcatIOStatusDisplay(QWidget *parent = nullptr);
-    ~WildcatIOStatusDisplay() override;
+  explicit WildcatIOStatusDisplay(QWidget* parent = nullptr);
+  ~WildcatIOStatusDisplay() override;
 
 private:
-    QVBoxLayout *m_layout;
-    QProgressBar* m_progress;
-    QLabel* m_title;
+  QVBoxLayout* m_layout;
+  QProgressBar* m_progress;
+  QLabel* m_title;
 };

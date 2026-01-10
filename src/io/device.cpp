@@ -21,276 +21,301 @@
 WildcatDevice::WildcatDevice(const std::string& deviceName)
 {
 #ifdef __unix__
-    m_driver = std::make_shared<WildcatUnixTTYDriver>();
+  m_driver = std::make_shared<WildcatUnixTTYDriver>();
 #endif
 
 #ifdef _WIN32
-    m_driver = std::make_shared<WildcatWin32ComDriver>();
+  m_driver = std::make_shared<WildcatWin32ComDriver>();
 #endif
 
-    m_name = deviceName;
+  m_name = deviceName;
 
-    m_bankChannelCounts.resize(MAX_BANKS);
+  m_bankChannelCounts.resize(MAX_BANKS);
 
-    handleError(m_driver->connectToDevice(m_name));
+  handleError(m_driver->connectToDevice(m_name));
 
-    // Startup the IO thread
-    m_ioThread = std::make_shared<WildcatIOThread>(this);
+  // Startup the IO thread
+  m_ioThread = std::make_shared<WildcatIOThread>(this);
 }
 
-std::vector<std::string> WildcatDevice::getConnectableDevices()
+std::vector<std::string>
+WildcatDevice::getConnectableDevices()
 {
 #ifdef __unix__
-    WildcatUnixTTYDriver driver;
-    return driver.getConnectedDevices();
+  WildcatUnixTTYDriver driver;
+  return driver.getConnectedDevices();
 #endif
 
 #ifdef _WIN32
-    WildcatWin32ComDriver driver;
-    return driver.getConnectedDevices();
+  WildcatWin32ComDriver driver;
+  return driver.getConnectedDevices();
 #endif
 
 
-    return {"Missing IO driver."}; // FIXME: Platform
+  return { "Missing IO driver." }; // FIXME: Platform
 }
 
-void WildcatDevice::reconnect()
+void
+WildcatDevice::reconnect()
 {
-    m_driver->releaseDevice();
-    handleError(m_driver->connectToDevice(m_name));
+  m_driver->releaseDevice();
+  handleError(m_driver->connectToDevice(m_name));
 
-    printf("Reconnected to serial device: %s\n", m_name.c_str());
+  printf("Reconnected to serial device: %s\n", m_name.c_str());
 }
 
-void WildcatDevice::issue(const std::shared_ptr<WildcatDeviceCommandable>& command)
+void
+WildcatDevice::issue(const std::shared_ptr<WildcatDeviceCommandable>& command)
 {
-    command->writeToDevice(this);
+  command->writeToDevice(this);
 }
 
-WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::setProgramMode(const bool enabled)
+WildcatDevice::DeviceResult<WildcatMessage>
+WildcatDevice::setProgramMode(const bool enabled)
 {
-    return issueBlock(WildcatMessage::setProgramMode(enabled));
+  return issueBlock(WildcatMessage::setProgramMode(enabled));
 }
 
-void WildcatDevice::clearMemory()
+void
+WildcatDevice::clearMemory()
 {
-    auto display = new WildcatIOStatusDisplay();
+  auto display = new WildcatIOStatusDisplay();
 
-    // Don't need to use non-blocking IO for this
-    std::thread([this, display]
+  // Don't need to use non-blocking IO for this
+  std::thread(
+    [this, display]
     {
-        setProgramMode(true).unwrap();
+      setProgramMode(true).unwrap();
 
-        // Unused
-        auto _ = issue(WildcatMessage::clearMemory()).wait();
+      // Unused
+      auto _ = issue(WildcatMessage::clearMemory()).wait();
 
-        setProgramMode(false).unwrap();
+      setProgramMode(false).unwrap();
 
-        m_channels.clear();
+      m_channels.clear();
 
-        deviceErased();
+      deviceErased();
 
-        display->close();
-        display->deleteLater();
-    }).detach();
+      display->close();
+      display->deleteLater();
+    })
+    .detach();
 
-    display->exec();
+  display->exec();
 }
 
-WildcatDevice::Info WildcatDevice::getInfo()
+WildcatDevice::Info
+WildcatDevice::getInfo()
 {
-    const WildcatMessage model = issueBlock(WildcatMessage::model()).unwrap();
-    const WildcatMessage firmware = issueBlock(WildcatMessage::firmware()).unwrap();
+  const WildcatMessage model = issueBlock(WildcatMessage::model()).unwrap();
+  const WildcatMessage firmware = issueBlock(WildcatMessage::firmware()).unwrap();
 
-    if (model.getParameters().empty() || firmware.getParameters().empty()) return {
-    "Nodev", "???"};
+  if (model.getParameters().empty() || firmware.getParameters().empty())
+    return { "Nodev", "???" };
 
-    Info info{};
-    info.firmware = firmware.getParameters()[0];
-    info.model = model.getParameters()[0];
+  Info info{};
+  info.firmware = firmware.getParameters()[0];
+  info.model = model.getParameters()[0];
 
-    // Remove leading characters from firmware version
+  // Remove leading characters from firmware version
 
-    bool copy = false;
-    std::string newFirmware;
-    for (const char c : info.firmware)
+  bool copy = false;
+  std::string newFirmware;
+  for (const char c : info.firmware)
+  {
+    if (isdigit(c))
     {
-        if (isdigit(c))
-        {
-            copy = true;
-        }
-
-        if (copy)
-            newFirmware += c;
+      copy = true;
     }
 
-    info.firmware = newFirmware;
+    if (copy)
+      newFirmware += c;
+  }
 
-    return info;
+  info.firmware = newFirmware;
+
+  return info;
 }
 
-WildcatDevice::DeviceResult<std::string> WildcatDevice::issue(const std::string& command) const
+WildcatDevice::DeviceResult<std::string>
+WildcatDevice::issue(const std::string& command) const
 {
-    return m_ioThread->issueAsyncWrite(command);
+  return m_ioThread->issueAsyncWrite(command);
 }
 
-WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::issue(const WildcatMessage& msg) const
+WildcatDevice::DeviceResult<WildcatMessage>
+WildcatDevice::issue(const WildcatMessage& msg) const
 {
-    const DeviceResult<std::string> issueAsync = issue(msg.toString());
+  const DeviceResult<std::string> issueAsync = issue(msg.toString());
 
-    return DeviceResult<WildcatMessage>::future<std::string>(issueAsync, [] (const DeviceResult<std::string> &raw)
+  return DeviceResult<WildcatMessage>::future<std::string>(
+    issueAsync,
+    [](const DeviceResult<std::string>& raw)
     {
-        if (raw.error.didFail)
-            return DeviceResult<WildcatMessage>::withFailure(raw.error.msg);
-
-        return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.async.future->getValue()));
-    });
-}
-
-WildcatDevice::DeviceResult<WildcatMessage> WildcatDevice::issueBlock(const WildcatMessage& msg)
-{
-    auto raw = issueAsync(msg.toString());
-
-    if (raw.error.didFail)
+      if (raw.error.didFail)
         return DeviceResult<WildcatMessage>::withFailure(raw.error.msg);
 
-    return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.result.value()));
-}
-
-std::shared_ptr<WildcatChannel> WildcatDevice::newChannel(int bank)
-{
-    const auto channel = std::make_shared<WildcatChannel>();
-    channel->index = m_bankChannelCounts[bank - 1]++;
-    channel->bank = bank;
-
-    m_channels.push_back(channel);
-
-    return channel;
-}
-
-void WildcatDevice::addChannel(const std::shared_ptr<WildcatChannel>& channel)
-{
-    for (auto &c : m_channels)
-    {
-        if (c->index == channel->index && c->bank == channel->bank)
-        {
-            return;
-        }
-    }
-
-    m_bankChannelCounts[channel->bank - 1]++;
-    m_channels.push_back(channel);
-}
-
-std::shared_ptr<WildcatChannel> WildcatDevice::getChannel(const int index, const int bank, const bool skipCache)
-{
-    const int realIndex = ((bank - 1) * MAX_CHANNELS_PER_BANK) + index;
-
-    if (!skipCache)
-    {
-        // Quick local cache search
-        for (const auto &channel : m_channels)
-        {
-            if (channel->bank == bank && channel->index == index)
-                return channel;
-        }
-    }
-
-    setProgramMode(true).unwrap();
-
-    DeviceResult<WildcatMessage> issueResult = issue(WildcatMessage::channelInfo(realIndex)).wait();
-
-    const WildcatMessage msg = issueResult.unwrap();
-
-    if (issueResult.didFail())
-    {
-        setProgramMode(false).unwrap();
-        return nullptr;
-    }
-
-    // Construct a new channel
-
-    auto channel = std::make_shared<WildcatChannel>(msg);
-    channel->index = index;
-    channel->bank = bank;
-
-    m_channels.push_back(channel);
-
-    setProgramMode(false).unwrap();
-
-    return channel;
-}
-
-std::shared_ptr<WildcatChannel> WildcatDevice::getChannelCache(int index, int bank)
-{
-    for (auto &c : m_channels)
-    {
-        if (c->index == index && c->bank == bank)
-            return c;
-    }
-
-    return nullptr;
-}
-
-WildcatDevice::DeviceResult<WildcatChannel> WildcatDevice::getChannelAsync(const int index, const int bank) const
-{
-    const int realIndex = ((bank - 1) * MAX_CHANNELS_PER_BANK) + index;
-
-    return DeviceResult<WildcatChannel>::future<WildcatMessage>(issue(WildcatMessage::channelInfo(realIndex)), [] (const DeviceResult<WildcatMessage> &v)
-    {
-        // Kinda hacky but calling future on an already async result overrides the previous completion function
-        // Therefor we have to parse the message here
-
-        return DeviceResult<WildcatChannel>::withResult(WildcatChannel(WildcatMessage(v.async.future->getValue())));
+      return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.async.future->getValue()));
     });
 }
 
-bool WildcatDevice::isConnected() const
+WildcatDevice::DeviceResult<WildcatMessage>
+WildcatDevice::issueBlock(const WildcatMessage& msg)
 {
-    return m_driver->isConnected();
+  auto raw = issueAsync(msg.toString());
+
+  if (raw.error.didFail)
+    return DeviceResult<WildcatMessage>::withFailure(raw.error.msg);
+
+  return DeviceResult<WildcatMessage>::withResult(WildcatMessage(raw.result.value()));
 }
 
-void WildcatDevice::updateChannels()
+std::shared_ptr<WildcatChannel>
+WildcatDevice::newChannel(int bank)
 {
-    if (DeviceResult<WildcatMessage> result = setProgramMode(true); result.didFail())
-    {
-        result.unwrap();
-        return;
-    }
+  const auto channel = std::make_shared<WildcatChannel>();
+  channel->index = m_bankChannelCounts[bank - 1]++;
+  channel->bank = bank;
 
-    for (auto &c : m_channels)
-    {
-        issue(c);
-    }
+  m_channels.push_back(channel);
 
-    if (DeviceResult<WildcatMessage> result = setProgramMode(false); result.didFail())
-    {
-        result.unwrap();
-    }
+  return channel;
 }
 
-bool WildcatDevice::handleError(const WildcatIODriver::IOResult& result)
+void
+WildcatDevice::addChannel(const std::shared_ptr<WildcatChannel>& channel)
 {
-    if (result.failed)
+  for (auto& c : m_channels)
+  {
+    if (c->index == channel->index && c->bank == channel->bank)
     {
-        QMessageBox::warning(nullptr, "Wildcat", result.message.data());
+      return;
     }
+  }
 
-    return result.failed;
+  m_bankChannelCounts[channel->bank - 1]++;
+  m_channels.push_back(channel);
 }
 
-WildcatDevice::DeviceResult<std::string> WildcatDevice::issueAsync(const std::string& buffer)
+std::shared_ptr<WildcatChannel>
+WildcatDevice::getChannel(const int index, const int bank, const bool skipCache)
 {
-    std::lock_guard lock(m_deviceLock);
+  const int realIndex = ((bank - 1) * MAX_CHANNELS_PER_BANK) + index;
 
-    if (const WildcatIODriver::IOResult writeResult = m_driver->writeToDevice(buffer + "\r"); writeResult.failed) return DeviceResult<std::string>::fromIOResult(writeResult);
+  if (!skipCache)
+  {
+    // Quick local cache search
+    for (const auto& channel : m_channels)
+    {
+      if (channel->bank == bank && channel->index == index)
+        return channel;
+    }
+  }
 
-    deviceStatusChanged(isConnected());
+  setProgramMode(true).unwrap();
 
-    // We need to keep the IOResult for the command response
-    const WildcatIODriver::IOResult readResult = m_driver->readFromDevice();
+  DeviceResult<WildcatMessage> issueResult = issue(WildcatMessage::channelInfo(realIndex)).wait();
 
-    deviceStatusChanged(isConnected());
+  const WildcatMessage msg = issueResult.unwrap();
 
-    return DeviceResult<std::string>::fromIOResult(readResult);
+  if (issueResult.didFail())
+  {
+    setProgramMode(false).unwrap();
+    return nullptr;
+  }
+
+  // Construct a new channel
+
+  auto channel = std::make_shared<WildcatChannel>(msg);
+  channel->index = index;
+  channel->bank = bank;
+
+  m_channels.push_back(channel);
+
+  setProgramMode(false).unwrap();
+
+  return channel;
+}
+
+std::shared_ptr<WildcatChannel>
+WildcatDevice::getChannelCache(int index, int bank)
+{
+  for (auto& c : m_channels)
+  {
+    if (c->index == index && c->bank == bank)
+      return c;
+  }
+
+  return nullptr;
+}
+
+WildcatDevice::DeviceResult<WildcatChannel>
+WildcatDevice::getChannelAsync(const int index, const int bank) const
+{
+  const int realIndex = ((bank - 1) * MAX_CHANNELS_PER_BANK) + index;
+
+  return DeviceResult<WildcatChannel>::future<WildcatMessage>(
+    issue(WildcatMessage::channelInfo(realIndex)),
+    [](const DeviceResult<WildcatMessage>& v)
+    {
+      // Kinda hacky but calling future on an already async result overrides the previous completion function
+      // Therefor we have to parse the message here
+
+      return DeviceResult<WildcatChannel>::withResult(WildcatChannel(WildcatMessage(v.async.future->getValue())));
+    });
+}
+
+bool
+WildcatDevice::isConnected() const
+{
+  return m_driver->isConnected();
+}
+
+void
+WildcatDevice::updateChannels()
+{
+  if (DeviceResult<WildcatMessage> result = setProgramMode(true); result.didFail())
+  {
+    result.unwrap();
+    return;
+  }
+
+  for (auto& c : m_channels)
+  {
+    issue(c);
+  }
+
+  if (DeviceResult<WildcatMessage> result = setProgramMode(false); result.didFail())
+  {
+    result.unwrap();
+  }
+}
+
+bool
+WildcatDevice::handleError(const WildcatIODriver::IOResult& result)
+{
+  if (result.failed)
+  {
+    QMessageBox::warning(nullptr, "Wildcat", result.message.data());
+  }
+
+  return result.failed;
+}
+
+WildcatDevice::DeviceResult<std::string>
+WildcatDevice::issueAsync(const std::string& buffer)
+{
+  std::lock_guard lock(m_deviceLock);
+
+  if (const WildcatIODriver::IOResult writeResult = m_driver->writeToDevice(buffer + "\r"); writeResult.failed)
+    return DeviceResult<std::string>::fromIOResult(writeResult);
+
+  deviceStatusChanged(isConnected());
+
+  // We need to keep the IOResult for the command response
+  const WildcatIODriver::IOResult readResult = m_driver->readFromDevice();
+
+  deviceStatusChanged(isConnected());
+
+  return DeviceResult<std::string>::fromIOResult(readResult);
 }

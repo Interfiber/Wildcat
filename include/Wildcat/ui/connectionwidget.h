@@ -2,8 +2,8 @@
 // Created by hstasonis on 12/26/25.
 //
 
-#include <qboxlayout.h>
 #include <QLabel>
+#include <qboxlayout.h>
 #include <qwidget.h>
 
 /**

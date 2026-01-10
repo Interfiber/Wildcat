@@ -5,12 +5,13 @@
 #include "Wildcat/driver/environ.h"
 #include <unistd.h>
 
-void WildcatElevatable::elevate(WildcatElevatable* pElevatable)
+void
+WildcatElevatable::elevate(WildcatElevatable* pElevatable)
 {
-    if (getuid() != 0)
-    {
-        return pElevatable->onElevationFailure();
-    }
+  if (getuid() != 0)
+  {
+    return pElevatable->onElevationFailure();
+  }
 
-    return pElevatable->onElevationComplete();
+  return pElevatable->onElevationComplete();
 }

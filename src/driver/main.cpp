@@ -5,7 +5,8 @@
 #include "Wildcat/driver/driver.h"
 #include "Wildcat/driver/environ.h"
 
-int main(int argc, char **argv)
+int
+main(int argc, char** argv)
 {
-    WildcatElevatable::elevate(new WildcatDriver());
+  WildcatElevatable::elevate(new WildcatDriver());
 }

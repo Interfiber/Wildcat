@@ -2,251 +2,265 @@
 // Created by hstasonis on 12/26/25.
 //
 
+#include <Wildcat/fs/archive.h> // For Helper_Split
+#include <Wildcat/io/message.h>
 #include <sstream>
 #include <stdexcept>
-#include <Wildcat/io/message.h>
-#include <Wildcat/fs/archive.h> // For Helper_Split
 
 WildcatMessage::WildcatMessage(const MessageType type, const std::vector<std::string>& parameters)
 {
-    m_type = type;
-    m_parameters = parameters;
+  m_type = type;
+  m_parameters = parameters;
 }
 
 WildcatMessage::WildcatMessage(const std::string& message)
 {
-    std::vector<std::string> split = Helper_Split(message, ',');
-    if (split.empty())
-    {
-        printf("Message must have at least the message type! Skipping parse...");
-        return;
-    }
+  std::vector<std::string> split = Helper_Split(message, ',');
+  if (split.empty())
+  {
+    printf("Message must have at least the message type! Skipping parse...");
+    return;
+  }
 
-    m_type = messageTypeFromString(split[0]);
+  m_type = messageTypeFromString(split[0]);
 
-    // Collect the rest of the parameters
-    for (int i = 1; i < split.size(); i++)
-    {
-        m_parameters.push_back(split[i]);
-    }
+  // Collect the rest of the parameters
+  for (int i = 1; i < split.size(); i++)
+  {
+    m_parameters.push_back(split[i]);
+  }
 }
 
-WildcatMessage WildcatMessage::model()
+WildcatMessage
+WildcatMessage::model()
 {
-    return { MessageType::GetModelInfo, {} };
+  return { MessageType::GetModelInfo, {} };
 }
 
-WildcatMessage WildcatMessage::firmware()
+WildcatMessage
+WildcatMessage::firmware()
 {
-    return { MessageType::GetFirmwareInfo, {} };
+  return { MessageType::GetFirmwareInfo, {} };
 }
 
-WildcatMessage WildcatMessage::channelInfo()
+WildcatMessage
+WildcatMessage::channelInfo()
 {
-    return { MessageType::SetChannelInfo, {} };
+  return { MessageType::SetChannelInfo, {} };
 }
 
-WildcatMessage WildcatMessage::channelInfo(const int index)
+WildcatMessage
+WildcatMessage::channelInfo(const int index)
 {
-    return { MessageType::SetChannelInfo, {std::to_string(index)} };
+  return { MessageType::SetChannelInfo, { std::to_string(index) } };
 }
 
-WildcatMessage WildcatMessage::setProgramMode(const bool enabled)
+WildcatMessage
+WildcatMessage::setProgramMode(const bool enabled)
 {
-    if (enabled)
-        return { MessageType::EnterProgramMode, {} };
+  if (enabled)
+    return { MessageType::EnterProgramMode, {} };
 
-    return { MessageType::ExitProgramMode, {} };
+  return { MessageType::ExitProgramMode, {} };
 }
 
-WildcatMessage WildcatMessage::clearMemory()
+WildcatMessage
+WildcatMessage::clearMemory()
 {
-    return { MessageType::ClearMemory, {} };
+  return { MessageType::ClearMemory, {} };
 }
 
-WildcatMessage WildcatMessage::deleteChannel(const int index) {
-    return { MessageType::DeleteChannel, { std::to_string(index) } };
-}
-
-std::string WildcatMessage::messageToString(const MessageType type)
+WildcatMessage
+WildcatMessage::deleteChannel(const int index)
 {
-    switch (type) {
-    case MessageType::EnterProgramMode:
-        return "PRG";
-    case MessageType::ExitProgramMode:
-        return "EPG";
-    case MessageType::GetModelInfo:
-        return "MDL";
-    case MessageType::GetFirmwareInfo:
-        return "VER";
-    case MessageType::SetBacklight:
-        return "BLT";
-    case MessageType::SetBatteryInfo:
-        return "BSV";
-    case MessageType::ClearMemory:
-        return "CLR";
-    case MessageType::SetBandPlan:
-        return "BPL";
-    case MessageType::SetKeyBeep:
-        return "KBP";
-    case MessageType::SetPriorityMode:
-        return "PRI";
-    case MessageType::SetSCANChannelGroup:
-        return "SCG";
-    case MessageType::DeleteChannel:
-        return "DCH";
-    case MessageType::SetChannelInfo:
-        return "CIN";
-    case MessageType::SetCloseCallSearchSettings:
-        return "SCO";
-    case MessageType::SetGlobalLockoutFreq:
-        return "GLF";
-    case MessageType::UnlockGlobalLO:
-        return "ULF";
-    case MessageType::LockoutFrequency:
-        return "LOF";
-    case MessageType::SetCloseCallSettings:
-        return "CLC";
-    case MessageType::SetServiceSettings:
-        return "SSG";
-    case MessageType::SetCustomSearchGroup:
-        return "CSG";
-    case MessageType::SetCustomSearchSettings:
-        return "CSP";
-    case MessageType::SetLCDContrastSettings:
-        return "WXS";
-    case MessageType::SetWeatherSettings:
-        return "CNT";
-    case MessageType::SetVolumeLevel:
-        return "VOL";
-    case MessageType::SetSquelchLevelSettings:
-        return "SQL";
-    }
-
-    throw std::runtime_error("Invalid message type encountered during conversion");
+  return { MessageType::DeleteChannel, { std::to_string(index) } };
 }
 
-MessageType WildcatMessage::messageTypeFromString(const std::string& message)
+std::string
+WildcatMessage::messageToString(const MessageType type)
 {
-    if (message == "PRG")
-    {
-        return MessageType::EnterProgramMode;
-    } else if (message == "EPG")
-    {
-        return MessageType::ExitProgramMode;
-    }
-    else if (message == "MDL")
-    {
-        return MessageType::GetModelInfo;
-    }
-    else if (message == "VER")
-    {
-        return MessageType::GetFirmwareInfo;
-    }
-    else if (message == "BSV")
-    {
-        return MessageType::SetBatteryInfo;
-    }
-    else if (message == "CLR")
-    {
-        return MessageType::ClearMemory;
-    }
-    else if (message == "BPL")
-    {
-        return MessageType::SetBandPlan;
-    }
-    else if (message == "KBP")
-    {
-        return MessageType::SetKeyBeep;
-    }
-    else if (message == "PRI")
-    {
-        return MessageType::SetPriorityMode;
-    }
-    else if (message == "SCG")
-    {
-        return MessageType::SetSCANChannelGroup;
-    }
-    else if (message == "DCH")
-    {
-        return MessageType::DeleteChannel;
-    }
-    else if (message == "CIN")
-    {
-        return MessageType::SetChannelInfo;
-    }
-    else if (message == "SCO")
-    {
-        return MessageType::SetCloseCallSearchSettings;
-    }
-    else if (message == "GLF")
-    {
-        return MessageType::SetGlobalLockoutFreq;
-    }
-    else if (message == "ULF")
-    {
-        return MessageType::UnlockGlobalLO;
-    }
-    else if (message == "LOF")
-    {
-        return MessageType::LockoutFrequency;
-    }
-    else if (message == "CLC")
-    {
-        return MessageType::SetCloseCallSettings;
-    }
-    else if (message == "SSG")
-    {
-        return MessageType::SetCustomSearchGroup;
-    }
-    else if (message == "CSG")
-    {
-        return MessageType::SetCustomSearchSettings;
-    }
-    else if (message == "CSP")
-    {
-        return MessageType::SetLCDContrastSettings;
-    }
-    else if (message == "WXS")
-    {
-        return MessageType::SetWeatherSettings;
-    }
-    else if (message == "CNT")
-    {
-        return MessageType::SetLCDContrastSettings;
-    }
-    else if (message == "VOL")
-    {
-        return MessageType::SetVolumeLevel;
-    }
-    else if (message == "SQL")
-    {
-        return MessageType::SetSquelchLevelSettings;
-    }
+  switch (type)
+  {
+  case MessageType::EnterProgramMode:
+    return "PRG";
+  case MessageType::ExitProgramMode:
+    return "EPG";
+  case MessageType::GetModelInfo:
+    return "MDL";
+  case MessageType::GetFirmwareInfo:
+    return "VER";
+  case MessageType::SetBacklight:
+    return "BLT";
+  case MessageType::SetBatteryInfo:
+    return "BSV";
+  case MessageType::ClearMemory:
+    return "CLR";
+  case MessageType::SetBandPlan:
+    return "BPL";
+  case MessageType::SetKeyBeep:
+    return "KBP";
+  case MessageType::SetPriorityMode:
+    return "PRI";
+  case MessageType::SetSCANChannelGroup:
+    return "SCG";
+  case MessageType::DeleteChannel:
+    return "DCH";
+  case MessageType::SetChannelInfo:
+    return "CIN";
+  case MessageType::SetCloseCallSearchSettings:
+    return "SCO";
+  case MessageType::SetGlobalLockoutFreq:
+    return "GLF";
+  case MessageType::UnlockGlobalLO:
+    return "ULF";
+  case MessageType::LockoutFrequency:
+    return "LOF";
+  case MessageType::SetCloseCallSettings:
+    return "CLC";
+  case MessageType::SetServiceSettings:
+    return "SSG";
+  case MessageType::SetCustomSearchGroup:
+    return "CSG";
+  case MessageType::SetCustomSearchSettings:
+    return "CSP";
+  case MessageType::SetLCDContrastSettings:
+    return "WXS";
+  case MessageType::SetWeatherSettings:
+    return "CNT";
+  case MessageType::SetVolumeLevel:
+    return "VOL";
+  case MessageType::SetSquelchLevelSettings:
+    return "SQL";
+  }
 
-    throw std::runtime_error("Invalid message type '" + message + "' found during parsing!");
+  throw std::runtime_error("Invalid message type encountered during conversion");
 }
 
-std::string WildcatMessage::toString() const
+MessageType
+WildcatMessage::messageTypeFromString(const std::string& message)
 {
-    std::string msg = messageToString(m_type);
+  if (message == "PRG")
+  {
+    return MessageType::EnterProgramMode;
+  }
+  else if (message == "EPG")
+  {
+    return MessageType::ExitProgramMode;
+  }
+  else if (message == "MDL")
+  {
+    return MessageType::GetModelInfo;
+  }
+  else if (message == "VER")
+  {
+    return MessageType::GetFirmwareInfo;
+  }
+  else if (message == "BSV")
+  {
+    return MessageType::SetBatteryInfo;
+  }
+  else if (message == "CLR")
+  {
+    return MessageType::ClearMemory;
+  }
+  else if (message == "BPL")
+  {
+    return MessageType::SetBandPlan;
+  }
+  else if (message == "KBP")
+  {
+    return MessageType::SetKeyBeep;
+  }
+  else if (message == "PRI")
+  {
+    return MessageType::SetPriorityMode;
+  }
+  else if (message == "SCG")
+  {
+    return MessageType::SetSCANChannelGroup;
+  }
+  else if (message == "DCH")
+  {
+    return MessageType::DeleteChannel;
+  }
+  else if (message == "CIN")
+  {
+    return MessageType::SetChannelInfo;
+  }
+  else if (message == "SCO")
+  {
+    return MessageType::SetCloseCallSearchSettings;
+  }
+  else if (message == "GLF")
+  {
+    return MessageType::SetGlobalLockoutFreq;
+  }
+  else if (message == "ULF")
+  {
+    return MessageType::UnlockGlobalLO;
+  }
+  else if (message == "LOF")
+  {
+    return MessageType::LockoutFrequency;
+  }
+  else if (message == "CLC")
+  {
+    return MessageType::SetCloseCallSettings;
+  }
+  else if (message == "SSG")
+  {
+    return MessageType::SetCustomSearchGroup;
+  }
+  else if (message == "CSG")
+  {
+    return MessageType::SetCustomSearchSettings;
+  }
+  else if (message == "CSP")
+  {
+    return MessageType::SetLCDContrastSettings;
+  }
+  else if (message == "WXS")
+  {
+    return MessageType::SetWeatherSettings;
+  }
+  else if (message == "CNT")
+  {
+    return MessageType::SetLCDContrastSettings;
+  }
+  else if (message == "VOL")
+  {
+    return MessageType::SetVolumeLevel;
+  }
+  else if (message == "SQL")
+  {
+    return MessageType::SetSquelchLevelSettings;
+  }
 
-    if (!m_parameters.empty())
-        msg += ",";
-
-    // Add comma separated parameters
-    for (int i = 0; i < m_parameters.size(); i++)
-    {
-        msg += m_parameters.at(i);
-
-        if (i != m_parameters.size() - 1)
-            msg += ",";
-    }
-
-    return msg;
+  throw std::runtime_error("Invalid message type '" + message + "' found during parsing!");
 }
 
-void WildcatMessage::setParameters(const std::vector<std::string>& parameters)
+std::string
+WildcatMessage::toString() const
 {
-    this->m_parameters = parameters;
+  std::string msg = messageToString(m_type);
+
+  if (!m_parameters.empty())
+    msg += ",";
+
+  // Add comma separated parameters
+  for (int i = 0; i < m_parameters.size(); i++)
+  {
+    msg += m_parameters.at(i);
+
+    if (i != m_parameters.size() - 1)
+      msg += ",";
+  }
+
+  return msg;
+}
+
+void
+WildcatMessage::setParameters(const std::vector<std::string>& parameters)
+{
+  this->m_parameters = parameters;
 }

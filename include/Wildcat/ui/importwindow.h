@@ -6,8 +6,8 @@
 #include <QDialog>
 #include <QLabel>
 #include <QRadioButton>
-#include <QVBoxLayout>
 #include <QTextEdit>
+#include <QVBoxLayout>
 
 class ChannelsWidget;
 
@@ -16,47 +16,47 @@ class ChannelsWidget;
  */
 class ImportWindow : public QDialog
 {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    ImportWindow();
+  ImportWindow();
 
-    enum class ImportMode
-    {
-        PastedTable,
-        CSV
-    };
+  enum class ImportMode
+  {
+    PastedTable,
+    CSV
+  };
 
 public slots:
-    /**
-     * Open the ImportWindow dialog if the pasted text is in a supported import format
-     * @param channelsWidget If not `nullptr` we will add all the new channels to this widget
-     */
-    void openFromPaste(ChannelsWidget *channelsWidget);
+  /**
+   * Open the ImportWindow dialog if the pasted text is in a supported import format
+   * @param channelsWidget If not `nullptr` we will add all the new channels to this widget
+   */
+  void openFromPaste(ChannelsWidget* channelsWidget);
 
 private:
-    QVBoxLayout* m_layout;
+  QVBoxLayout* m_layout;
 
-    /// @brief How-to info at the top of the screen
-    QLabel* m_information;
+  /// @brief How-to info at the top of the screen
+  QLabel* m_information;
 
-    QLabel* m_noFormatsError;
+  QLabel* m_noFormatsError;
 
-    // @brief  Seperator between the information and mode buttons
-    QFrame* m_seperatorLine;
+  // @brief  Seperator between the information and mode buttons
+  QFrame* m_seperatorLine;
 
-    /// @brief  Input data field
-    QTextEdit* m_importDataEdit;
+  /// @brief  Input data field
+  QTextEdit* m_importDataEdit;
 
-    // Import modes
+  // Import modes
 
-    QHBoxLayout* m_modeButtonLayout;
+  QHBoxLayout* m_modeButtonLayout;
 
-    std::vector<QRadioButton*> m_radioButtons;
+  std::vector<QRadioButton*> m_radioButtons;
 
-    // Import and cancel buttons
+  // Import and cancel buttons
 
-    QHBoxLayout *m_bottomButtonLayout;
+  QHBoxLayout* m_bottomButtonLayout;
 
-    QPushButton* m_importButton;
-    QPushButton* m_cancelButton;
+  QPushButton* m_importButton;
+  QPushButton* m_cancelButton;
 };

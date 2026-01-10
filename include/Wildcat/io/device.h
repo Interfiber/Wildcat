@@ -1,18 +1,18 @@
 #pragma once
+#include <QCoreApplication>
+#include <QMessageBox>
+#include <QObject>
+#include <QThread>
 #include <filesystem>
 #include <future>
 #include <mutex>
-#include <QObject>
 #include <thread>
-#include <QMessageBox>
-#include <QThread>
-#include <QCoreApplication>
 
 #include <Wildcat/global.h>
 
-#include "iodriver.h"
-#include "basicfuture.h"
 #include "Wildcat/ui/mainwindow.h"
+#include "basicfuture.h"
+#include "iodriver.h"
 
 class SimpleFuture;
 class WildcatIOThread;
@@ -28,14 +28,14 @@ class WildcatDevice;
 class WildcatDeviceCommandable
 {
 public:
-    WildcatDeviceCommandable() = default;
-    virtual ~WildcatDeviceCommandable() = default;
+  WildcatDeviceCommandable() = default;
+  virtual ~WildcatDeviceCommandable() = default;
 
-    /**
-     * Write commands for this class to `device`
-     * @param device Device to write the commands too
-     */
-    virtual void writeToDevice(WildcatDevice *device) = 0;
+  /**
+   * Write commands for this class to `device`
+   * @param device Device to write the commands too
+   */
+  virtual void writeToDevice(WildcatDevice* device) = 0;
 };
 
 /**
@@ -44,271 +44,277 @@ public:
  */
 class WildcatDevice : public QObject
 {
-    Q_OBJECT
+  Q_OBJECT
 public:
-    explicit WildcatDevice(const std::string &deviceName);
+  explicit WildcatDevice(const std::string& deviceName);
 
-    /// @brief  Return a list of connectable devices
-    static std::vector<std::string> getConnectableDevices();
+  /// @brief  Return a list of connectable devices
+  static std::vector<std::string> getConnectableDevices();
 
-    static constexpr int MAX_BANKS = 10;
-    static constexpr int MAX_CHANNELS_PER_BANK = 50;
+  static constexpr int MAX_BANKS = 10;
+  static constexpr int MAX_CHANNELS_PER_BANK = 50;
 
-    static constexpr int MAX_CHANNELS = MAX_BANKS * MAX_CHANNELS_PER_BANK;
+  static constexpr int MAX_CHANNELS = MAX_BANKS * MAX_CHANNELS_PER_BANK;
 
-    /// @brief  IO speed for the scanner
-    static constexpr int SPEED = 115200;
+  /// @brief  IO speed for the scanner
+  static constexpr int SPEED = 115200;
 
-    /// @brief  Device information
-    struct Info
+  /// @brief  Device information
+  struct Info
+  {
+    /// @brief  Device model name
+    std::string model;
+
+    /// @brief Firmware version
+    std::string firmware;
+  };
+
+  template <typename T>
+  struct DeviceResult
+  {
+    static DeviceResult<T>
+    withResult(const T& result)
     {
-        /// @brief  Device model name
-        std::string model;
+      DeviceResult<T> res;
+      res.result = result;
 
-        /// @brief Firmware version
-        std::string firmware;
-    };
+      return res;
+    }
 
-    template<typename T>
-    struct DeviceResult
+    static DeviceResult<T>
+    withFailure(const std::string& msg)
     {
-        static DeviceResult<T> withResult(const T &result)
-        {
-            DeviceResult<T> res;
-            res.result = result;
+      DeviceResult<T> res;
+      res.error.msg = msg;
+      res.error.didFail = true;
 
-            return res;
-        }
+      return res;
+    }
 
-        static DeviceResult<T> withFailure(const std::string &msg)
-        {
-            DeviceResult<T> res;
-            res.error.msg = msg;
-            res.error.didFail = true;
+    static DeviceResult<T>
+    fromIOResult(const WildcatIODriver::IOResult& result)
+    {
+      DeviceResult<T> res;
+      res.result = result.message;
+      res.error.didFail = result.failed;
+      res.error.msg = result.failed ? result.message : "";
 
-            return res;
-        }
-
-        static DeviceResult<T> fromIOResult(const WildcatIODriver::IOResult &result)
-        {
-            DeviceResult<T> res;
-            res.result = result.message;
-            res.error.didFail = result.failed;
-            res.error.msg = result.failed ? result.message : "";
-
-            return res;
-        }
-
-        /**
-         * Create a future evaluatable object
-         * @tparam U Old DeviceResult T value
-         * @param waitable Device result to wait upon
-         * @param callback Callback to execute to form the new result upon completion of `waitable` in `unwrap`
-         * @return Waitable DeviceResult<T>
-         */
-        template<typename U>
-        static DeviceResult<T> future(const DeviceResult<U> &waitable, const std::function<DeviceResult<T>(const DeviceResult<U> &raw)> &callback)
-        {
-            DeviceResult<T> res;
-            res.async.isAsync = true;
-            res.async.future = waitable.async.future; // Copy ptr to shared bool
-
-            res.async.transform = [waitable, callback]
-            {
-                return callback(waitable);
-            };
-
-            return res;
-        }
-
-        T unwrap(const std::function<void(std::string)> &callback = nullptr)
-        {
-            if (error.didFail && callback != nullptr)
-            {
-               callback(error.msg);
-            } else if (error.didFail && callback == nullptr)
-            {
-                WildcatGlobalState::get()->showWarning(error.msg);
-
-                return T();
-            }
-
-            if (async.isAsync && async.future->isCompleted() && async.transform != nullptr)
-            {
-                auto value = async.transform();
-                value.async.isAsync = false;
-
-                return value.unwrap(callback);
-            }
-
-            return result.value();
-        }
-
-        [[nodiscard]] bool didFail() const
-        {
-            return error.didFail;
-        }
-
-        /// @brief  Wait until completion if this is an async result
-        DeviceResult<T> wait() const
-        {
-            if (!async.isAsync) return *this;
-
-            while (!async.future->isCompleted())
-            {
-            }
-
-            return *this;
-        }
-
-        /// @brief  Result of the function, empty if an error occurred
-        std::optional<T> result;
-
-        struct {
-            /// @brief  Error message
-            std::string msg;
-
-            /// @brief  Did this function fail?
-            bool didFail = false;
-        } error;
-
-        struct
-        {
-            /// @brief  Will this result be returned async?
-            bool isAsync = false;
-
-            /// @brief  Set to true on completion
-            std::shared_ptr<SimpleFuture> future = nullptr;
-
-            /// @brief  Transform callback called upon the completion of result
-            std::function<DeviceResult<T>()> transform = nullptr;
-        } async;
-    };
+      return res;
+    }
 
     /**
-     * Reconnect to the serial device
+     * Create a future evaluatable object
+     * @tparam U Old DeviceResult T value
+     * @param waitable Device result to wait upon
+     * @param callback Callback to execute to form the new result upon completion of `waitable` in `unwrap`
+     * @return Waitable DeviceResult<T>
      */
-    void reconnect();
+    template <typename U>
+    static DeviceResult<T>
+    future(const DeviceResult<U>& waitable, const std::function<DeviceResult<T>(const DeviceResult<U>& raw)>& callback)
+    {
+      DeviceResult<T> res;
+      res.async.isAsync = true;
+      res.async.future = waitable.async.future; // Copy ptr to shared bool
 
-    /**
-     * Issue commands to this device
-     * @param command Command to issue
-     */
-    void issue(const std::shared_ptr<WildcatDeviceCommandable> &command);
+      res.async.transform = [waitable, callback] { return callback(waitable); };
 
-    /**
-     * Enter and exit program mode (required for writing channels)
-     */
-    DeviceResult<WildcatMessage> setProgramMode(bool enabled);
+      return res;
+    }
 
-    /**
-     * Clear the device memory
-     */
-    void clearMemory();
+    T
+    unwrap(const std::function<void(std::string)>& callback = nullptr)
+    {
+      if (error.didFail && callback != nullptr)
+      {
+        callback(error.msg);
+      }
+      else if (error.didFail && callback == nullptr)
+      {
+        WildcatGlobalState::get()->showWarning(error.msg);
 
-    /**
-     * Query device information
-     * @return Device information
-     */
-    [[nodiscard]] Info getInfo();
+        return T();
+      }
 
-    /**
-     * Issue a raw command to the device
-     * @param command Command to issue to the device
-     * @return Next response from the device
-     */
-    [[nodiscard]] DeviceResult<std::string> issue(const std::string& command) const;
+      if (async.isAsync && async.future->isCompleted() && async.transform != nullptr)
+      {
+        auto value = async.transform();
+        value.async.isAsync = false;
 
-    /**
-     * Issue a prepared command to the device
-     * @param msg Message to issue
-     * @return Next response from the device
-     */
-    DeviceResult<WildcatMessage> issue(const WildcatMessage &msg) const;
+        return value.unwrap(callback);
+      }
 
-    /**
-     * Issue a command to the device (blocking)
-     * @param msg Command to issue to the device
-     * @return Next response from the device
-     */
-    DeviceResult<WildcatMessage> issueBlock(const WildcatMessage &msg);
+      return result.value();
+    }
 
-    /**
-     * Return a newly created channel
-     * @note This channel will only exist locally until written
-     */
-    [[nodiscard]] std::shared_ptr<WildcatChannel> newChannel(int bank = 1);
+    [[nodiscard]] bool
+    didFail() const
+    {
+      return error.didFail;
+    }
 
-    /**
-     * Add a new channel to this device
-     * @param channel Channel to add
-     */
-    void addChannel(const std::shared_ptr<WildcatChannel> &channel);
+    /// @brief  Wait until completion if this is an async result
+    DeviceResult<T>
+    wait() const
+    {
+      if (!async.isAsync)
+        return *this;
 
-    /**
-     * Get a channel by location from the local cache or from the scanner
-     * @param index Index of the channel within `bank`, one indexed
-     * @param bank Bank to find the channel in, one indexed
-     * @param skipCache When enabled this function will not check the local cache for the channel
-     * @return Pointer to the channel, nullptr if none was found
-     */
-    [[nodiscard]] std::shared_ptr<WildcatChannel> getChannel(int index, int bank, bool skipCache = false);
+      while (!async.future->isCompleted())
+      {
+      }
 
-    /**
-     * Get a channel by location from the local cache
-     * @param index Index of the channel within `bank`, one indexed
-     * @param bank Bank to find the channel in, one indexed
-     * @return Pointer to the channel, nullptr if none was found
-     */
-    [[nodiscard]] std::shared_ptr<WildcatChannel> getChannelCache(int index, int bank);
+      return *this;
+    }
 
-    /**
-     *
-     * @param index Index of the channel within `bank`
-     * @param bank Bank to find the channel in
-     * @note Program mode must be enabled before this call
-     * @return Future DeviceResult for the channel
-     */
-    [[nodiscard]] DeviceResult<WildcatChannel> getChannelAsync(int index, int bank) const;
+    /// @brief  Result of the function, empty if an error occurred
+    std::optional<T> result;
 
-    /**
-     * Check if this device is connected
-     */
-    [[nodiscard]] bool isConnected() const;
+    struct
+    {
+      /// @brief  Error message
+      std::string msg;
+
+      /// @brief  Did this function fail?
+      bool didFail = false;
+    } error;
+
+    struct
+    {
+      /// @brief  Will this result be returned async?
+      bool isAsync = false;
+
+      /// @brief  Set to true on completion
+      std::shared_ptr<SimpleFuture> future = nullptr;
+
+      /// @brief  Transform callback called upon the completion of result
+      std::function<DeviceResult<T>()> transform = nullptr;
+    } async;
+  };
+
+  /**
+   * Reconnect to the serial device
+   */
+  void reconnect();
+
+  /**
+   * Issue commands to this device
+   * @param command Command to issue
+   */
+  void issue(const std::shared_ptr<WildcatDeviceCommandable>& command);
+
+  /**
+   * Enter and exit program mode (required for writing channels)
+   */
+  DeviceResult<WildcatMessage> setProgramMode(bool enabled);
+
+  /**
+   * Clear the device memory
+   */
+  void clearMemory();
+
+  /**
+   * Query device information
+   * @return Device information
+   */
+  [[nodiscard]] Info getInfo();
+
+  /**
+   * Issue a raw command to the device
+   * @param command Command to issue to the device
+   * @return Next response from the device
+   */
+  [[nodiscard]] DeviceResult<std::string> issue(const std::string& command) const;
+
+  /**
+   * Issue a prepared command to the device
+   * @param msg Message to issue
+   * @return Next response from the device
+   */
+  DeviceResult<WildcatMessage> issue(const WildcatMessage& msg) const;
+
+  /**
+   * Issue a command to the device (blocking)
+   * @param msg Command to issue to the device
+   * @return Next response from the device
+   */
+  DeviceResult<WildcatMessage> issueBlock(const WildcatMessage& msg);
+
+  /**
+   * Return a newly created channel
+   * @note This channel will only exist locally until written
+   */
+  [[nodiscard]] std::shared_ptr<WildcatChannel> newChannel(int bank = 1);
+
+  /**
+   * Add a new channel to this device
+   * @param channel Channel to add
+   */
+  void addChannel(const std::shared_ptr<WildcatChannel>& channel);
+
+  /**
+   * Get a channel by location from the local cache or from the scanner
+   * @param index Index of the channel within `bank`, one indexed
+   * @param bank Bank to find the channel in, one indexed
+   * @param skipCache When enabled this function will not check the local cache for the channel
+   * @return Pointer to the channel, nullptr if none was found
+   */
+  [[nodiscard]] std::shared_ptr<WildcatChannel> getChannel(int index, int bank, bool skipCache = false);
+
+  /**
+   * Get a channel by location from the local cache
+   * @param index Index of the channel within `bank`, one indexed
+   * @param bank Bank to find the channel in, one indexed
+   * @return Pointer to the channel, nullptr if none was found
+   */
+  [[nodiscard]] std::shared_ptr<WildcatChannel> getChannelCache(int index, int bank);
+
+  /**
+   *
+   * @param index Index of the channel within `bank`
+   * @param bank Bank to find the channel in
+   * @note Program mode must be enabled before this call
+   * @return Future DeviceResult for the channel
+   */
+  [[nodiscard]] DeviceResult<WildcatChannel> getChannelAsync(int index, int bank) const;
+
+  /**
+   * Check if this device is connected
+   */
+  [[nodiscard]] bool isConnected() const;
 
 public slots:
-    /**
-     * Update all registered channels
-     */
-    void updateChannels();
+  /**
+   * Update all registered channels
+   */
+  void updateChannels();
 
 signals:
-    void deviceStatusChanged(bool connected);
-    void deviceErased();
+  void deviceStatusChanged(bool connected);
+  void deviceErased();
 
 private:
+  std::mutex m_deviceLock;
 
-    std::mutex m_deviceLock;
+  bool handleError(const WildcatIODriver::IOResult& result);
 
-    bool handleError(const WildcatIODriver::IOResult &result);
+  std::shared_ptr<WildcatIODriver> m_driver;
 
-    std::shared_ptr<WildcatIODriver> m_driver;
+  std::vector<int> m_bankChannelCounts;
 
-    std::vector<int> m_bankChannelCounts;
+  /// @brief  Local channels which can be written to the device on demand
+  std::vector<std::shared_ptr<WildcatChannel> > m_channels;
 
-    /// @brief  Local channels which can be written to the device on demand
-    std::vector<std::shared_ptr<WildcatChannel>> m_channels;
+  std::shared_ptr<WildcatIOThread> m_ioThread;
 
-    std::shared_ptr<WildcatIOThread> m_ioThread;
+  std::string m_name;
 
-    std::string m_name;
+  /**
+   * Actual blocking function called by the IO thread to perform IO operations
+   * @param buffer Buffer to write to the scanner
+   * @return Result of the operation
+   */
+  DeviceResult<std::string> issueAsync(const std::string& buffer);
 
-    /**
-     * Actual blocking function called by the IO thread to perform IO operations
-     * @param buffer Buffer to write to the scanner
-     * @return Result of the operation
-     */
-    DeviceResult<std::string> issueAsync(const std::string &buffer);
-
-    friend class WildcatIOThread;
+  friend class WildcatIOThread;
 };

@@ -4,7 +4,8 @@
 
 #include <Wildcat/io/ctcss.h>
 
-QStringList Wildcat_GetCTCSSCodes()
+QStringList
+Wildcat_GetCTCSSCodes()
 {
   QStringList result;
 
@@ -12,12 +13,12 @@ QStringList Wildcat_GetCTCSSCodes()
   result.push_back("Search"); // 127
   result.push_back("No tone"); // 240
 
-  for (const std::string &code : CTCSS_CODES)
+  for (const std::string& code : CTCSS_CODES)
   {
     result.push_back(QString::fromStdString("CTCSS " + code));
   }
 
-  for (const int &code : DCS_CODES)
+  for (const int& code : DCS_CODES)
   {
     result.push_back(QString::fromStdString("DCS " + std::to_string(code)));
   }
