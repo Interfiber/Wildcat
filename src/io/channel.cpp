@@ -4,6 +4,7 @@
 
 #include <QMessageBox>
 #include <Wildcat/io/channel.h>
+#include <spdlog/spdlog.h>
 
 #include "Wildcat/io/message.h"
 
@@ -75,7 +76,7 @@ WildcatChannel::writeToDevice(WildcatDevice* device)
 
   if (name.empty())
   {
-    printf("Skipping writing channel with ID '%i' to scanner as no name was provided!\n", index);
+    spdlog::warn("Skipping writing channel with ID '{}' to scanner as no name was provided!", index);
     return;
   }
 

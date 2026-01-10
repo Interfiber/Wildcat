@@ -12,6 +12,7 @@
 #include "Wildcat/io/device.h"
 
 #include <Wildcat/fs/archive.h>
+#include <spdlog/spdlog.h>
 #include "Wildcat/io/ctcss.h"
 #include "Wildcat/io/iothread.h"
 #include "Wildcat/ui/mainwindow.h"
@@ -26,7 +27,7 @@ BankLoaderThread::BankLoaderThread(const std::shared_ptr<WildcatDevice>& device,
 void
 BankLoaderThread::run()
 {
-  std::vector<WildcatDevice::DeviceResult<WildcatChannel> > channelResults;
+  std::vector<WildcatDevice::DeviceResult<WildcatChannel>> channelResults;
 
   for (int i = 0; i < WildcatDevice::MAX_CHANNELS_PER_BANK; i++)
   {
@@ -238,8 +239,8 @@ ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel>& precacheChanne
    */
   if (precacheChannel != nullptr && precacheChannel->bank != m_tabWidget->currentIndex() + 1)
   {
-    printf("Precached channel does not belong to the currently selected bank! Expected: %i, got: %i\n",
-           m_tabWidget->currentIndex() + 1, precacheChannel->bank);
+    spdlog::error("Precached channel does not belong to the currently selected bank! Expected: {}, got: {}",
+                  m_tabWidget->currentIndex() + 1, precacheChannel->bank);
     return;
   }
 
@@ -294,7 +295,7 @@ ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel>& precacheChanne
             }
             catch (std::exception& e)
             {
-              printf("Failed to convert input string to frequency (float): %s\n", e.what());
+              spdlog::error("Failed to convert input string to frequency (float): %s", e.what());
             }
           });
 

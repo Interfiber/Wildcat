@@ -6,6 +6,7 @@
 
 #include <QPushButton>
 #include <qicon.h>
+#include <spdlog/spdlog.h>
 
 #include "Wildcat/io/device.h"
 
@@ -39,7 +40,7 @@ DevicePickerDialog::DevicePickerDialog(QWidget* parent) : QDialog(parent)
 
             if (!std::filesystem::exists(path))
             {
-              printf("Device selector: Device path '%s' does not exist\n", path.c_str());
+              spdlog::error("Device selector: Device path '{}' does not exist", path.generic_string());
               return;
             }
 

@@ -4,6 +4,7 @@
 
 #include <QMessageBox>
 #include <Wildcat/io/device.h>
+#include <spdlog/spdlog.h>
 
 #include "Wildcat/io/channel.h"
 #include "Wildcat/io/iothread.h"
@@ -61,7 +62,7 @@ WildcatDevice::reconnect()
   m_driver->releaseDevice();
   handleError(m_driver->connectToDevice(m_name));
 
-  printf("Reconnected to serial device: %s\n", m_name.c_str());
+  spdlog::info("Reconnected to serial device: {}", m_name);
 }
 
 void

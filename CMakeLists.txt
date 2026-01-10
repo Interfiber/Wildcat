@@ -1,7 +1,19 @@
 cmake_minimum_required(VERSION 3.31)
 
-
 project(wildcat2)
+
+# Install CPM (CMake Package Manager)
+
+file(DOWNLOAD
+     https://github.com/cpm-cmake/CPM.cmake/releases/download/v0.42.0/CPM.cmake
+     ${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
+
+include(${CMAKE_CURRENT_BINARY_DIR}/cmake/CPM.cmake)
+
+# Install dependencies (excluded QT due to build time and complexity, instead just depend on the system version)
+
+CPMAddPackage("gh:nlohmann/json@3.12.0")
+CPMAddPackage("gh:gabime/spdlog@1.17.0")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
@@ -65,7 +77,9 @@ add_executable(wildcat2 src/main.cpp src/driver/wrapper.cpp
         include/Wildcat/fs/delimiter.h
         src/fs/delimiter.cpp
         include/Wildcat/fs/pastedsheet.h
-        include/Wildcat/fs/csv.h)
+        include/Wildcat/fs/csv.h
+        include/Wildcat/fs/json.h
+        src/fs/json.cpp)
 
 qt_add_resources(wildcat2 "resources"
     PREFIX "/resources"
@@ -76,14 +90,14 @@ qt_add_resources(wildcat2 "resources"
 # On Windows we have the windows-specific serial IO "driver" which uses Windows COM ports to communicate with the scanner
 
 if (MINGW)
-    add_library(wildcatplatform2 STATIC src/io/iodrivers/win32com.cpp
+  add_library(wildcatplatform2 STATIC src/io/iodrivers/win32com.cpp
         src/io/iodrivers/win32com.cpp)
 else()
-    # Linux platform code
-    add_library(wildcatplatform2 STATIC src/io/iodrivers/unixtty.cpp)
+  # Linux platform code
+  add_library(wildcatplatform2 STATIC src/io/iodrivers/unixtty.cpp)
 
-    add_executable(wildcatdriver2 src/driver/environ.cpp src/driver/main.cpp src/driver/driver.cpp src/driver/utils.cpp)
-    target_include_directories(wildcatdriver2 PUBLIC include)
+  add_executable(wildcatdriver2 src/driver/environ.cpp src/driver/main.cpp src/driver/driver.cpp src/driver/utils.cpp)
+  target_include_directories(wildcatdriver2 PUBLIC include)
 endif()
 
 target_include_directories(wildcat2 PUBLIC include)
@@ -95,6 +109,7 @@ target_link_libraries(wildcatplatform2 PUBLIC
     Qt::Core
     Qt::Gui
     Qt::Widgets
+    spdlog
 )
 
 target_link_libraries(wildcat2
@@ -103,6 +118,8 @@ target_link_libraries(wildcat2
         Qt::Gui
         Qt::Widgets
         wildcatplatform2
+        nlohmann_json::nlohmann_json
+        spdlog
 )
 
 qt_standard_project_setup()
@@ -112,14 +129,14 @@ install(TARGETS wildcat2
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 
 if(LINUX)
-    install(TARGETS wildcatdriver2
+  install(TARGETS wildcatdriver2
         BUNDLE DESTINATION .
         RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR})
 endif()
 
 qt_generate_deploy_app_script(
-        TARGET wildcat2 
-        OUTPUT_SCRIPT deploy_script 
+        TARGET wildcat2
+        OUTPUT_SCRIPT deploy_script
         NO_UNSUPPORTED_PLATFORM_ERROR)
 
 install(SCRIPT ${deploy_script})

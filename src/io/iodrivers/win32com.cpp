@@ -5,6 +5,7 @@
 #include <QDebug>
 #include <Wildcat/io/iodrivers/win32com.h>
 #include <iostream>
+#include <spdlog/spdlog.h>
 #include <thread>
 #include <winbase.h>
 
@@ -86,8 +87,8 @@ WildcatWin32ComDriver::readFromDevice()
     buffer += tmp;
   }
 
-  printf("Win32Com Driver: ReadFile error = %s\n", WildcatUtil_GetLastError().c_str());
-  printf("Win32Com Driver: Read %d bytes from device\n", buffer.size());
+  spdlog::trace("Win32Com Driver: ReadFile error = {}", WildcatUtil_GetLastError());
+  spdlog::trace("Win32Com Driver: Read {} bytes from device", buffer.size());
 
   if (buffer.back() == '\n')
     buffer.pop_back();
@@ -97,14 +98,14 @@ WildcatWin32ComDriver::readFromDevice()
 
   if (buffer.empty())
   {
-    printf("Win32Com Driver: Got empty buffer, trying again for readFromDevice()\n");
+    spdlog::error("Win32Com Driver: Got empty buffer, trying again for readFromDevice()");
 
     std::this_thread::sleep_for(std::chrono::milliseconds(500));
 
     return readFromDevice(); // Try again.
   }
 
-  printf("Win32Com Driver: Read from device: %s\n", buffer.c_str());
+  spdlog::trace("Win32Com Driver: Read from device: {}", buffer);
 
   return WildcatIODriver::IOResult(buffer, false);
 }
@@ -112,7 +113,7 @@ WildcatWin32ComDriver::readFromDevice()
 WildcatIODriver::IOResult
 WildcatWin32ComDriver::writeToDevice(const std::string& buffer)
 {
-  printf("Win32Com Driver: Writing to device: %s", buffer.c_str());
+  spdlog::trace("Win32Com Driver: Writing to device: {}", buffer);
 
   DWORD bytesWritten = 0;
 
@@ -123,7 +124,7 @@ WildcatWin32ComDriver::writeToDevice(const std::string& buffer)
     return WildcatIODriver::IOResult("Failed to write to COM device: " + WildcatUtil_GetLastError(), true);
   }
 
-  printf("Win32Com Driver: Wrote %d bytes to serial device\n", bytesWritten);
+  spdlog::trace("Win32Com Driver: Wrote %d bytes to serial device\n", bytesWritten);
 
   return WildcatIODriver::IOResult("Wrote to COM device", false);
 }
@@ -131,7 +132,7 @@ WildcatWin32ComDriver::writeToDevice(const std::string& buffer)
 WildcatIODriver::IOResult
 WildcatWin32ComDriver::connectToDevice(const std::string& name)
 {
-  printf("Win32Com Driver: Connecting to device at: %s\n", name.c_str());
+  spdlog::debug("Win32Com Driver: Connecting to device at: {}", name);
 
   m_device
     = CreateFileA(("\\\\.\\" + name).c_str(), GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING, 0, nullptr);

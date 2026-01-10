@@ -6,6 +6,7 @@
 #include <QMessageBox>
 #include <cstdlib>
 #include <filesystem>
+#include <spdlog/spdlog.h>
 #include "Wildcat/driver/driver.h"
 
 std::filesystem::path
@@ -43,7 +44,7 @@ Wildcat_RunDriverWrapper()
 {
   const std::filesystem::path driver = Wildcat_FindDriver();
 
-  printf("User driver path: %s\n", driver.c_str());
+  spdlog::info("User driver path: {}", driver.generic_string());
 
   if (std::filesystem::exists(WildcatDriver::COOKIE_PATH))
   {
@@ -61,11 +62,11 @@ Wildcat_RunDriverWrapper()
       return;
     }
 
-    printf("Boot ID from cookie: '%s' does not match current boot ID '%s', rerunning driver\n", cookieBootID.c_str(),
-           cBootID.c_str());
+    spdlog::warn("Boot ID from cookie: '{}' does not match current boot ID '{}', rerunning driver", cookieBootID,
+                 cBootID);
   }
 
-  printf("Requesting process elevation for user driver\n");
+  spdlog::debug("Requesting process elevation for user driver");
 
   if (std::system("which kdesu") == 0)
   {
@@ -88,7 +89,7 @@ Wildcat_RunDriverWrapper()
     std::exit(EXIT_FAILURE);
   }
 
-  printf("User driver failed execution with a non-zero exit code!\n");
+  spdlog::error("User driver failed execution with a non-zero exit code!");
 
   QMessageBox::warning(nullptr, "Wildcat driver (wrapper)",
                        "The user driver exited with a non-zero exit code, check stdout/stderr for more information.");

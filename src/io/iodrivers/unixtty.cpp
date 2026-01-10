@@ -8,6 +8,7 @@
 #include <filesystem>
 #include <grp.h>
 #include <pwd.h>
+#include <spdlog/spdlog.h>
 #include <termios.h>
 #include <unistd.h>
 
@@ -66,7 +67,7 @@ WildcatUnixTTYDriver::connectToDevice(const std::string& name)
     const group* gr = getgrgid(groups[i]);
     if (gr == nullptr)
     {
-      printf("Wildcat UnixTTY driver error in group check: %s", strerror(errno));
+      spdlog::error("Wildcat UnixTTY driver error in group check: {}", strerror(errno));
       continue;
     }
 
@@ -89,7 +90,7 @@ WildcatUnixTTYDriver::connectToDevice(const std::string& name)
   // User has been verified to be within the correct groups, now we can connect
   // to the serial device
 
-  printf("UnixTTY driver connecting to device: %s\n", name.c_str());
+  spdlog::info("UnixTTY driver connecting to device: {}", name);
 
   // Sanity check
   if (!std::filesystem::exists(name))
@@ -121,8 +122,7 @@ WildcatUnixTTYDriver::writeToDevice(const std::string& buffer)
 
   write(m_device, buffer.c_str(), buffer.size());
 
-  printf("UnixTTY driver write to device: %s",
-         buffer.c_str()); // \n included in message
+  spdlog::trace("UnixTTY driver write to device: {}", buffer);
 
   return IOResult("Buffer written to device", false);
 }
@@ -161,7 +161,7 @@ WildcatUnixTTYDriver::readFromDevice()
   if (buffer.back() == '\r')
     buffer.pop_back();
 
-  printf("UnixTTY driver read: %s\n", buffer.c_str());
+  spdlog::trace("UnixTTY driver read: {}", buffer);
 
   return IOResult(buffer, false);
 }
@@ -172,7 +172,7 @@ WildcatUnixTTYDriver::releaseDevice()
   close(m_device);
   m_device = -1; // Reset fd
 
-  printf("UnixTTY driver disconnected from device\n");
+  spdlog::info("UnixTTY driver disconnected from device");
 }
 
 bool

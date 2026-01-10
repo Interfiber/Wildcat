@@ -40,6 +40,17 @@ public:
   virtual void importArchive(const std::string& buffer) = 0;
 
   /**
+   * Export the current application state to this archive
+   * @note Not all archives need to support this and returning an empty string indicates no support
+   * @return String buffer to be written to disk
+   */
+  virtual std::string
+  exportArchive()
+  {
+    return "";
+  }
+
+  /**
    * Return true when `buffer` is this archive type
    */
   virtual bool isValid(const std::string& buffer) = 0;

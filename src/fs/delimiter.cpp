@@ -1,6 +1,7 @@
 #include <Wildcat/fs/delimiter.h>
 
 #include <Wildcat/io/channel.h>
+#include <spdlog/spdlog.h>
 
 
 WildcatDelimiterArchive::WildcatDelimiterArchive(char delimiter) { m_delimiter = delimiter; }
@@ -25,9 +26,7 @@ WildcatDelimiterArchive::importArchive(const std::string& buffer)
 
     if (split.size() != 7)
     {
-      printf(
-        "WildcatPastedSheetArchive::importArchive(...): Skipping line %i, size of %i is not the expected value of 7\n",
-        i, (int)split.size());
+      spdlog::error("Skipping line {}, size of {} is not the expected value of 7", i, (int)split.size());
 
       continue;
     }
@@ -66,12 +65,12 @@ WildcatDelimiterArchive::importArchive(const std::string& buffer)
     // When importing we place all the importer channels in a single bank
     if (newChannel->index > WildcatDevice::MAX_CHANNELS_PER_BANK)
     {
-      printf("Skipping import for channel: %i, too many channels in this bank!\n", newChannel->index);
+      spdlog::warn("Skipping import for channel: {}, too many channels in this bank!", newChannel->index);
 
       continue;
     }
 
-    printf("New channel: %s in bank #%i\n", name.c_str(), newChannel->bank);
+    spdlog::info("New channel: {} in bank #{}", name, newChannel->bank);
 
     WildcatArchiveImporter::get()->channelLoaded(newChannel);
   }
@@ -87,7 +86,7 @@ WildcatDelimiterArchive::isValid(const std::string& buffer)
   // One frequency line
   if (lines.size() < 1)
   {
-    printf("WildcatPastedSheetArchive::isValid(...): Atleast one line required for archive input\n");
+    spdlog::error("Atleast one line required for archive input");
 
     return false;
   }
@@ -96,7 +95,7 @@ WildcatDelimiterArchive::isValid(const std::string& buffer)
 
   if (lineStart == -1)
   {
-    printf("WildcatPastedSheetArchive::isValid(...): getHeaderStartIndex returned -1, archive is not valid!\n");
+    spdlog::error("getHeaderStartIndex returned -1, archive is not valid!");
     return false;
   }
 
@@ -107,13 +106,12 @@ WildcatDelimiterArchive::isValid(const std::string& buffer)
 
     if (lineSplit.size() != 7)
     {
-      printf("WildcatPastedSheetArchive::isValid(...): Line %i only contains %i items, expected 7!\n", lineStart,
-             (int)lineSplit.size());
+      spdlog::error("Line {} only contains {} items, expected 7!", lineStart, (int)lineSplit.size());
 
       return false;
     }
 
-    printf("WildcatPastedSheetArchive::isValid(...): %s\n", line.c_str());
+    spdlog::trace("{} {}", lineStart, line);
   }
 
   // All data-related errors can be handled by the import step
@@ -151,9 +149,9 @@ WildcatDelimiterArchive::getHeaderStartIndex(const std::vector<std::string>& lin
 
         if (assumed != found)
         {
-          printf("WildcatPastedSheetArchive::getHeaderStartIndex(...): Header part %i '%s' is not the expected value "
-                 "of '%s'\n",
-                 i, found.c_str(), assumed.c_str());
+          spdlog::error("Header part {} '{}' is not the expected value "
+                        "of '{}'\n",
+                        i, found, assumed);
 
           isHeaderValid = false;
         }
@@ -161,7 +159,7 @@ WildcatDelimiterArchive::getHeaderStartIndex(const std::vector<std::string>& lin
 
       if (isHeaderValid)
       {
-        printf("WildcatPastedSheetArchive::getHeaderStartIndex(...): Valid header found in pasted sheet!\n");
+        spdlog::debug("Valid header found in pasted sheet!");
 
         lineStart = 1; // Skip header during parsing
       }

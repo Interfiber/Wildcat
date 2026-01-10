@@ -1,6 +1,6 @@
 #include <QApplication>
 #include <QPushButton>
-
+#include <spdlog/spdlog.h>
 #include "Wildcat/driver/wrapper.h"
 #include "Wildcat/ui/mainwindow.h"
 
@@ -12,6 +12,8 @@ main(int argc, char* argv[])
   QCoreApplication::setOrganizationName("Beachmont");
   QCoreApplication::setOrganizationDomain("wildcat.beachmont.xyz");
   QCoreApplication::setApplicationName("Wildcat");
+
+  spdlog::set_level(spdlog::level::trace);
 
   // Step 1. Execute the user mode driver if needed
 

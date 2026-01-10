@@ -1,164 +1,524 @@
 [
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcatplatform2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o -c /home/hstasonis/work/Wildcat/build/test/wildcatplatform2_autogen/mocs_compilation.cpp",
-  "file": "/home/hstasonis/work/Wildcat/build/test/wildcatplatform2_autogen/mocs_compilation.cpp",
-  "output": "CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcatplatform2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o -c /home/hstasonis/work/Wildcat/src/io/iodrivers/unixtty.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/io/iodrivers/unixtty.cpp",
-  "output": "CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o -c /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/mocs_compilation.cpp",
-  "file": "/home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/mocs_compilation.cpp",
-  "output": "CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/main.cpp.o -c /home/hstasonis/work/Wildcat/src/main.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/main.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/main.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/wrapper.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/driver/wrapper.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/mainwindow.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/ui/mainwindow.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/channelswidget.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/ui/channelswidget.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/io/device.cpp.o -c /home/hstasonis/work/Wildcat/src/io/device.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/io/device.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/io/device.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/io/channel.cpp.o -c /home/hstasonis/work/Wildcat/src/io/channel.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/io/channel.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/io/channel.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/io/message.cpp.o -c /home/hstasonis/work/Wildcat/src/io/message.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/io/message.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/io/message.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o -c /home/hstasonis/work/Wildcat/src/io/ctcss.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/io/ctcss.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/connectionwidget.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/ui/connectionwidget.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/devicepicker.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/ui/devicepicker.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o -c /home/hstasonis/work/Wildcat/src/io/iothread.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/io/iothread.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o -c /home/hstasonis/work/Wildcat/src/io/basicfuture.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/io/basicfuture.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/textedit.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/ui/textedit.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/ui/importwindow.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/importwindow.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/ui/importwindow.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/ui/importwindow.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/fs/archive.cpp.o -c /home/hstasonis/work/Wildcat/src/fs/archive.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/fs/archive.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/fs/archive.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/fs/pastedsheet.cpp.o -c /home/hstasonis/work/Wildcat/src/fs/pastedsheet.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/fs/pastedsheet.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/fs/pastedsheet.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/fs/csv.cpp.o -c /home/hstasonis/work/Wildcat/src/fs/csv.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/fs/csv.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/fs/csv.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/src/driver/utils.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/utils.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/driver/utils.cpp",
-  "output": "CMakeFiles/wildcat2.dir/src/driver/utils.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"a84809d\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets  -o CMakeFiles/wildcat2.dir/build/test/.qt/rcc/qrc_resources.cpp.o -c /home/hstasonis/work/Wildcat/build/test/.qt/rcc/qrc_resources.cpp",
-  "file": "/home/hstasonis/work/Wildcat/build/test/.qt/rcc/qrc_resources.cpp",
-  "output": "CMakeFiles/wildcat2.dir/build/test/.qt/rcc/qrc_resources.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcatdriver2_autogen/include  -o CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o -c /home/hstasonis/work/Wildcat/build/test/wildcatdriver2_autogen/mocs_compilation.cpp",
-  "file": "/home/hstasonis/work/Wildcat/build/test/wildcatdriver2_autogen/mocs_compilation.cpp",
-  "output": "CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcatdriver2_autogen/include  -o CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/environ.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/driver/environ.cpp",
-  "output": "CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcatdriver2_autogen/include  -o CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/main.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/driver/main.cpp",
-  "output": "CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcatdriver2_autogen/include  -o CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/driver.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/driver/driver.cpp",
-  "output": "CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o"
-},
-{
-  "directory": "/home/hstasonis/work/Wildcat/build/test",
-  "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/test/wildcatdriver2_autogen/include  -o CMakeFiles/wildcatdriver2.dir/src/driver/utils.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/utils.cpp",
-  "file": "/home/hstasonis/work/Wildcat/src/driver/utils.cpp",
-  "output": "CMakeFiles/wildcatdriver2.dir/src/driver/utils.cpp.o"
-}
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": ".qt/rcc/qrc_resources.cpp",
+    "output": "cmake_object_order_depends_target_wildcat2"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o -MF CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/mocs_compilation.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/mocs_compilation.cpp",
+    "output": "CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/main.cpp.o -MF CMakeFiles/wildcat2.dir/src/main.cpp.o.d -o CMakeFiles/wildcat2.dir/src/main.cpp.o -c /home/hstasonis/work/Wildcat/src/main.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/main.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/main.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o -MF CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o.d -o CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/wrapper.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/driver/wrapper.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/mainwindow.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/ui/mainwindow.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/channelswidget.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/ui/channelswidget.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/io/device.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/device.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/device.cpp.o -c /home/hstasonis/work/Wildcat/src/io/device.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/io/device.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/device.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/io/channel.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/channel.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/channel.cpp.o -c /home/hstasonis/work/Wildcat/src/io/channel.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/io/channel.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/channel.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/io/message.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/message.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/message.cpp.o -c /home/hstasonis/work/Wildcat/src/io/message.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/io/message.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/message.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o -c /home/hstasonis/work/Wildcat/src/io/ctcss.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/io/ctcss.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/connectionwidget.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/ui/connectionwidget.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/devicepicker.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/ui/devicepicker.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o -c /home/hstasonis/work/Wildcat/src/io/iothread.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/io/iothread.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o -MF CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o.d -o CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o -c /home/hstasonis/work/Wildcat/src/io/basicfuture.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/io/basicfuture.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/textedit.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/ui/textedit.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/ui/importwindow.cpp.o -MF CMakeFiles/wildcat2.dir/src/ui/importwindow.cpp.o.d -o CMakeFiles/wildcat2.dir/src/ui/importwindow.cpp.o -c /home/hstasonis/work/Wildcat/src/ui/importwindow.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/ui/importwindow.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/ui/importwindow.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/fs/archive.cpp.o -MF CMakeFiles/wildcat2.dir/src/fs/archive.cpp.o.d -o CMakeFiles/wildcat2.dir/src/fs/archive.cpp.o -c /home/hstasonis/work/Wildcat/src/fs/archive.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/fs/archive.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/fs/archive.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/fs/pastedsheet.cpp.o -MF CMakeFiles/wildcat2.dir/src/fs/pastedsheet.cpp.o.d -o CMakeFiles/wildcat2.dir/src/fs/pastedsheet.cpp.o -c /home/hstasonis/work/Wildcat/src/fs/pastedsheet.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/fs/pastedsheet.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/fs/pastedsheet.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/fs/csv.cpp.o -MF CMakeFiles/wildcat2.dir/src/fs/csv.cpp.o.d -o CMakeFiles/wildcat2.dir/src/fs/csv.cpp.o -c /home/hstasonis/work/Wildcat/src/fs/csv.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/fs/csv.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/fs/csv.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/driver/utils.cpp.o -MF CMakeFiles/wildcat2.dir/src/driver/utils.cpp.o.d -o CMakeFiles/wildcat2.dir/src/driver/utils.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/utils.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/driver/utils.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/driver/utils.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/fs/delimiter.cpp.o -MF CMakeFiles/wildcat2.dir/src/fs/delimiter.cpp.o.d -o CMakeFiles/wildcat2.dir/src/fs/delimiter.cpp.o -c /home/hstasonis/work/Wildcat/src/fs/delimiter.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/fs/delimiter.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/fs/delimiter.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/src/fs/json.cpp.o -MF CMakeFiles/wildcat2.dir/src/fs/json.cpp.o.d -o CMakeFiles/wildcat2.dir/src/fs/json.cpp.o -c /home/hstasonis/work/Wildcat/src/fs/json.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/fs/json.cpp",
+    "output": "CMakeFiles/wildcat2.dir/src/fs/json.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DGIT_BRANCH_BUILD=\\\"qt-rewrite\\\" -DGIT_HASH_BUILD=\\\"e17925e\\\" -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-src/include -g -MD -MT CMakeFiles/wildcat2.dir/build/Desktop-Debug/.qt/rcc/qrc_resources.cpp.o -MF CMakeFiles/wildcat2.dir/build/Desktop-Debug/.qt/rcc/qrc_resources.cpp.o.d -o CMakeFiles/wildcat2.dir/build/Desktop-Debug/.qt/rcc/qrc_resources.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/.qt/rcc/qrc_resources.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/.qt/rcc/qrc_resources.cpp",
+    "output": "CMakeFiles/wildcat2.dir/build/Desktop-Debug/.qt/rcc/qrc_resources.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": ": && /usr/bin/c++ -g -Wl,--dependency-file=CMakeFiles/wildcat2.dir/link.d CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o CMakeFiles/wildcat2.dir/src/main.cpp.o CMakeFiles/wildcat2.dir/src/driver/wrapper.cpp.o CMakeFiles/wildcat2.dir/src/ui/mainwindow.cpp.o CMakeFiles/wildcat2.dir/src/ui/channelswidget.cpp.o CMakeFiles/wildcat2.dir/src/io/device.cpp.o CMakeFiles/wildcat2.dir/src/io/channel.cpp.o CMakeFiles/wildcat2.dir/src/io/message.cpp.o CMakeFiles/wildcat2.dir/src/io/ctcss.cpp.o CMakeFiles/wildcat2.dir/src/ui/connectionwidget.cpp.o CMakeFiles/wildcat2.dir/src/ui/devicepicker.cpp.o CMakeFiles/wildcat2.dir/src/io/iothread.cpp.o CMakeFiles/wildcat2.dir/src/io/basicfuture.cpp.o CMakeFiles/wildcat2.dir/src/ui/textedit.cpp.o CMakeFiles/wildcat2.dir/src/ui/importwindow.cpp.o CMakeFiles/wildcat2.dir/src/fs/archive.cpp.o CMakeFiles/wildcat2.dir/src/fs/pastedsheet.cpp.o CMakeFiles/wildcat2.dir/src/fs/csv.cpp.o CMakeFiles/wildcat2.dir/src/driver/utils.cpp.o CMakeFiles/wildcat2.dir/src/fs/delimiter.cpp.o CMakeFiles/wildcat2.dir/src/fs/json.cpp.o CMakeFiles/wildcat2.dir/build/Desktop-Debug/.qt/rcc/qrc_resources.cpp.o -o wildcat2  libwildcatplatform2.a  _deps/spdlog-build/libspdlogd.a  /usr/lib/x86_64-linux-gnu/libQt6Widgets.so.6.8.2  /usr/lib/x86_64-linux-gnu/libQt6Gui.so.6.8.2  /usr/lib/x86_64-linux-gnu/libGLX.so  /usr/lib/x86_64-linux-gnu/libOpenGL.so  /usr/lib/x86_64-linux-gnu/libQt6Core.so.6.8.2 && :",
+    "file": "CMakeFiles/wildcat2.dir/wildcat2_autogen/mocs_compilation.cpp.o",
+    "output": "wildcat2"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "cmake_object_order_depends_target_spdlog",
+    "output": "cmake_object_order_depends_target_wildcatplatform2"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatplatform2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -g -MD -MT CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o -MF CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatplatform2_autogen/mocs_compilation.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatplatform2_autogen/mocs_compilation.cpp",
+    "output": "CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -DSPDLOG_COMPILED_LIB -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatplatform2_autogen/include -isystem /usr/include/x86_64-linux-gnu/qt6/QtCore -isystem /usr/include/x86_64-linux-gnu/qt6 -isystem /usr/lib/x86_64-linux-gnu/qt6/mkspecs/linux-g++ -isystem /usr/include/x86_64-linux-gnu/qt6/QtGui -isystem /usr/include/x86_64-linux-gnu/qt6/QtWidgets -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -g -MD -MT CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o -MF CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o.d -o CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o -c /home/hstasonis/work/Wildcat/src/io/iodrivers/unixtty.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/io/iodrivers/unixtty.cpp",
+    "output": "CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": ": && /usr/bin/cmake -E rm -f libwildcatplatform2.a && /usr/bin/ar qc libwildcatplatform2.a  CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o CMakeFiles/wildcatplatform2.dir/src/io/iodrivers/unixtty.cpp.o && /usr/bin/ranlib libwildcatplatform2.a && :",
+    "file": "CMakeFiles/wildcatplatform2.dir/wildcatplatform2_autogen/mocs_compilation.cpp.o",
+    "output": "libwildcatplatform2.a"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "wildcatdriver2_autogen",
+    "output": "cmake_object_order_depends_target_wildcatdriver2"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatdriver2_autogen/include -g -MD -MT CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o -MF CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o.d -o CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatdriver2_autogen/mocs_compilation.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatdriver2_autogen/mocs_compilation.cpp",
+    "output": "CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatdriver2_autogen/include -g -MD -MT CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o -MF CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o.d -o CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/environ.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/driver/environ.cpp",
+    "output": "CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatdriver2_autogen/include -g -MD -MT CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o -MF CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o.d -o CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/main.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/driver/main.cpp",
+    "output": "CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatdriver2_autogen/include -g -MD -MT CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o -MF CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o.d -o CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/driver.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/driver/driver.cpp",
+    "output": "CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++  -I/home/hstasonis/work/Wildcat/include -isystem /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatdriver2_autogen/include -g -MD -MT CMakeFiles/wildcatdriver2.dir/src/driver/utils.cpp.o -MF CMakeFiles/wildcatdriver2.dir/src/driver/utils.cpp.o.d -o CMakeFiles/wildcatdriver2.dir/src/driver/utils.cpp.o -c /home/hstasonis/work/Wildcat/src/driver/utils.cpp",
+    "file": "/home/hstasonis/work/Wildcat/src/driver/utils.cpp",
+    "output": "CMakeFiles/wildcatdriver2.dir/src/driver/utils.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": ": && /usr/bin/c++ -g -Wl,--dependency-file=CMakeFiles/wildcatdriver2.dir/link.d CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o CMakeFiles/wildcatdriver2.dir/src/driver/environ.cpp.o CMakeFiles/wildcatdriver2.dir/src/driver/main.cpp.o CMakeFiles/wildcatdriver2.dir/src/driver/driver.cpp.o CMakeFiles/wildcatdriver2.dir/src/driver/utils.cpp.o -o wildcatdriver2   && :",
+    "file": "CMakeFiles/wildcatdriver2.dir/wildcatdriver2_autogen/mocs_compilation.cpp.o",
+    "output": "wildcatdriver2"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "CMakeFiles/edit_cache.util",
+    "output": "edit_cache"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "CMakeFiles/rebuild_cache.util",
+    "output": "rebuild_cache"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug && /usr/bin/cmake -P cmake_install.cmake",
+    "file": "all",
+    "output": "CMakeFiles/install.util"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "CMakeFiles/install.util",
+    "output": "install"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake",
+    "file": "all",
+    "output": "CMakeFiles/install/local.util"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "CMakeFiles/install/local.util",
+    "output": "install/local"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake",
+    "file": "all",
+    "output": "CMakeFiles/install/strip.util"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "CMakeFiles/install/strip.util",
+    "output": "install/strip"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/libspdlogd.a",
+    "output": "wildcat2_autogen_timestamp_deps"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "CMakeFiles/wildcat2_autogen",
+    "output": "wildcat2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/libspdlogd.a",
+    "output": "wildcatplatform2_autogen_timestamp_deps"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "CMakeFiles/wildcatplatform2_autogen",
+    "output": "wildcatplatform2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "CMakeFiles/wildcatdriver2_autogen",
+    "output": "wildcatdriver2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug && /usr/lib/qt6/libexec/rcc --output /home/hstasonis/work/Wildcat/build/Desktop-Debug/.qt/rcc/qrc_resources.cpp --name resources /home/hstasonis/work/Wildcat/build/Desktop-Debug/.qt/rcc/resources.qrc",
+    "file": "/home/hstasonis/work/Wildcat/wcat2.png",
+    "output": ".qt/rcc/qrc_resources.cpp"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug && /usr/bin/cmake -E cmake_autogen /home/hstasonis/work/Wildcat/build/Desktop-Debug/CMakeFiles/wildcat2_autogen.dir/AutogenInfo.json Debug && /usr/bin/cmake -E touch /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/timestamp && /usr/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /home/hstasonis/work/Wildcat /home/hstasonis/work/Wildcat /home/hstasonis/work/Wildcat/build/Desktop-Debug /home/hstasonis/work/Wildcat/build/Desktop-Debug /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcat2_autogen/deps /home/hstasonis/work/Wildcat/build/Desktop-Debug/CMakeFiles/d/e6b0ef7a9285a96a1157e62e7d8ed1510a53e18a8a8269da2a0ef090cbf66e0d.d",
+    "file": "/usr/lib/qt6/libexec/moc",
+    "output": "wildcat2_autogen/timestamp"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug && /usr/bin/cmake -E cmake_autogen /home/hstasonis/work/Wildcat/build/Desktop-Debug/CMakeFiles/wildcatplatform2_autogen.dir/AutogenInfo.json Debug && /usr/bin/cmake -E touch /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatplatform2_autogen/timestamp && /usr/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /home/hstasonis/work/Wildcat /home/hstasonis/work/Wildcat /home/hstasonis/work/Wildcat/build/Desktop-Debug /home/hstasonis/work/Wildcat/build/Desktop-Debug /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatplatform2_autogen/deps /home/hstasonis/work/Wildcat/build/Desktop-Debug/CMakeFiles/d/ba101ce0122d970e49bcb1f16b34a377f53d608e2dc6654caaf495799ad24532.d",
+    "file": "/usr/lib/qt6/libexec/moc",
+    "output": "wildcatplatform2_autogen/timestamp"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug && /usr/bin/cmake -E cmake_autogen /home/hstasonis/work/Wildcat/build/Desktop-Debug/CMakeFiles/wildcatdriver2_autogen.dir/AutogenInfo.json Debug && /usr/bin/cmake -E touch /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatdriver2_autogen/timestamp && /usr/bin/cmake -E cmake_transform_depfile Ninja gccdepfile /home/hstasonis/work/Wildcat /home/hstasonis/work/Wildcat /home/hstasonis/work/Wildcat/build/Desktop-Debug /home/hstasonis/work/Wildcat/build/Desktop-Debug /home/hstasonis/work/Wildcat/build/Desktop-Debug/wildcatdriver2_autogen/deps /home/hstasonis/work/Wildcat/build/Desktop-Debug/CMakeFiles/d/5baeae82a0c3ba7a8e11b3e0f88452eceb00254bf9bb3c73f5a25c1226d7e96f.d",
+    "file": "/usr/lib/qt6/libexec/moc",
+    "output": "wildcatdriver2_autogen/timestamp"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "wildcat2_autogen/timestamp",
+    "output": "CMakeFiles/wildcat2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "wildcatplatform2_autogen/timestamp",
+    "output": "CMakeFiles/wildcatplatform2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "wildcatdriver2_autogen/timestamp",
+    "output": "CMakeFiles/wildcatdriver2_autogen"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/json-build/CMakeFiles/edit_cache.util",
+    "output": "_deps/json-build/edit_cache"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/json-build/CMakeFiles/rebuild_cache.util",
+    "output": "_deps/json-build/rebuild_cache"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-build && /usr/bin/cmake -P cmake_install.cmake",
+    "file": "_deps/json-build/all",
+    "output": "_deps/json-build/CMakeFiles/install.util"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/json-build/CMakeFiles/install.util",
+    "output": "_deps/json-build/install"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-build && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake",
+    "file": "_deps/json-build/all",
+    "output": "_deps/json-build/CMakeFiles/install/local.util"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/json-build/CMakeFiles/install/local.util",
+    "output": "_deps/json-build/install/local"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/json-build && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake",
+    "file": "_deps/json-build/all",
+    "output": "_deps/json-build/CMakeFiles/install/strip.util"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/json-build/CMakeFiles/install/strip.util",
+    "output": "_deps/json-build/install/strip"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": ".",
+    "output": "cmake_object_order_depends_target_spdlog"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DSPDLOG_COMPILED_LIB -DSPDLOG_FWRITE_UNLOCKED -I/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -g -std=c++11 -MD -MT _deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o -MF _deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o.d -o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/spdlog.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/spdlog.cpp",
+    "output": "_deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DSPDLOG_COMPILED_LIB -DSPDLOG_FWRITE_UNLOCKED -I/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -g -std=c++11 -MD -MT _deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o -MF _deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o.d -o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/stdout_sinks.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/stdout_sinks.cpp",
+    "output": "_deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DSPDLOG_COMPILED_LIB -DSPDLOG_FWRITE_UNLOCKED -I/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -g -std=c++11 -MD -MT _deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o -MF _deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o.d -o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/color_sinks.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/color_sinks.cpp",
+    "output": "_deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DSPDLOG_COMPILED_LIB -DSPDLOG_FWRITE_UNLOCKED -I/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -g -std=c++11 -MD -MT _deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o -MF _deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o.d -o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/file_sinks.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/file_sinks.cpp",
+    "output": "_deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DSPDLOG_COMPILED_LIB -DSPDLOG_FWRITE_UNLOCKED -I/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -g -std=c++11 -MD -MT _deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o -MF _deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o.d -o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/async.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/async.cpp",
+    "output": "_deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DSPDLOG_COMPILED_LIB -DSPDLOG_FWRITE_UNLOCKED -I/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -g -std=c++11 -MD -MT _deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o -MF _deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o.d -o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/cfg.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/cfg.cpp",
+    "output": "_deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/c++ -DSPDLOG_COMPILED_LIB -DSPDLOG_FWRITE_UNLOCKED -I/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/include -g -std=c++11 -MD -MT _deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o -MF _deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o.d -o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o -c /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/bundled_fmtlib_format.cpp",
+    "file": "/home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-src/src/bundled_fmtlib_format.cpp",
+    "output": "_deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": ": && /usr/bin/cmake -E rm -f _deps/spdlog-build/libspdlogd.a && /usr/bin/ar qc _deps/spdlog-build/libspdlogd.a  _deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/stdout_sinks.cpp.o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/color_sinks.cpp.o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/file_sinks.cpp.o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/async.cpp.o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/cfg.cpp.o _deps/spdlog-build/CMakeFiles/spdlog.dir/src/bundled_fmtlib_format.cpp.o && /usr/bin/ranlib _deps/spdlog-build/libspdlogd.a && :",
+    "file": "_deps/spdlog-build/CMakeFiles/spdlog.dir/src/spdlog.cpp.o",
+    "output": "_deps/spdlog-build/libspdlogd.a"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/CMakeFiles/edit_cache.util",
+    "output": "_deps/spdlog-build/edit_cache"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/CMakeFiles/rebuild_cache.util",
+    "output": "_deps/spdlog-build/rebuild_cache"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-build && /usr/bin/cmake -P cmake_install.cmake",
+    "file": "_deps/spdlog-build/all",
+    "output": "_deps/spdlog-build/CMakeFiles/install.util"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/CMakeFiles/install.util",
+    "output": "_deps/spdlog-build/install"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-build && /usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake",
+    "file": "_deps/spdlog-build/all",
+    "output": "_deps/spdlog-build/CMakeFiles/install/local.util"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/CMakeFiles/install/local.util",
+    "output": "_deps/spdlog-build/install/local"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "cd /home/hstasonis/work/Wildcat/build/Desktop-Debug/_deps/spdlog-build && /usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake",
+    "file": "_deps/spdlog-build/all",
+    "output": "_deps/spdlog-build/CMakeFiles/install/strip.util"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/CMakeFiles/install/strip.util",
+    "output": "_deps/spdlog-build/install/strip"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/libspdlogd.a",
+    "output": "libspdlogd.a"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/libspdlogd.a",
+    "output": "spdlog"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "libwildcatplatform2.a",
+    "output": "wildcatplatform2"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "wildcat2",
+    "output": "all"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "",
+    "file": "_deps/spdlog-build/libspdlogd.a",
+    "output": "_deps/spdlog-build/all"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/cmake --regenerate-during-build -S/home/hstasonis/work/Wildcat -B/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "file": "/home/hstasonis/work/Wildcat/CMakeLists.txt",
+    "output": "build.ninja"
+  },
+  {
+    "directory": "/home/hstasonis/work/Wildcat/build/Desktop-Debug",
+    "command": "/usr/bin/ninja  -t clean ",
+    "file": "CMakeFiles/clean.additional",
+    "output": "clean"
+  }
 ]

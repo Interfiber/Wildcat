@@ -12,6 +12,7 @@
 #include <Wildcat/ui/mainwindow.h>
 
 #include <QClipboard>
+#include "Wildcat/fs/json.h"
 #include "Wildcat/global.h"
 #include "Wildcat/io/device.h"
 #include "Wildcat/ui/channelswidget.h"
@@ -33,6 +34,7 @@ WildcatMainWindow::WildcatMainWindow()
 
   WildcatArchiveImporter::get()->addArchivePair<WildcatPastedSheetArchive>();
   WildcatArchiveImporter::get()->addArchivePair<WildcatCSVArchive>();
+  WildcatArchiveImporter::get()->addArchivePair<WildcatJSONArchive>();
 
   // Import window (early init)
 

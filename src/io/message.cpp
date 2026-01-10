@@ -4,6 +4,7 @@
 
 #include <Wildcat/fs/archive.h> // For Helper_Split
 #include <Wildcat/io/message.h>
+#include <spdlog/spdlog.h>
 #include <sstream>
 #include <stdexcept>
 
@@ -18,7 +19,7 @@ WildcatMessage::WildcatMessage(const std::string& message)
   std::vector<std::string> split = Helper_Split(message, ',');
   if (split.empty())
   {
-    printf("Message must have at least the message type! Skipping parse...");
+    spdlog::error("Message must have at least the message type! Skipping parse...");
     return;
   }
 

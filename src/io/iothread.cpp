@@ -3,6 +3,7 @@
 //
 
 #include <Wildcat/io/iothread.h>
+#include <spdlog/spdlog.h>
 
 #include "Wildcat/io/basicfuture.h"
 
@@ -38,7 +39,7 @@ WildcatIOThread::issueAsyncWrite(const std::string& buffer)
 [[noreturn]] void
 WildcatIOThread::run()
 {
-  printf("Wildcat IO thread started!\n");
+  spdlog::debug("Wildcat IO thread started!");
 
   while (true)
   {
@@ -54,7 +55,7 @@ WildcatIOThread::run()
 
     for (auto& op : m_writes)
     {
-      printf("Performing write operation on IO thread...\n");
+      spdlog::debug("Perform queued IO write");
 
       WildcatDevice::DeviceResult<std::string> result = m_device->issueAsync(op.writeBuffer);
       result.async.isAsync = true;
