@@ -5,8 +5,8 @@
 #pragma once
 #include <nlohmann/json.hpp>
 #include "Wildcat/fs/archive.h"
+#include "Wildcat/io/channel.h"
 
-class WildcatChannel;
 
 /**
  * JSON blob archive
@@ -22,7 +22,7 @@ public:
     std::vector<std::string> overrideBankNames;
 
     /// @brief  List of channels
-    // std::vector<WildcatChannel> channels;
+    std::vector<std::shared_ptr<WildcatChannel>> channels;
   };
 
   void importArchive(const std::string& buffer) override;
@@ -30,5 +30,8 @@ public:
   std::string getArchiveName() override;
 
 private:
-  std::optional<JSONArchive> loadArchive(nlohmann::json& data);
+  /**
+   * @param fullLoad When set to `true` new channels will be created from the DEVICE
+   */
+  std::optional<JSONArchive> loadArchive(nlohmann::json& data, bool fullLoad = false);
 };

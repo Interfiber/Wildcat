@@ -91,7 +91,6 @@ WildcatUnixTTYDriver::connectToDevice(const std::string& name)
   // to the serial device
 
   spdlog::info("UnixTTY driver connecting to device: {}", name);
-
   // Sanity check
   if (!std::filesystem::exists(name))
   {

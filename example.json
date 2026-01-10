@@ -1,0 +1,15 @@
+{
+  "$override_banks": [],
+  "$channels": [
+    {
+      "bank": 1,
+      "name": "NORTH STA",
+      "modulation": "AUTO",
+      "frequency": 161.4150,
+      "ctcss_dcs": "",
+      "lockout": false,
+      "delay": -2,
+      "priority": "Off"
+    }
+  ]
+}
