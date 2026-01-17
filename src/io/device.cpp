@@ -198,6 +198,33 @@ WildcatDevice::addChannel(const std::shared_ptr<WildcatChannel>& channel)
   m_channels.push_back(channel);
 }
 
+void
+WildcatDevice::removeChannel(const std::shared_ptr<WildcatChannel>& channel)
+{
+  setProgramMode(true).wait();
+
+  // Calculate the actual channel index
+  const int realID = ((channel->bank - 1) * WildcatDevice::MAX_CHANNELS_PER_BANK) + channel->index;
+
+  issueAsync(WildcatMessage::deleteChannel(realID).toString());
+
+  setProgramMode(false).wait();
+
+  // Erase the channel from our cache list, all pointers to this channel should be invalidated
+
+  for (int i = 0; i < m_channels.size(); i++)
+  {
+    if (m_channels[i]->index == channel->index && m_channels[i]->bank == channel->bank)
+    {
+      m_channels.erase(m_channels.begin() + i);
+
+      return;
+    }
+  }
+
+  spdlog::error("Failed to remove channel from local cache, channel not found");
+}
+
 std::shared_ptr<WildcatChannel>
 WildcatDevice::getChannel(const int index, const int bank, const bool skipCache)
 {

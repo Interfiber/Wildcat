@@ -57,10 +57,13 @@ public:
     QComboBox* lockout;
     QComboBox* delay;
     QComboBox* priority;
+
+    QPushButton* remove;
   };
 
 public slots:
   void addChannel(const std::shared_ptr<WildcatChannel>& channel = nullptr);
+  void removeChannel(const UIChannel& channel);
   void loadCurrentBank();
   void clearChannels();
 

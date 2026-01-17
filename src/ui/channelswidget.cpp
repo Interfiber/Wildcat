@@ -97,9 +97,9 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
 
   for (int i = 0; i < WildcatDevice::MAX_BANKS; i++)
   {
-    auto table = new QTableWidget(0, 7); // Start off with zero channels programmed
-    table->setHorizontalHeaderLabels(
-      { "Name", "Frequency", "Modulation", "CTCSS/DCS", "Lockout", "Delay", "Priority" });
+    auto table = new QTableWidget(0, 8); // Start off with zero channels programmed
+    table->setHorizontalHeaderLabels({ "Name", "Frequency", "Modulation", "CTCSS/DCS", "Lockout", "Delay", "Priority",
+                                       "Delete" }); // Last header is for the delete button
     table->setAlternatingRowColors(true);
     table->setSelectionMode(QAbstractItemView::SingleSelection);
 
@@ -263,6 +263,29 @@ ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel>& precacheChanne
   // Determine which channel to use
   channel.channel = precacheChannel == nullptr ? DEVICE->newChannel() : precacheChannel;
 
+  channel.remove = new QPushButton(nullptr);
+  channel.remove->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::EditDelete));
+
+  connect(channel.remove, &QPushButton::clicked, this,
+          [channel, this]()
+          {
+            if (const QMessageBox::StandardButton button = QMessageBox::question(
+                  this, "Wildcat",
+                  "Do you really wish to remove this channel from the scanner?\nYou cannot undo this operation!",
+                  QMessageBox::Yes | QMessageBox::Abort, QMessageBox::Abort);
+                button != QMessageBox::StandardButton::Yes)
+              return;
+
+            // Remove channel from the device
+            DEVICE->removeChannel(channel.channel);
+
+            // Remove channel from the UI
+            removeChannel(channel);
+
+            channel.destroy();
+          });
+
+
   channel.channel->index = rowCount + 1;
   channel.channel->bank = m_tabWidget->currentIndex() + 1;
 
@@ -382,6 +405,7 @@ ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel>& precacheChanne
   table->setCellWidget(rowCount, 4, channel.lockout);
   table->setCellWidget(rowCount, 5, channel.delay);
   table->setCellWidget(rowCount, 6, channel.priority);
+  table->setCellWidget(rowCount, 7, channel.remove);
 
   table->resizeColumnsToContents();
   table->resizeRowsToContents();
@@ -442,4 +466,15 @@ ChannelsWidget::clearChannels()
   }
 
   m_channels.clear();
+}
+
+void
+ChannelsWidget::removeChannel(const UIChannel& channel)
+{
+  // Get the table which this channel resides in
+
+  QTableWidget* table = (QTableWidget*)m_tabWidget->widget(channel.channel->bank - 1);
+
+  // Remove the channel from the table widget
+  table->removeRow(channel.channel->index - 1);
 }

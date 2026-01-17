@@ -253,6 +253,12 @@ public:
   void addChannel(const std::shared_ptr<WildcatChannel>& channel);
 
   /**
+   * Remove a channel from this device
+   * @param channel Channel to remove
+   */
+  void removeChannel(const std::shared_ptr<WildcatChannel>& channel);
+
+  /**
    * Get a channel by location from the local cache or from the scanner
    * @param index Index of the channel within `bank`, one indexed
    * @param bank Bank to find the channel in, one indexed
@@ -303,7 +309,7 @@ private:
   std::vector<int> m_bankChannelCounts;
 
   /// @brief  Local channels which can be written to the device on demand
-  std::vector<std::shared_ptr<WildcatChannel> > m_channels;
+  std::vector<std::shared_ptr<WildcatChannel>> m_channels;
 
   std::shared_ptr<WildcatIOThread> m_ioThread;
 
