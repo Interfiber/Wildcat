@@ -38,3 +38,8 @@ QStringList Wildcat_GetCTCSSCodes();
  * @note `str` must be prefixed with `CTCSS` or `DCS`
  */
 int Wildcat_GetCTCSSCode(const std::string& str);
+
+/**
+ * Return the CTCSS/DCS name for the input `code`
+ */
+std::string Wildcat_GetCTCSSName(int code);

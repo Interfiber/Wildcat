@@ -3,6 +3,7 @@
 #include <spdlog/spdlog.h>
 #include "Wildcat/global.h"
 #include "Wildcat/io/channel.h"
+#include "Wildcat/io/ctcss.h"
 
 #define check_exists(key, json)                                                                                        \
   if (!json.contains(key))                                                                                             \
@@ -144,7 +145,10 @@ WildcatJSONArchive::loadArchive(nlohmann::json& data, bool fullLoad)
       continue;
     }
 
-    // FIXME: CTCSS/DCS
+    if (!ctcssDcs.is_string())
+    {
+      spdlog::error("'ctcss_dcs' must be a string");
+    }
 
     if (!lockout.is_boolean())
     {
@@ -176,8 +180,7 @@ WildcatJSONArchive::loadArchive(nlohmann::json& data, bool fullLoad)
     wChan->name = name.get<std::string>();
     wChan->frequency = frequency.get<float>();
     wChan->modulation = WildcatChannel::stringToModulationMode(modulation.get<std::string>());
-
-    // FIXME: CTCSS/DCS
+    wChan->ctcss = Wildcat_GetCTCSSCode(ctcssDcs.get<std::string>());
 
     wChan->lockoutMode = lockout.get<bool>() ? WildcatChannel::LockoutMode::Lockout : WildcatChannel::LockoutMode::Off;
     wChan->delay = delay.get<int>();

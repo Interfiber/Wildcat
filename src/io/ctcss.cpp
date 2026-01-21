@@ -68,6 +68,16 @@ Wildcat_GetCTCSSCode(const std::string& str)
   }
   else if (Util_BeginsWith(str, "DCS"))
   {
+    const std::string freq = Helper_Split(str, ' ')[1];
+
+    // Find correct DCS code to use
+    for (int i = 0; i < DCS_CODES.size(); i++)
+    {
+      const int code = DCS_CODES[i];
+
+      if (std::stoi(freq) == code)
+        return DCS_START_CODE + i;
+    }
   }
   // Special names
   else if (str == "None / All")
@@ -83,5 +93,41 @@ Wildcat_GetCTCSSCode(const std::string& str)
     return NO_TONE_CODE;
   }
 
-  throw std::runtime_error("Invalid CTCSS/DCS code for Wildcat_GetCTCSSCode");
+  spdlog::warn("Invalid CTCSS/DCS code for Wildcat_GetCTCSSCode");
+
+  return NONE_CODE;
+}
+
+std::string
+Wildcat_GetCTCSSName(int code)
+{
+  if (code > CTCSS_START_CODE && code < DCS_START_CODE)
+  {
+    const std::string ctcss = CTCSS_CODES[code - CTCSS_START_CODE];
+
+    return "CTCSS " + ctcss;
+  }
+  else if (code > DCS_START_CODE
+           && code < DCS_CODES[DCS_CODES.size() - 1] + 1) // Weird maximum calculation here, whatever.
+  {
+    const int dcs = DCS_CODES[code - DCS_START_CODE];
+
+    return "DCS " + std::to_string(dcs);
+  }
+  else if (code == NONE_CODE)
+  {
+    return "None / All";
+  }
+  else if (code == SEARCH_CODE)
+  {
+    return "Search";
+  }
+  else if (code == NO_TONE_CODE)
+  {
+    return "No tone";
+  }
+
+  spdlog::error("Invalid input code for Wildcat_GetCTCSSName: {}", code);
+
+  return "None / All";
 }

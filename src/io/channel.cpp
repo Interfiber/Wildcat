@@ -21,7 +21,7 @@ WildcatChannel::WildcatChannel(const WildcatMessage& msg)
 
   modulation = stringToModulationMode(msg.getParameters()[3]);
 
-  // FIXME: Impl CTCSS/DCS
+  ctcss = std::stoi(msg.getParameters()[4]);
 
   delay = std::stoi(msg.getParameters()[5]);
   lockoutMode = msg.getParameters()[6] == "0" ? LockoutMode::Off : LockoutMode::Lockout;
@@ -97,7 +97,7 @@ WildcatChannel::writeToDevice(WildcatDevice* device)
   setChInfo.setParameters(
     { std::to_string(((bank - 1) * WildcatDevice::MAX_CHANNELS_PER_BANK) + index), name,
       std::to_string(static_cast<int>(std::round(frequency * 10000))), modulationModeToString(modulation),
-      "", // FIXME: CTCSS/DCS
+      std::to_string(ctcss), // CTCSS/DCS code is obtained automatically by the UI
       std::to_string(delay), lockoutMode == LockoutMode::Off ? "0" : "1", priority == PriorityMode::Off ? "0" : "1" });
 
   // Unusued, fire into the void

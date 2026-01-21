@@ -370,7 +370,15 @@ ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel>& precacheChanne
   channel.ctcss->addItems(Wildcat_GetCTCSSCodes());
   channel.ctcss->setSizeAdjustPolicy(QComboBox::AdjustToContents);
 
-  // FIXME: Impl CTCSS/DCS
+  connect(channel.ctcss, &QComboBox::currentIndexChanged, this,
+          [channel](const int index)
+          {
+            const std::string code = channel.ctcss->currentText().toStdString();
+
+            channel.channel->ctcss = Wildcat_GetCTCSSCode(code);
+          });
+
+  channel.ctcss->setCurrentText(Wildcat_GetCTCSSName(channel.channel->ctcss).data());
 
   // Lockout
 

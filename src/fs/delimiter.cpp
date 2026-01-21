@@ -2,6 +2,7 @@
 
 #include <Wildcat/io/channel.h>
 #include <spdlog/spdlog.h>
+#include "Wildcat/io/ctcss.h"
 
 
 WildcatDelimiterArchive::WildcatDelimiterArchive(char delimiter) { m_delimiter = delimiter; }
@@ -36,8 +37,7 @@ WildcatDelimiterArchive::importArchive(const std::string& buffer)
     const std::string name = split[0];
     const double freq = std::stod(split[1]);
     const WildcatChannel::ModulationMode modulation = WildcatChannel::stringToModulationMode(split[2]);
-
-    // FIXME: Impl CTCSS/DCS
+    const int ctcssDcsCode = Wildcat_GetCTCSSCode(split[3]);
 
     const WildcatChannel::LockoutMode lockout
       = split[4] == "Off" ? WildcatChannel::LockoutMode::Off : WildcatChannel::LockoutMode::Lockout;
@@ -58,6 +58,7 @@ WildcatDelimiterArchive::importArchive(const std::string& buffer)
     newChannel->name = name;
     newChannel->frequency = freq;
     newChannel->modulation = modulation;
+    newChannel->ctcss = ctcssDcsCode;
     newChannel->lockoutMode = lockout;
     newChannel->delay = delay;
     newChannel->priority = priority;

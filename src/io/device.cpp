@@ -201,12 +201,17 @@ WildcatDevice::addChannel(const std::shared_ptr<WildcatChannel>& channel)
 void
 WildcatDevice::removeChannel(const std::shared_ptr<WildcatChannel>& channel)
 {
+  removeChannel(channel->index, channel->bank);
+}
+
+void
+WildcatDevice::removeChannel(int id, int bank)
+{
+  const int realID = ((bank - 1) * WildcatDevice::MAX_CHANNELS_PER_BANK) + id;
+
   setProgramMode(true).wait();
 
-  // Calculate the actual channel index
-  const int realID = ((channel->bank - 1) * WildcatDevice::MAX_CHANNELS_PER_BANK) + channel->index;
-
-  issueAsync(WildcatMessage::deleteChannel(realID).toString());
+  issueAsync(WildcatMessage::deleteChannel(realID).toString()).wait();
 
   setProgramMode(false).wait();
 
@@ -214,7 +219,7 @@ WildcatDevice::removeChannel(const std::shared_ptr<WildcatChannel>& channel)
 
   for (int i = 0; i < m_channels.size(); i++)
   {
-    if (m_channels[i]->index == channel->index && m_channels[i]->bank == channel->bank)
+    if (m_channels[i]->index == id && m_channels[i]->bank == bank)
     {
       m_channels.erase(m_channels.begin() + i);
 
