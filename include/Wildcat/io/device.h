@@ -259,6 +259,13 @@ public:
   void removeChannel(const std::shared_ptr<WildcatChannel>& channel);
 
   /**
+   * Remove a channel from this device by ID
+   * @param id Channel ID in `bank`
+   * @param bank Bank ID 1-10
+   */
+  void removeChannel(int id, int bank);
+
+  /**
    * Get a channel by location from the local cache or from the scanner
    * @param index Index of the channel within `bank`, one indexed
    * @param bank Bank to find the channel in, one indexed

@@ -74,6 +74,7 @@ private:
   QMenu* m_contextMenu;
 
   QAction* m_setBankNickname;
+  QAction* m_deleteBank;
 
   QWidget* m_quickActions;
 

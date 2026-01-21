@@ -84,10 +84,23 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
             }
           });
 
+  m_deleteBank = new QAction("Delete bank");
+
+  connect(m_deleteBank, &QAction::triggered, this,
+          [this]
+          {
+            const int cBank = m_tabWidget->currentIndex() - 1;
+
+            for (int i = 0; i < WildcatDevice::MAX_CHANNELS_PER_BANK; i++)
+            {
+              DEVICE->removeChannel(cBank, i);
+            }
+          });
+
   m_contextMenu = new QMenu(nullptr);
 
   m_contextMenu->addAction(m_setBankNickname);
-  m_contextMenu->addAction("Delete bank");
+  m_contextMenu->addAction(m_deleteBank);
 
   // Tab bar / table
 

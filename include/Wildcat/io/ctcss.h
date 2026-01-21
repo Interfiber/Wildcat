@@ -31,3 +31,10 @@ const std::vector DCS_CODES
       532, 546, 565, 606, 612, 624, 627, 631, 632, 654, 662, 664, 703, 712, 723, 731, 732, 734, 743, 754 };
 
 QStringList Wildcat_GetCTCSSCodes();
+
+/**
+ * Return CTCSS/DCS code for the input `str`
+ * @param str Input string
+ * @note `str` must be prefixed with `CTCSS` or `DCS`
+ */
+int Wildcat_GetCTCSSCode(const std::string& str);
