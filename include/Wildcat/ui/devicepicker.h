@@ -36,4 +36,6 @@ private:
 
   QLabel* m_title;
   QComboBox* m_deviceSelector;
+
+  int m_totalDevices = 0;
 };

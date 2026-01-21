@@ -28,6 +28,8 @@ DevicePickerDialog::DevicePickerDialog(QWidget* parent) : QDialog(parent)
     m_deviceSelector->addItem(device.data());
   }
 
+  m_totalDevices = m_deviceSelector->count();
+
   if (m_deviceSelector->count() == 0)
   {
     m_deviceSelector->addItem("No connected serial devices!");
@@ -54,6 +56,7 @@ DevicePickerDialog::DevicePickerDialog(QWidget* parent) : QDialog(parent)
   m_accept = new QPushButton("Connect to device");
   m_accept->setIcon(QIcon::fromTheme(QIcon::ThemeIcon::DocumentOpen));
   m_accept->setDefault(true);
+  m_accept->setDisabled(m_totalDevices == 0);
 
   connect(m_accept, &QPushButton::clicked, this, &DevicePickerDialog::accept);
 
