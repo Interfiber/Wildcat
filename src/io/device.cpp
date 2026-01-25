@@ -209,6 +209,8 @@ WildcatDevice::removeChannel(int id, int bank)
 {
   const int realID = ((bank - 1) * WildcatDevice::MAX_CHANNELS_PER_BANK) + id;
 
+  spdlog::info("Removing channel with ID: {}", realID);
+
   setProgramMode(true).wait();
 
   issueAsync(WildcatMessage::deleteChannel(realID).toString()).wait();
@@ -222,8 +224,6 @@ WildcatDevice::removeChannel(int id, int bank)
     if (m_channels[i]->index == id && m_channels[i]->bank == bank)
     {
       m_channels.erase(m_channels.begin() + i);
-
-      return;
     }
   }
 

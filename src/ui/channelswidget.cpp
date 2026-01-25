@@ -45,7 +45,7 @@ BankLoaderThread::run()
   {
     WildcatChannel c = channel.wait().unwrap();
 
-    // Skip empty channels
+    // Empty channels indicate stop
     if (c.name.empty())
       break;
 
@@ -190,20 +190,10 @@ ChannelsWidget::ChannelsWidget(QWidget* parent) : QWidget(parent)
   // Load from device quick action
 
   m_enableHotload = new QCheckBox(nullptr);
+  m_enableHotload->setEnabled(true);
   m_enableHotload->setText("Enable hot channel loading?");
 
-  connect(m_enableHotload, &QCheckBox::clicked, this,
-          [this]
-          {
-            HOTLOAD = m_enableHotload->isChecked();
-
-            if (m_enableHotload->isChecked())
-            {
-              QMessageBox::information(this, "Wildcat",
-                                       "Enabled hot loading of channels!\n\nWhen an empty bank is viewed for the first "
-                                       "time Wildcat will attempt to load it from the scanner");
-            }
-          });
+  connect(m_enableHotload, &QCheckBox::clicked, this, [this] { HOTLOAD = m_enableHotload->isChecked(); });
 
   // Add widgets
 
@@ -416,6 +406,8 @@ ChannelsWidget::addChannel(const std::shared_ptr<WildcatChannel>& precacheChanne
               = index == 0 ? WildcatChannel::PriorityMode::Off : WildcatChannel::PriorityMode::PCH;
           });
 
+  channel.row = rowCount;
+
   m_channels.push_back(channel);
 
   // Insert channel into the UI
@@ -494,8 +486,23 @@ ChannelsWidget::removeChannel(const UIChannel& channel)
 {
   // Get the table which this channel resides in
 
+  const int bank = channel.channel->bank;
+  const int oldRow = channel.row;
+
   QTableWidget* table = (QTableWidget*)m_tabWidget->widget(channel.channel->bank - 1);
 
+  spdlog::debug("Channel riow (removeChannel): {}", channel.channel->index - 1);
+
   // Remove the channel from the table widget
-  table->removeRow(channel.channel->index - 1);
+  table->removeRow(channel.row);
+
+  // Update all row IDs
+  for (auto& chan : m_channels)
+  {
+    if (chan.channel->bank != bank)
+      continue;
+
+    if (chan.row <= oldRow)
+      chan.row -= 1;
+  }
 }

@@ -44,6 +44,9 @@ public:
   /// @brief  All components of a single channel displayed in the UI
   struct UIChannel
   {
+    /// @brief Last known row number this channel is on
+    int row = 0;
+
     void destroy() const;
 
     std::shared_ptr<WildcatChannel> channel;
